@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mavuo\\OneDrive\\Máy tính\\Thẩm mỹ viện\\API\\APICosmeticClinic\\APICosmeticClinic\\APICosmeticClinic.csproj": {}
+    "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\API\\APICosmeticClinic\\APICosmeticClinic\\APICosmeticClinic.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mavuo\\OneDrive\\Máy tính\\Thẩm mỹ viện\\API\\APICosmeticClinic\\APICosmeticClinic\\APICosmeticClinic.csproj": {
+    "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\API\\APICosmeticClinic\\APICosmeticClinic\\APICosmeticClinic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mavuo\\OneDrive\\Máy tính\\Thẩm mỹ viện\\API\\APICosmeticClinic\\APICosmeticClinic\\APICosmeticClinic.csproj",
+        "projectUniqueName": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\API\\APICosmeticClinic\\APICosmeticClinic\\APICosmeticClinic.csproj",
         "projectName": "APICosmeticClinic",
-        "projectPath": "C:\\Users\\mavuo\\OneDrive\\Máy tính\\Thẩm mỹ viện\\API\\APICosmeticClinic\\APICosmeticClinic\\APICosmeticClinic.csproj",
+        "projectPath": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\API\\APICosmeticClinic\\APICosmeticClinic\\APICosmeticClinic.csproj",
         "packagesPath": "C:\\Users\\mavuo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mavuo\\OneDrive\\Máy tính\\Thẩm mỹ viện\\API\\APICosmeticClinic\\APICosmeticClinic\\obj\\",
+        "outputPath": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\API\\APICosmeticClinic\\APICosmeticClinic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mavuo\\AppData\\Roaming\\NuGet\\NuGet.Config",

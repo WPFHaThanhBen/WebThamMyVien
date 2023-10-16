@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BeqDgNJ9wQEPL276duAqV0+94/9uTro4NIKsyjJs5DRV22Sw1FALlqa/OGiqG0uMg4YoRVjfWCCrVX9WN6aXIg==",
+  "dgSpecHash": "XjLT5tXMKqVDv99X+FpSjprbhQ9z4tciGeXIstNUUZf4wVwBefku4xcQ+dYFdGFbGDqm6uTks62qXUgXOqaR0g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mavuo\\OneDrive\\Máy tính\\Thẩm mỹ viện\\API\\APICosmeticClinic\\APICosmeticClinic\\APICosmeticClinic.csproj",
+  "projectFilePath": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\API\\APICosmeticClinic\\APICosmeticClinic\\APICosmeticClinic.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mavuo\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\mavuo\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
