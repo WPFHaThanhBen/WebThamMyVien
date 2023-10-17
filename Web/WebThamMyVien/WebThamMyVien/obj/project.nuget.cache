@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fyy+4O+mPkJvF43C2K+rPDtJTUwktIiwrJ7He9yifPLS+6KbQGQJf4Q8YCAZOnN7cJb1B3zUqqjJ4bt4hRSHxw==",
+  "dgSpecHash": "KNQXUNs+hUawv4CZvs7k0GXRXuz+0sdVNSFT8cImgQeWhhEQPt4xZyQNmj3LMWh0x0ZGN6q4ZeehSEtKfh233w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mavuo\\OneDrive\\Máy tính\\WebThamMyVien\\WebThamMyVien\\WebThamMyVien.csproj",
+  "projectFilePath": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\Web\\WebThamMyVien\\WebThamMyVien\\WebThamMyVien.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mavuo\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],

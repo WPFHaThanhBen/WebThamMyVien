@@ -60,11 +60,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mavuo\\OneDrive\\Máy tính\\WebThamMyVien\\WebThamMyVien\\WebThamMyVien.csproj",
+      "projectUniqueName": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\Web\\WebThamMyVien\\WebThamMyVien\\WebThamMyVien.csproj",
       "projectName": "WebThamMyVien",
-      "projectPath": "C:\\Users\\mavuo\\OneDrive\\Máy tính\\WebThamMyVien\\WebThamMyVien\\WebThamMyVien.csproj",
+      "projectPath": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\Web\\WebThamMyVien\\WebThamMyVien\\WebThamMyVien.csproj",
       "packagesPath": "C:\\Users\\mavuo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mavuo\\OneDrive\\Máy tính\\WebThamMyVien\\WebThamMyVien\\obj\\",
+      "outputPath": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\Web\\WebThamMyVien\\WebThamMyVien\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\mavuo\\AppData\\Roaming\\NuGet\\NuGet.Config",
