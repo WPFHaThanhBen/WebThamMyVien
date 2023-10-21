@@ -40,7 +40,7 @@ namespace APICosmeticClinic.Repository
 
         public bool PromotionExists(int id)
         {
-            return _context.Actions.Any(c => c.Id == id && c.IsDelete != true);
+            return _context.Promotions.Any(c => c.Id == id && c.IsDelete != true);
         }
 
         public bool Save()
