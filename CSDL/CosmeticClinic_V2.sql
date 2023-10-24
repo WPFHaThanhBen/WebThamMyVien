@@ -1,4 +1,4 @@
-Create Database QL_CosmeticClinic_V2
+﻿Create Database QL_CosmeticClinic_V2
 go
 use QL_CosmeticClinic_V2
 
@@ -470,5 +470,35 @@ CREATE TABLE CustomerHistory (
 );
 
 
+INSERT INTO AccountType (AccountTypeName, Other, IsDelete, DateDelete)
+VALUES
+    (N'Admin', N'Quản lý toàn hộ hệ thống', 0, NULL),
+	(N'Quản lý', N'Là người dùng có thể quản lý một số phần quan trong của hệ thống', 0, NULL),
+	(N'Nhân Viên', N'Là người dùng thông thường thường', 0, NULL),
+	(N'Khách hàng', N'Là người dùng có thể quản lý một số phần quan trong của hệ thống', 0, NULL)
+
+INSERT INTO UserStatus (StatusName, Other, IsDelete, DateDelete)
+VALUES
+    (N'Hoạt động', N'Thông tin bổ sung cho trạng thái hoạt động', 0, NULL),
+    (N'Vô hiệu', N'Thông tin bổ sung cho trạng thái vô hiệu', 0, NULL),
+    (N'Chờ xác nhận', N'Thông tin bổ sung cho trạng thái chờ xác nhận', 0, NULL),
+    (N'Tạm dừng', N'Thông tin bổ sung cho trạng thái tạm dừng', 0, NULL);
+
+INSERT INTO ActionType (TypeName, IsDelete, DateDelete)
+VALUES
+    (N'Thêm', 0, NULL),
+    (N'Sửa', 0, NULL),
+    (N'Xóa', 0, NULL),
+    (N'Khác', 0, NULL);
+
+INSERT INTO UserAccount (Username, "Password", Email, UserStatusID, UserID, AccountTypeID, IsDelete, DateDelete)
+VALUES
+    (N'Admin', N'123', N'user1@email.com', 1,NULL, 1, 0, '');
 
 
+INSERT INTO UserType ("Name", Other, IsDelete, DateDelete)
+VALUES (N'Quản lý', 'Chờ cập nhật', 0, NULL),
+       (N'Bác sĩ', 'Chờ cập nhật', 0, NULL),
+       (N'Kỹ thuật', 'Chờ cập nhật', 0, NULL),
+	   (N'Nhân viên tư vấn', 'Chờ cập nhật', 0, NULL),
+	   (N'Nhân viên sale', 'Chờ cập nhật', 0, NULL);
