@@ -1,0 +1,172 @@
+﻿@model CustomerDto
+@{
+    Layout = "_LayoutAdmin";
+}
+
+        <!-- Content -->
+        <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="container-fluid">
+
+
+        <div class="d-flex flex-row">
+            <a asp-area="Admin" asp-controller="Customer" asp-action="Index" class="btn btn-icon rounded-pill btn-secondary mb-3 text-white">
+                <span class="bx bxs-log-out-circle display-3"></span>
+            </a>
+            <h4 class="align-self-center ms-2">THÔNG TIN KHÁCH HÀNG</h4>
+        </div>
+
+        <div class="card mb-4">
+            <h5 class="card-header">Thông tin chi tiết</h5>
+            <!-- Account -->
+            <div class="card-body">
+                <div class="d-flex align-items-start align-items-sm-center gap-4">
+                    <img src="/AdminAssets/assets/img/avatars/1.png"
+                         alt="user-avatar"
+                         class="d-block rounded"
+                         height="100"
+                         width="100"
+                         id="uploadedAvatar" />
+                    <div class="button-wrapper">
+                        <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
+                            <span class="d-none d-sm-block">Lấy ảnh mới</span>
+                            <i class="bx bx-upload d-block d-sm-none"></i>
+                            <input type="file"
+                                   id="upload"
+                                   class="account-file-input"
+                                   hidden
+                                   accept="image/png, image/jpeg" />
+                        </label>
+                        <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
+                            <i class="bx bx-reset d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Khôi phục</span>
+                        </button>
+
+                        <p class="text-muted mb-0">Sử dụng ảnh JPG, GIF hoặc PNG</p>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-0" />
+            <div class="card-body">
+                <form sp-area="Admin" asp-controller="Customer" asp-action="Create">
+                    <div class="row">
+                        <input type="hidden"  asp-for="Id"/>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Họ và Tên</label>
+                            <input class="form-control" asp-for="FullName"
+                                   type="text"
+                                   placeholder="Nguyễn Văn A"
+                                   autofocus />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Số CCCD</label>
+                            <input class="form-control" asp-for="Idcard"
+                                   placeholder="0912123456"
+                                   type="number" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Ngày sinh</label>
+                            <input class="form-control" asp-for="Birthdate"
+                                   placeholder="30/03/2002"
+                                   type="text" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Giới tính(1:Nam/0:Nữ)</label>
+                            <input class="form-control" asp-for="Gender"
+                                   placeholder="1"
+                                   type="number" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Số điện thoại</label>
+                            <input class="form-control" asp-for="PhoneNumber"
+                                   placeholder="0123456789"
+                                   type="number" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Facebook</label>
+                            <input class="form-control" asp-for="FacebookLink"
+                                   placeholder="https://??"
+                                   type="text" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Zalo</label>
+                            <input class="form-control" asp-for="ZaloLink"
+                                   placeholder="https://??"
+                                   type="tel" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Email</label>
+                            <input class="form-control" asp-for="Email"
+                                   placeholder="nguyenvana2002@gmail.com"
+                                   type="email" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Địa chỉ</label>
+                            <input class="form-control" asp-for="Address"
+                                   placeholder="Vĩnh Phong-Vĩnh Thuận-Kiên Giang"
+                                   type="text" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Phân loại người dùng</label>
+                            <select name="CustomerStatusId" class="form-control" asp-items="ViewBag.CustomerStatus"></select>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Trạng thái người dùng</label>
+                            <select name="CustomerTypeId" class="form-control" asp-items="ViewBag.CustomerType"></select>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Dịch vụ quan tâm</label>
+                            <textarea asp-for="InterestedServices" class="form-control"
+                                      placeholder="Nhập dịch vụ khách hàng quan tâm"></textarea>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Ghi chú</label>
+                            <textarea asp-for="Other" class="form-control"
+                                      placeholder="Nhập ghi chú"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="mt-2">
+                        <button type="reset" class="btn btn-secondary">Nhập lại</button>
+                        <button type="submit" class="btn btn-success me-2">Tạo mới</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /Account -->
+        </div>
+
+
+
+
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#chooseImage").click(function () {
+                // Khi nút "Thêm ảnh" được nhấn, kích hoạt hộp chọn tệp ẩn
+                $("#fileInput").trigger("click");
+            });
+
+            $("#fileInput").change(function () {
+                // Xử lý khi người dùng chọn tệp ảnh
+                var selectedFile = this.files[0];
+                if (selectedFile) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        // Đặt đường dẫn của ảnh vào thuộc tính "src" của đối tượng img
+                        $("#showImage").attr("src", e.target.result);
+                    };
+                    reader.readAsDataURL(selectedFile);
+                }
+            });
+
+            $("#deleteImage").click(function () {
+                // Đặt đường dẫn của ảnh thành chuỗi rỗng để xóa ảnh
+                $("#showImage").attr("src", "");
+            });
+        });
+
+    </script>
+}
+<!-- / Content -->

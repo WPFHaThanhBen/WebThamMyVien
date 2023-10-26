@@ -1,0 +1,88 @@
+﻿@model UserAccountDto
+@{
+    Layout = "_LayoutAdmin";
+    var id = Model.Id;
+    var userId = Model.UserId;
+}
+
+        <!-- Content -->
+        <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="container-fluid">
+
+
+
+
+
+
+
+                <div class="d-flex flex-row">
+                    <a asp-area="Admin" asp-controller="UserAccount" asp-action="Index" class="btn btn-icon rounded-pill btn-secondary mb-3 text-white">
+                        <span class="bx bxs-log-out-circle display-3"></span>
+                    </a>
+                    <h4 class="align-self-center ms-2">THÔNG TIN TÀI KHOẢN</h4>
+                </div>
+
+
+
+
+
+
+
+
+                <form asp-area="Admin" asp-controller="UserAccount" asp-action="Edit">
+                    <div>
+                        <input type="hidden" asp-for="Id" />
+                        <div class="mb-3">
+                            <label class="form-label text-capitalize">Tài Khoản</label>
+                    <input type="hidden" asp-for="Username" />
+                    <input asp-for="Username" type="text" class="form-control" disabled placeholder="tài khoản" />
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-sm">
+                                <label class="form-label text-capitalize">Trạng Thái</label>
+                        <select name="UserStatusId" class="form-control" asp-items="ViewBag.UserStatusDtos"></select>
+                            </div>
+                            <div class="mb-3 col-sm">
+                                <label class="form-label text-none">Loại Tài Khoản</label>
+                        @if (Model.AccountTypeId == 1)
+                        {
+                            <input type="hidden" asp-for="AccountTypeId" />
+                            <p class="mt-2">Admin</p>
+                        }
+                        else
+                        {
+                            <select name="AccountTypeId" class="form-control" asp-items="ViewBag.accountTypeDto"></select>
+                        }
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="mb-3 col-sm">
+                                <label class="form-label text-capitalize">Mật Khẩu</label>
+                        <input asp-for="Password" type="te" class="form-control " placeholder="Mật khẩu" />
+                            </div>
+                            <div class="mb-3 col-sm">
+                                <label class="form-label text-none">Email</label>
+                        <input asp-for="Email" type="text" class="form-control " placeholder="Email" />
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-capitalize">Tên Người Dùng: </label>
+                             <input type="hidden" asp-for="UserId" />
+                    @if(Model.UserId != null)
+                    {
+                        <a asp-area="Admin" asp-controller="User" asp-action="Detail" asp-route-id="@userId"><p>@ViewData["UserName"]</p></a>
+                    }
+                        </div>
+                    </div>
+                    <button type="reset" class="btn btn-secondary text-white">Nhập lại</button>
+                    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                </form>
+
+
+
+
+
+            </div>
+        </div>
+        <!-- / Content -->

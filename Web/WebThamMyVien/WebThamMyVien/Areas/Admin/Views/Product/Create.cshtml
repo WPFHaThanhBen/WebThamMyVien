@@ -1,0 +1,85 @@
+﻿@model ProductDto
+@{
+    Layout = "_LayoutAdmin";
+}
+
+        <!-- Content -->
+        <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="container-fluid">
+
+
+        <div class="d-flex flex-row">
+            <a asp-area="Admin" asp-controller="Product" asp-action="Index" class="btn btn-icon rounded-pill btn-secondary mb-3 text-white">
+                <span class="bx bxs-log-out-circle display-3"></span>
+            </a>
+            <h4 class="align-self-center ms-2">THÔNG TIN SẢN PHẨM</h4>
+        </div>
+
+                <form id="formCreate" asp-area="Admin" asp-controller="Product" asp-action="Create">
+                    <div>
+                        <input type="hidden" asp-for="Id" />
+                        <div class="mb-3">
+                            <label class="form-label text-capitalize">Tên sản phẩm</label>
+                            <input asp-for="ProductName" type="text" class="form-control " placeholder="Nhập tên sản phẩm" />
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-sm">
+                                <label class="form-label text-capitalize">Chọn loại sản phẩm</label>
+                                <select name="ProductTypeId" class="form-control" asp-items="ViewBag.ProductType"></select>
+                            </div>
+                            <div class="mb-3 col-sm">
+                                <label class="form-label text-none">Chọn khuyến mãi áp dụng</label>
+                                <select name="AppliedPromotionId" class="form-control" asp-items="ViewBag.promotion"></select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="mb-3 col-sm">
+                                <label class="form-label text-capitalize">Giá bán sản phẩm</label>
+                                <input asp-for="SellingPrice" type="number" class="form-control " placeholder="Nhập giá bán sản phẩm" />
+                            </div>
+                            <div class="mb-3 col-sm">
+                                <label class="form-label text-none">Giá nhập sản phẩm</label>
+                                <input asp-for="PurchasePrice" type="number" class="form-control " placeholder="Nhập giá nhập sản phẩm" />
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-capitalize">Giới thiệu sản phẩm</label>
+                            <textarea asp-for="Introduction" class="form-control"
+                                      placeholder="Nhập chi tiết giới thiệu sản phẩm"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-capitalize">Công dụng sản phẩm</label>
+                            <textarea asp-for="Functionality" class="form-control"
+                                      placeholder="Nhập công dụng sản phẩm"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-capitalize">Xuất xứ</label>
+                            <textarea asp-for="Origin" class="form-control"
+                                      placeholder="Nhập xuất xứ sản phẩm"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-capitalize">Ghi chú</label>
+                            <textarea asp-for="Other" class="form-control"
+                                      placeholder="Nhập ghi chú"></textarea>
+                        </div>
+                    </div>
+
+                </form>
+
+        <div>
+            <button type="reset" form="formCreate" class="btn btn-secondary text-white">Nhập lại</button>
+            <button type="submit" form="formCreate" class="btn btn-success">Tạo mới</button>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+    </script>
+}
+<!-- / Content -->

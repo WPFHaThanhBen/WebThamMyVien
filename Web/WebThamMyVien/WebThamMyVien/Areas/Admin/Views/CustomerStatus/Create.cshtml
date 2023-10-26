@@ -1,0 +1,52 @@
+﻿@model CustomerStatusDto
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<!-- Content -->
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="container-fluid">
+
+
+
+
+
+        <div class="d-flex flex-row">
+            <a asp-area="Admin" asp-controller="CustomerStatus" asp-action="Index" class="btn btn-icon rounded-pill btn-secondary mb-3 text-white">
+                <span class="bx bxs-log-out-circle display-3"></span>
+            </a>
+            <h4 class="align-self-center ms-2">THÔNG TIN TRẠNG THÁI KHÁCH HÀNG</h4>
+        </div>
+
+
+
+
+
+
+        <form asp-area="Admin" asp-controller="CustomerStatus" asp-action="Create">
+            <div>
+                <input type="hidden" asp-for="Id" />
+                <div class="mb-3">
+                    <label class="form-label text-capitalize">Tên trạng thái khách hàng</label>
+                    <input asp-for="StatusName" type="text" class="form-control " placeholder="nhập tên trạng thái khách hàng" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-capitalize">Ghi chú</label>
+                    <textarea class="form-control"
+                              asp-for="Other"
+                              placeholder="nhập ghi chú"></textarea>
+                </div>
+            </div>
+            <button type="reset" class="btn btn-secondary text-white">Nhập lại</button>
+            <button type="submit" class="btn btn-success">Tạo mới</button>
+        </form>
+
+
+
+
+
+
+
+    </div>
+</div>
+<!-- / Content -->

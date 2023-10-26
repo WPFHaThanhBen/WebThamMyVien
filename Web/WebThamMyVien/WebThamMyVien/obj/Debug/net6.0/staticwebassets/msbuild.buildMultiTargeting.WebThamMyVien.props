@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\WebThamMyVien.props" />
+</Project>

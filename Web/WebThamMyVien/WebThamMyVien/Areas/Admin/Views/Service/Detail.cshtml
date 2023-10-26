@@ -1,0 +1,80 @@
+﻿@model ServiceDto
+@{
+    Layout = "_LayoutAdmin";
+    var id = Model.Id;
+}
+
+        <!-- Content -->
+        <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="container-fluid">
+
+
+
+
+
+
+
+                <div class="d-flex flex-row">
+                    <a asp-area="Admin" asp-controller="Service" asp-action="Index" class="btn btn-icon rounded-pill btn-secondary mb-3 text-white">
+                        <span class="bx bxs-log-out-circle display-3"></span>
+                    </a>
+                    <h4 class="align-self-center ms-2">THÔNG TIN KHUYẾN MÃI</h4>
+                </div>
+
+
+
+
+
+
+
+
+                <form asp-area="Admin" asp-controller="Service" asp-action="Edit">
+                    <div>
+                        <input type="hidden" asp-for="Id" />
+                        <div class="mb-3">
+                            <label class="form-label text-capitalize">Tên dịch vụ</label>
+                            <input asp-for="ServiceName" type="text" class="form-control " placeholder="Nhập tên dịch vụ" />
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-sm">
+                                <label class="form-label text-capitalize">Chọn loại dịch vụ</label>
+                                <select name="ServiceTypeId" class="form-control" asp-items="ViewBag.serviceType"></select>
+                            </div>
+                            <div class="mb-3 col-sm">
+                                <label class="form-label text-none">Chọn khuyến mãi áp dụng</label>
+                                <select name="AppliedPromotionId" class="form-control" asp-items="ViewBag.promotion"></select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="mb-3 col-sm">
+                                <label class="form-label text-capitalize">Giá dịch vụ</label>
+                                <input asp-for="Price" type="number" class="form-control " placeholder="Nhập giá dịch vụ" />
+                            </div>
+                            <div class="mb-3 col-sm">
+                                <label class="form-label text-none">Theo dõi sau dịch vụ (? ngày)</label>
+                                <input asp-for="FollowUpDays" type="number" class="form-control " placeholder="Nhập số ngày theo dõi" />
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-capitalize">Chi tiết dịch vụ</label>
+                            <textarea asp-for="ServiceDetails" class="form-control"
+                                      placeholder="Nhập chi tiết dịch vụ"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-capitalize">Ghi chú</label>
+                            <textarea asp-for="Other" class="form-control"
+                                      placeholder="Nhập ghi chú"></textarea>
+                        </div>
+                    </div>
+                    <button type="reset" class="btn btn-secondary text-white">Nhập lại</button>
+                    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                </form>
+
+
+
+
+
+            </div>
+        </div>
+        <!-- / Content -->
