@@ -19,7 +19,6 @@ namespace APICosmeticClinic.Repository
 
         public bool CreateAction(Models.Action action)
         {
-            action.Time = sp.GetCurrentDate();
             _context.Add(action);
             return Save();
         }

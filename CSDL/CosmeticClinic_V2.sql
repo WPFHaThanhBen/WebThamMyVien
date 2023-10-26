@@ -79,7 +79,7 @@ CREATE TABLE ActionType (
 );
 CREATE TABLE "Action" (
     ID INT IDENTITY(1,1) PRIMARY KEY,
-    "Time" NVARCHAR(20),
+    "Time" NVARCHAR(40),
     ContentOfChange NVARCHAR(1000),
     ActionTypeID INT,
     UserID INT,
@@ -491,14 +491,21 @@ VALUES
     (N'Xóa', 0, NULL),
     (N'Khác', 0, NULL);
 
-INSERT INTO UserAccount (Username, "Password", Email, UserStatusID, UserID, AccountTypeID, IsDelete, DateDelete)
-VALUES
-    (N'Admin', N'123', N'user1@email.com', 1,NULL, 1, 0, '');
+
 
 
 INSERT INTO UserType ("Name", Other, IsDelete, DateDelete)
-VALUES (N'Quản lý', 'Chờ cập nhật', 0, NULL),
-       (N'Bác sĩ', 'Chờ cập nhật', 0, NULL),
-       (N'Kỹ thuật', 'Chờ cập nhật', 0, NULL),
-	   (N'Nhân viên tư vấn', 'Chờ cập nhật', 0, NULL),
-	   (N'Nhân viên sale', 'Chờ cập nhật', 0, NULL);
+VALUES (N'Quản lý', N'Chờ cập nhật', 0, NULL),
+       (N'Bác sĩ', N'Chờ cập nhật', 0, NULL),
+       (N'Kỹ thuật', N'Chờ cập nhật', 0, NULL),
+	   (N'Nhân viên tư vấn', N'Chờ cập nhật', 0, NULL),
+	   (N'Nhân viên sale', N'Chờ cập nhật', 0, NULL);
+
+-- Thêm dữ liệu mẫu vào bảng User
+INSERT INTO "User" (IDCard, FullName, Birthdate, Gender, Hometown, Phone, Email, BankAccount, CurrentAddress, HealthInsurance, SocialInsurance, Salary, UserTypeID, UserStatusID, TimesPregnant, BranchID, Other, IsDelete, DateDelete)
+VALUES
+    ('0', 'Admin', '0', '2', N'Chờ cập nhật', '0', N'Chờ cập nhật', '0', N'Chờ cập nhật', N'Chờ cập nhật', N'Chờ cập nhật', 0, 1, 1, NULL, NULL, N'Chờ cập nhật', 0, NULL);
+
+INSERT INTO UserAccount (Username, "Password", Email, UserStatusID, UserID, AccountTypeID, IsDelete, DateDelete)
+VALUES
+    (N'Admin', N'123', N'user1@email.com', 1, 1 , 1, 0, '');

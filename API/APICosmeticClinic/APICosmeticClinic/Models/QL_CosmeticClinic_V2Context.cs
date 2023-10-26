@@ -95,7 +95,7 @@ namespace APICosmeticClinic.Models
 
                 entity.Property(e => e.DateDelete).HasMaxLength(20);
 
-                entity.Property(e => e.Time).HasMaxLength(20);
+                entity.Property(e => e.Time).HasMaxLength(40);
 
                 entity.Property(e => e.UserId).HasColumnName("UserID");
 

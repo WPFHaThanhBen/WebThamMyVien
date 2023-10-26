@@ -1,8 +1,0 @@
-C:\Users\mavuo\OneDrive\Tài liệu\GitHub\WebThamMyVien\Web\WebThamMyVien\WebThamMyVien\obj\Debug\net6.0\WebThamMyVien.csproj.AssemblyReference.cache
-C:\Users\mavuo\OneDrive\Tài liệu\GitHub\WebThamMyVien\Web\WebThamMyVien\WebThamMyVien\obj\Debug\net6.0\WebThamMyVien.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\mavuo\OneDrive\Tài liệu\GitHub\WebThamMyVien\Web\WebThamMyVien\WebThamMyVien\obj\Debug\net6.0\WebThamMyVien.AssemblyInfoInputs.cache
-C:\Users\mavuo\OneDrive\Tài liệu\GitHub\WebThamMyVien\Web\WebThamMyVien\WebThamMyVien\obj\Debug\net6.0\WebThamMyVien.AssemblyInfo.cs
-C:\Users\mavuo\OneDrive\Tài liệu\GitHub\WebThamMyVien\Web\WebThamMyVien\WebThamMyVien\obj\Debug\net6.0\WebThamMyVien.csproj.CoreCompileInputs.cache
-C:\Users\mavuo\OneDrive\Tài liệu\GitHub\WebThamMyVien\Web\WebThamMyVien\WebThamMyVien\obj\Debug\net6.0\WebThamMyVien.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\mavuo\OneDrive\Tài liệu\GitHub\WebThamMyVien\Web\WebThamMyVien\WebThamMyVien\obj\Debug\net6.0\WebThamMyVien.RazorAssemblyInfo.cache
-C:\Users\mavuo\OneDrive\Tài liệu\GitHub\WebThamMyVien\Web\WebThamMyVien\WebThamMyVien\obj\Debug\net6.0\WebThamMyVien.RazorAssemblyInfo.cs
