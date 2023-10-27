@@ -23,7 +23,7 @@ namespace APICosmeticClinic.Helper
             CreateMap<CustomerStatus, CustomerStatusDto>();
             CreateMap<CustomerType, CustomerTypeDto>();
             CreateMap<FollowUpDetail, FollowUpDetailDto>();
-            CreateMap<FollowUpStatus, FollowUpStatus>();
+            CreateMap<FollowUpStatus, FollowUpStatusDto>();
             CreateMap<Invoice, InvoiceDto>();
             CreateMap<InvoiceDetail, InvoiceDetailDto>();
             CreateMap<InvoiceType, InvoiceTypeDto>();

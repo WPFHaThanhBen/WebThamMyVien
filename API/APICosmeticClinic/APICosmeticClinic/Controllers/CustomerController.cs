@@ -50,6 +50,23 @@ namespace APICosmeticClinic.Controllers
             return Ok(map);
         }
 
+        // Get By SDT
+        [HttpGet("CustomerBySDT/{SDT}")]
+        [ProducesResponseType(200, Type = typeof(Customer))]
+        //[ProducesResponseType(400)]
+        public IActionResult GetCustomerBySDT(string SDT)
+        {
+            if (!_customerRepository.CustomerExistsBySDT(SDT))
+                return NotFound();
+
+            var map = _mapper.Map<CustomerDto>(_customerRepository.GetCustomerBySDT(SDT));
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(map);
+        }
+
         //Create
         [HttpPost]
         //[ProducesResponseType(204)]
@@ -74,13 +91,12 @@ namespace APICosmeticClinic.Controllers
             return Ok("Successfully created");
         }
 
-
         // Update
         [HttpPut("{customerId}")]
         //[ProducesResponseType(400)]
         //[ProducesResponseType(204)]
         //[ProducesResponseType(404)]
-        public IActionResult UpdateAction(int customerId, [FromBody] CustomerDto updated)
+        public IActionResult UpdateCustomer(int customerId, [FromBody] CustomerDto updated)
         {
             if (updated == null)
                 return BadRequest(ModelState);

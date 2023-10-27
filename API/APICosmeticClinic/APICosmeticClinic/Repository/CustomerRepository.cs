@@ -24,6 +24,10 @@ namespace APICosmeticClinic.Repository
         {
             return _context.Customers.Any(c => c.Id == id && c.IsDelete != true);
         }
+        public bool CustomerExistsBySDT(string  sdt)
+        {
+            return _context.Customers.Any(c => c.PhoneNumber == sdt && c.IsDelete != true);
+        }
 
         public bool DeleteCustomer(Customer customer)
         {
@@ -42,7 +46,10 @@ namespace APICosmeticClinic.Repository
         {
             return _context.Customers.Where(e => e.Id == id && e.IsDelete != true).FirstOrDefault();
         }
-
+        public Customer GetCustomerBySDT(string sdt)
+        {
+            return _context.Customers.Where(e => e.PhoneNumber == sdt && e.IsDelete != true).FirstOrDefault();
+        }
         public bool Save()
         {
             var saved = _context.SaveChanges();
