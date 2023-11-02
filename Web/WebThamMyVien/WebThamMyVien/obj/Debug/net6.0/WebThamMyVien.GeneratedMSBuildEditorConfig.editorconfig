@@ -44,6 +44,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXBwb2ludG1lbnRUeXBlXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Appointment/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXBwb2ludG1lbnRcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Appointment/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXBwb2ludG1lbnRcRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Appointment/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXBwb2ludG1lbnRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Branch/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQnJhbmNoXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -54,6 +66,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Branch/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQnJhbmNoXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/CustomerFollowUp/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ3VzdG9tZXJGb2xsb3dVcFxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/CustomerFollowUp/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ3VzdG9tZXJGb2xsb3dVcFxEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/CustomerFollowUp/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ3VzdG9tZXJGb2xsb3dVcFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/CustomerStatus/Create.cshtml]
@@ -106,6 +130,34 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/InvoiceType/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSW52b2ljZVR5cGVcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/InvoiceType/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSW52b2ljZVR5cGVcRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/InvoiceType/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSW52b2ljZVR5cGVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Invoice/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSW52b2ljZVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Invoice/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSW52b2ljZVxEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Invoice/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSW52b2ljZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Invoice/Print.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSW52b2ljZVxQcmludC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/ProductType/Create.cshtml]

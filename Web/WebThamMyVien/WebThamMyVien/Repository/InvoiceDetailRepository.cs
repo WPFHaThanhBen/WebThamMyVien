@@ -107,8 +107,7 @@ namespace WebThamMyVien.Repository
                 return null; // Trả về null nếu yêu cầu không thành công
             }
         }
-
-        public async Task<ICollection<InvoiceDetailDto>> GetAllInvoiceDetail()
+		public async Task<ICollection<InvoiceDetailDto>> GetAllInvoiceDetail()
         {
             var apiUrl = $"{_apiUrl}/api/InvoiceDetail"; // Điền đường dẫn API tại đây
 
@@ -125,5 +124,23 @@ namespace WebThamMyVien.Repository
                 return null; // Trả về null nếu yêu cầu không thành công
             }
         }
-    }
+
+		public async Task<ICollection<InvoiceDetailDto>> GetInvoiceDetailByInvoice(int id)
+		{
+			var apiUrl = $"{_apiUrl}/api/InvoiceDetail/InvoiceDetailByInvoice{id}"; // Điền đường dẫn API tại đây
+
+			var response = await _httpClient.GetAsync(apiUrl);
+
+			if (response.IsSuccessStatusCode)
+			{
+				var content = await response.Content.ReadAsStringAsync();
+				var values = JsonConvert.DeserializeObject<ICollection<InvoiceDetailDto>>(content);
+				return values; // Trả về danh sách
+			}
+			else
+			{
+				return null; // Trả về null nếu yêu cầu không thành công
+			}
+		}
+	}
 }

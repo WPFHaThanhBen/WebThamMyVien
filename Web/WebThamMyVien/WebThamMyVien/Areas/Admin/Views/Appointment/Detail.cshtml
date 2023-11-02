@@ -1,0 +1,141 @@
+﻿@model AppointmentDto
+@{
+    Layout = "_LayoutAdmin";
+    var id = Model.Id;
+}
+
+        <!-- Content -->
+        <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="container-fluid">
+
+
+
+
+
+
+
+                <div class="d-flex flex-row">
+                    <a asp-area="Admin" asp-controller="Appointment" asp-action="Index" class="btn btn-icon rounded-pill btn-secondary mb-3 text-white">
+                        <span class="bx bxs-log-out-circle display-3"></span>
+                    </a>
+            <h4 class="align-self-center ms-2">THÔNG TIN LỊCH HẸN</h4>
+                </div>
+
+
+
+
+
+
+
+
+                <form asp-area="Admin" asp-controller="Appointment" asp-action="Edit">
+            <div>
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="BranchId" />
+                <input id="customerId" type="hidden" asp-for="CustomerId" />
+                <div class="row">
+                    <div class="mb-3 col-sm">
+                        <label class="form-label text-capitalize">SĐT khách đặt lịch</label>
+                        <input id="customerSDT" type="number" class="form-control" disabled placeholder="Nhập số điện thoại khách hàng" />
+                    </div>
+                    <div class="mb-3 col-sm">
+                        <label class="form-label text-none">Tên khách hàng</label>
+                        <input id="customerFullName" type="text" class="form-control " disabled placeholder="Tên khách hàng" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-sm">
+                        <label class="form-label text-capitalize">Nhân viên tạo lịch</label>
+                        <select asp-for="CreatedByUserId" class="form-control" asp-items="ViewBag.User"></select>
+                    </div>
+                    <div class="mb-3 col-sm">
+                        <label class="form-label text-none">Nhân viên chăm khách</label>
+                        <select asp-for="ReceivedByUserId" class="form-control" asp-items="ViewBag.User"></select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-sm">
+                        <label class="form-label text-capitalize">Loại lịch hẹn</label>
+                        <select asp-for="AppointmentTypeId" class="form-control" asp-items="ViewBag.AppointmentType"></select>
+                    </div>
+                    <div class="mb-3 col-sm">
+                        <label class="form-label text-none">Trạng thái lịch hẹn</label>
+                        <select asp-for="AppointmentStatusId" class="form-control" asp-items="ViewBag.AppointmentStatus"></select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-sm">
+                        <label class="form-label text-capitalize">Ngày tạo lịch hẹn</label>
+                        <input id="AppointmentCreationDate" asp-for="CreationDate" type="text" class="form-control " placeholder="Nhập ngày tạo lịch hẹn" />
+                    </div>
+                    <div class="mb-3 col-sm">
+                        <label class="form-label text-none">Thời gian đến hẹn</label>
+                        <input asp-for="AppointmentDate" type="text" class="form-control " placeholder="Nhập ngày đến hẹn" />
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-capitalize">Nội dung cuộc hẹn</label>
+                    <textarea asp-for="Other" class="form-control"
+                              placeholder="Nhập ghi nội dụng cuộc hẹn"></textarea>
+                </div>
+            </div>
+                    <button type="reset" class="btn btn-secondary text-white">Nhập lại</button>
+                    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                </form>
+
+
+
+
+
+            </div>
+        </div>
+        <!-- / Content -->
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var idCustomer = $("#customerId").val();
+            var mm = "";
+            var ph = "";
+            $.ajax({
+                type: "POST",
+                url: "/Admin/Appointment/GetCustomer",
+                datatype: "json",
+                data: { id: idCustomer },
+                async: false, // Đặt thành true nếu bạn muốn sử dụng callback hoặc Promise
+                success: function (data) {
+                    mm = data.FullName;
+                    ph = data.PhoneNumber;
+                }
+            });
+            $("#customerFullName").val(mm);
+            $("#customerSDT").val(ph);
+            // Bắt sự kiện thay đổi giá trị cho customerSDT sử dụng jQuery
+            $("#customerSDT").on("change", function () {
+                var sdtValue = $(this).val();
+                var n = ''; // Khởi tạo n với giá trị rỗng
+                var m = '';
+                $.ajax({
+                    type: "POST",
+                    url: "/Admin/Appointment/GetCustomerBySDT",
+                    dataType: "json",
+                    data: { sdt: sdtValue },
+                    async: false,
+                    success: function (data1) {
+                        n = data1.Id;
+                        m = data1.FullName;
+                    },
+                });
+                $("#customerFullName").val(m);
+                $("#customerId").val(n);
+            });
+
+
+            // Bắt sự kiện thay đổi giá trị cho customerFullName sử dụng jQuery
+            $("#customerFullName").on("change", function () {
+                var fullNameValue = $(this).val(); // Lấy giá trị tên khách hàng
+                // Xử lý theo giá trị fullNameValue
+            });
+        });
+
+    </script>
+}

@@ -33,7 +33,12 @@ namespace APICosmeticClinic.Repository
             return _context.PostImages.Where(c => c.IsDelete != true).ToList();
         }
 
-        public PostImage GetPostImage(int id)
+		public ICollection<PostImage> GetAllPostImageByPost(int id)
+		{
+			return _context.PostImages.Where(c =>c.PostContentId == id && c.IsDelete != true).ToList();
+		}
+
+		public PostImage GetPostImage(int id)
         {
             return _context.PostImages.Where(e => e.Id == id && e.IsDelete != true).FirstOrDefault();
         }

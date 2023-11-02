@@ -494,8 +494,6 @@ namespace APICosmeticClinic.Models
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.SeqNumber).ValueGeneratedNever();
-
                 entity.Property(e => e.Content).HasMaxLength(255);
 
                 entity.Property(e => e.DateDelete).HasMaxLength(20);
@@ -600,10 +598,7 @@ namespace APICosmeticClinic.Models
 
             modelBuilder.Entity<OrderDetail>(entity =>
             {
-
                 entity.Property(e => e.Id).HasColumnName("ID");
-
-                entity.Property(e => e.SeqNumber).ValueGeneratedNever();
 
                 entity.Property(e => e.DateDelete).HasMaxLength(20);
 
@@ -680,16 +675,9 @@ namespace APICosmeticClinic.Models
 
             modelBuilder.Entity<PostContent>(entity =>
             {
-                //entity.HasKey(e => new { e.SeqNumber, e.PostId })
-                //    .HasName("PK__PostCont__D2F78F0194D60388");
-
                 entity.ToTable("PostContent");
 
                 entity.Property(e => e.Id).HasColumnName("ID");
-
-                entity.Property(e => e.PostId).HasColumnName("PostID");
-
-                entity.Property(e => e.SeqNumber).ValueGeneratedNever();
 
                 entity.Property(e => e.Content).HasMaxLength(1000);
 
@@ -697,12 +685,13 @@ namespace APICosmeticClinic.Models
 
                 entity.Property(e => e.Link).HasMaxLength(255);
 
+                entity.Property(e => e.PostId).HasColumnName("PostID");
+
                 entity.Property(e => e.Title).HasMaxLength(255);
 
                 entity.HasOne(d => d.Post)
                     .WithMany(p => p.PostContents)
                     .HasForeignKey(d => d.PostId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__PostConte__PostI__151B244E");
             });
 
@@ -718,8 +707,8 @@ namespace APICosmeticClinic.Models
 
                 entity.HasOne(d => d.PostContent)
                     .WithMany(p => p.PostImages)
-                    .HasForeignKey(d => new { d.PostContentId})
-                    .HasConstraintName("fk__postimage__17f790f9");
+                    .HasForeignKey(d => d.PostContentId)
+                    .HasConstraintName("FK__PostImage__PostC__17F790F9");
             });
 
             modelBuilder.Entity<PostType>(entity =>

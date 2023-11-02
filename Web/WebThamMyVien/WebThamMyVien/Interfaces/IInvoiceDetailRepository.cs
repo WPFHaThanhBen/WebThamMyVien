@@ -6,6 +6,7 @@ namespace WebThamMyVien.Interfaces
     {
         Task<ICollection<InvoiceDetailDto>> GetAllInvoiceDetail();
         Task<InvoiceDetailDto> GetInvoiceDetail(int id);
+		Task<ICollection<InvoiceDetailDto>> GetInvoiceDetailByInvoice(int id);
         Task<bool> CreateInvoiceDetail(InvoiceDetailDto InvoiceDetail);
         Task<bool> UpdateInvoiceDetail(InvoiceDetailDto InvoiceDetail);
         Task<bool> DeleteInvoiceDetail(InvoiceDetailDto InvoiceDetail);

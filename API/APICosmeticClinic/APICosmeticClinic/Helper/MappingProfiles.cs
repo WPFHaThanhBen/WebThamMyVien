@@ -2,6 +2,7 @@
 using APICosmeticClinic.Dto;
 using APICosmeticClinic.Models;
 using Action = APICosmeticClinic.Models.Action;
+using Microsoft.EntityFrameworkCore;
 
 namespace APICosmeticClinic.Helper
 {

@@ -5,6 +5,7 @@ namespace APICosmeticClinic.Interfaces
     public interface ICustomerImageRepository
     {
         ICollection<CustomerImage> GetAllCustomerImage();
+        ICollection<CustomerImage> GetAllCustomerImageByCustomer(int id);
         CustomerImage GetCustomerImage(int id);
         bool CustomerImageExists(int id);
         bool CreateCustomerImage(CustomerImage customerImage);

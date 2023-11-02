@@ -31,7 +31,12 @@ namespace APICosmeticClinic.Repository
             return _context.Products.Where(c => c.IsDelete != true).ToList();
         }
 
-        public Product GetProduct(int id)
+		public ICollection<Product> GetAllProductByType(int id)
+		{
+			return _context.Products.Where(c => c.ProductTypeId == id && c.IsDelete != true).ToList();
+		}
+
+		public Product GetProduct(int id)
         {
             return _context.Products.Where(e => e.Id == id && e.IsDelete != true).FirstOrDefault();
         }

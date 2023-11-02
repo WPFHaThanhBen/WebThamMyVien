@@ -31,7 +31,12 @@ namespace APICosmeticClinic.Repository
             return _context.ProductImages.Where(c => c.IsDelete != true).ToList();
         }
 
-        public ProductImage GetProductImage(int id)
+		public ICollection<ProductImage> GetAllProductImageByProduct(int id)
+		{
+			return _context.ProductImages.Where(c =>c.ProductId == id && c.IsDelete != true).ToList();
+		}
+
+		public ProductImage GetProductImage(int id)
         {
             return _context.ProductImages.Where(e => e.Id == id && e.IsDelete != true).FirstOrDefault();
         }

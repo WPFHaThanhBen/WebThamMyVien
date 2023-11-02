@@ -32,9 +32,20 @@ namespace APICosmeticClinic.Controllers
 
             return Ok(invoiceDetails);
         }
+		// Get ALL 
+		[HttpGet("InvoiceDetailByInvoice/{invoiceId}")]
+		[ProducesResponseType(200, Type = typeof(IEnumerable<InvoiceDetail>))]
+		public IActionResult GetAllInvoiceDetail(int invoiceId)
+		{
+			var invoiceDetails = _mapper.Map<List<InvoiceDetailDto>>(_invoiceDetailRepository.GetInvoiceDetailByInvoice(invoiceId));
 
-        // Get By ID
-        [HttpGet("{invoiceDetailId}")]
+			if (!ModelState.IsValid)
+				return BadRequest(ModelState);
+
+			return Ok(invoiceDetails);
+		}
+		// Get By ID
+		[HttpGet("{invoiceDetailId}")]
         [ProducesResponseType(200, Type = typeof(InvoiceDetail))]
         //[ProducesResponseType(400)]
         public IActionResult GetInvoiceDetail(int invoiceDetailId)

@@ -32,9 +32,20 @@ namespace APICosmeticClinic.Controllers
 
             return Ok(services);
         }
+		// Get ALL 
+		[HttpGet("ServiceByType/{serviceTypeId}")]
+		[ProducesResponseType(200, Type = typeof(IEnumerable<Service>))]
+		public IActionResult GetAllService(int serviceTypeId)
+		{
+			var services = _mapper.Map<List<ServiceDto>>(_serviceRepository.GetAllServiceByType(serviceTypeId));
 
-        // Get By ID
-        [HttpGet("{serviceId}")]
+			if (!ModelState.IsValid)
+				return BadRequest(ModelState);
+
+			return Ok(services);
+		}
+		// Get By ID
+		[HttpGet("{serviceId}")]
         [ProducesResponseType(200, Type = typeof(Service))]
         //[ProducesResponseType(400)]
         public IActionResult GetService(int serviceId)

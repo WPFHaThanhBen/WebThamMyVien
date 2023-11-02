@@ -6,7 +6,8 @@ namespace APICosmeticClinic.Interfaces
     {
         ICollection<InvoiceDetail> GetAllInvoiceDetail();
         InvoiceDetail GetInvoiceDetail(int id);
-        bool InvoiceDetailExists(int id);
+		ICollection<InvoiceDetail> GetInvoiceDetailByInvoice(int id);
+		bool InvoiceDetailExists(int id);
         bool CreateInvoiceDetail(InvoiceDetail invoiceDetail);
         bool UpdateInvoiceDetail(InvoiceDetail invoiceDetail);
         bool DeleteInvoiceDetail(InvoiceDetail invoiceDetail);

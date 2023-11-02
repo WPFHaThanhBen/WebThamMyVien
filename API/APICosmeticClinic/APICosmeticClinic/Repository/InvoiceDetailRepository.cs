@@ -54,5 +54,9 @@ namespace APICosmeticClinic.Repository
             _context.Update(invoiceDetail);
             return Save();
         }
-    }
+		public ICollection<InvoiceDetail> GetInvoiceDetailByInvoice(int id)
+		{
+			return _context.InvoiceDetails.Where(e => e.InvoiceId == id && e.IsDelete != true).ToList();
+		}
+	}
 }

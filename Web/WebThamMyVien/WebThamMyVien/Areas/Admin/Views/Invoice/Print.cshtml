@@ -1,0 +1,169 @@
+﻿@model InvoiceDto
+@{
+    Layout = "_LayoutAdmin";
+}
+        <!-- Content -->
+        <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="container-fluid">
+
+
+        <div class="d-flex flex-row">
+            <a asp-area="Admin" asp-controller="Invoice" asp-action="Index" class="btn btn-icon rounded-pill btn-secondary mb-3 text-white">
+                <span class="bx bxs-log-out-circle display-3"></span>
+            </a>
+            <h4 class="align-self-center ms-2">THÔNG TIN CHI TIẾT HÓA ĐƠN</h4>
+        </div>
+                <form id="formCreate" asp-area="Admin" asp-controller="Invoice" asp-action="Create">
+					<div class="container bootstrap snippets bootdey card p-5">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<div class="row">
+
+							<div class="col-md-6 col-sm-6 text-right">
+								<div class="row ">
+									<div class="w-auto">
+										<img class="w-px-75 h-px-75" src="/AdminAssets/assets/img/trademark/logoHD.png" />
+									</div>
+									<div class="col d-flex align-items-center ps-0">
+										<h4 class="text-start mt-3 "><strong>HD BEAUTY LUXURY</strong></h4>
+									</div>
+								</div>
+
+								<ul class="list-unstyled mt-2">
+									<li><strong>Số điện thoại:</strong> 0123456789</li>
+									<li><strong>Email:</strong> thammyvienhd@gmail.com</li>
+									<li><strong>ID hóa đơn:</strong> DFFG5678901CODE</li>
+									<li><strong>Nhân viên:</strong> Hà Thanh Bền</li>
+								</ul>
+
+							</div>
+
+							<div class="col-md-6 col-sm-6 text-left mt-5 pt-1">
+								<ul class="list-unstyled mt-4 pt-2">
+									<li><strong>Khách Hàng:</strong> Danh Thị Cẩm Thoại</li>
+									<li><strong>Số điện thoại:</strong> 032154874</li>
+									<li><strong>Loại hóa đơn:</strong> Thanh toán dịch vụ</li>
+									<li><strong>Ngày tạo:</strong> 28/10/2023</li>
+								</ul>
+							</div>
+								</div>
+
+								<div class="table-responsive">
+									<table class="table table-condensed nomargin">
+										<thead>
+											<tr>
+												<th>Thông tin</th>
+												<th>Số lượng</th>
+												<th>Giá</th>
+												<th>VAT</th>
+												<th>Tổng giá</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>
+													<div><strong>Unique side and front panel design</strong></div>
+													<small>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</small>
+												</td>
+												<td>2</td>
+												<td>$20.00</td>
+												<td>$3.78</td>
+												<td>$23,78</td>
+											</tr>
+											<tr>
+												<td>
+													<div><strong>Side panel with TAC 2.0 ventilation</strong></div>
+													<small>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</small>
+												</td>
+												<td>2</td>
+												<td>$67.00</td>
+												<td>$1.80</td>
+												<td>$68.80</td>
+											</tr>
+											<tr>
+												<td>
+													<div><strong>Mesh front panel design to improve air</strong></div>
+													<small>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</small>
+												</td>
+												<td>3</td>
+												<td>$335.00</td>
+												<td>$100.20</td>
+												<td>$435.20</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+
+								<hr class="nomargin-top">
+								<div class="row">
+									<div class="col-sm-6 text-left">
+										@* <h4><strong>Contact</strong> Details</h4> *@
+										<p class="nomargin nopadding">
+											<strong>Note:</strong>
+											Hóa đơn này mang tính bảo hành cho quý khách sau khi sử dụng dịch vụ.
+										</p><br><!-- no P margin for printing - use <br> instead -->
+
+										<address>
+											PO Box 21132 <br>
+											Vivas 2355 Australia<br>
+											Phone: 1-800-565-2390 <br>
+											Fax: 1-800-565-2390 <br>
+											Email:support@yourname.com
+										</address>
+									</div>
+
+									<div class="col-sm-6 text-right">
+										<ul class="list-unstyled">
+											<li><strong>Sub - Total Amount:</strong> $2162.00</li>
+											<li><strong>Discount:</strong> 10.0%</li>
+											<li><strong>VAT ($6):</strong> $12.0</li>
+											<li><strong>Grand Total:</strong> $1958.0</li>
+										</ul>
+										<a class="btn btn-default" href="#">MAKE A PAYMENT</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="panel panel-default text-right">
+							<div class="panel-body">
+								<a class="btn btn-warning" href="#"><i class="fa fa-pencil-square-o"></i> EDIT</a>
+								<a class="btn btn-primary" href="#"><i class="fa fa-check"></i> SAVE</a>
+								<a class="btn btn-success" href="page-invoice-print.html" target="_blank"><i class="fa fa-print"></i> PRINT INVOICE</a>
+							</div>
+						</div>
+					</div>
+                </form>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#chooseImage").click(function () {
+                // Khi nút "Thêm ảnh" được nhấn, kích hoạt hộp chọn tệp ẩn
+                $("#fileInput").trigger("click");
+            });
+
+            $("#fileInput").change(function () {
+                // Xử lý khi người dùng chọn tệp ảnh
+                var selectedFile = this.files[0];
+                if (selectedFile) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        // Đặt đường dẫn của ảnh vào thuộc tính "src" của đối tượng img
+                        $("#showImage").attr("src", e.target.result);
+                    };
+                    reader.readAsDataURL(selectedFile);
+                }
+            });
+
+            $("#deleteImage").click(function () {
+                // Đặt đường dẫn của ảnh thành chuỗi rỗng để xóa ảnh
+                $("#showImage").attr("src", "");
+            });
+        });
+
+    </script>
+}
+<!-- / Content -->

@@ -33,7 +33,12 @@ namespace APICosmeticClinic.Repository
             return _context.Invoices.Where(c => c.IsDelete != true).ToList();
         }
 
-        public Invoice GetInvoice(int id)
+		public ICollection<Invoice> GetAllInvoiceByType(int id)
+		{
+			return _context.Invoices.Where(c => c.InvoiceTypeId == id && c.IsDelete != true).ToList();
+		}
+
+		public Invoice GetInvoice(int id)
         {
             return _context.Invoices.Where(e => e.Id == id && e.IsDelete != true).FirstOrDefault();
         }

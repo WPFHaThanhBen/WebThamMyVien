@@ -32,9 +32,21 @@ namespace APICosmeticClinic.Controllers
 
             return Ok(products);
         }
+		// Get ALL 
+		[HttpGet("ProductByType/{productTypeId}")]
+		[ProducesResponseType(200, Type = typeof(IEnumerable<Product>))]
+		public IActionResult GetAllProduct(int productTypeId)
+		{
+			var products = _mapper.Map<List<ProductDto>>(_productRepository.GetAllProductByType(productTypeId));
 
-        // Get By ID
-        [HttpGet("{productId}")]
+			if (!ModelState.IsValid)
+				return BadRequest(ModelState);
+
+			return Ok(products);
+		}
+
+		// Get By ID
+		[HttpGet("{productId}")]
         [ProducesResponseType(200, Type = typeof(Product))]
         //[ProducesResponseType(400)]
         public IActionResult GetProduct(int productId)

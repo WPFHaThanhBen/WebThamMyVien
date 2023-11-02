@@ -5,6 +5,7 @@ namespace APICosmeticClinic.Interfaces
     public interface IInvoiceRepository
     {
         ICollection<Invoice> GetAllInvoice();
+        ICollection<Invoice> GetAllInvoiceByType(int id);
         Invoice GetInvoice(int id);
         bool InvoiceExists(int id);
         bool CreateInvoice(Invoice invoice);

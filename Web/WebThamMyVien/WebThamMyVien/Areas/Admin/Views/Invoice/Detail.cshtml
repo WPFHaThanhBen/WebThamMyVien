@@ -1,0 +1,36 @@
+﻿@model InvoiceDto
+@{
+    Layout = "_LayoutAdmin";
+    var id = Model.Id;
+}
+
+        <!-- Content -->
+        <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="container-fluid">
+
+
+
+
+
+
+
+                <div class="d-flex flex-row">
+                    <a asp-area="Admin" asp-controller="Invoice" asp-action="Index" class="btn btn-icon rounded-pill btn-secondary mb-3 text-white">
+                        <span class="bx bxs-log-out-circle display-3"></span>
+                    </a>
+                    <h4 class="align-self-center ms-2">CHI TIẾT HÓA ĐƠN</h4>
+                </div>
+
+                <form asp-area="Admin" asp-controller="Invoice" asp-action="Edit">
+
+                    <button type="reset" class="btn btn-secondary text-white">Nhập lại</button>
+                    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                </form>
+
+
+
+
+
+            </div>
+        </div>
+        <!-- / Content -->

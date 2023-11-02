@@ -120,5 +120,23 @@ namespace WebThamMyVien.Repository
                 return null; // Trả về null nếu yêu cầu không thành công
             }
         }
-    }
+
+		public async Task<ICollection<ProductDto>> GetAllProductByType(int id)
+		{
+			var apiUrl = $"{_apiUrl}/api/Product/ProductByType/{id}"; // Điền đường dẫn API tại đây
+
+			var response = await _httpClient.GetAsync(apiUrl);
+
+			if (response.IsSuccessStatusCode)
+			{
+				var content = await response.Content.ReadAsStringAsync();
+				var values = JsonConvert.DeserializeObject<ICollection<ProductDto>>(content);
+				return values; // Trả về danh sách
+			}
+			else
+			{
+				return null; // Trả về null nếu yêu cầu không thành công
+			}
+		}
+	}
 }

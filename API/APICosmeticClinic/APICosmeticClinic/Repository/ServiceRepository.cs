@@ -33,7 +33,12 @@ namespace APICosmeticClinic.Repository
             return _context.Services.Where(c => c.IsDelete != true).ToList();
         }
 
-        public Service GetService(int id)
+		public ICollection<Service> GetAllServiceByType(int id)
+		{
+			return _context.Services.Where(c => c.ServiceTypeId == id && c.IsDelete != true).ToList();
+		}
+
+		public Service GetService(int id)
         {
             return _context.Services.Where(e => e.Id == id && e.IsDelete != true).FirstOrDefault();
         }

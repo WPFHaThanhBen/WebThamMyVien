@@ -1,0 +1,178 @@
+﻿@model IEnumerable<CustomerFollowUpDto>
+@{
+    Layout = "_LayoutAdmin";
+    List<int> deletes = new List<int>();
+}
+
+<!-- Content -->
+<div class="container-xxl flex-grow-1 container-p-y">
+
+    <h4 class="align-self-center">CHĂM KHÁCH</h4>
+    <!-- Button Create / Delete -->
+    <div class="pb-2">
+        <a asp-area="Admin" asp-controller="CustomerFollowUp" asp-action="Create" class="btn btn-success text-white">
+            Tạo mới
+        </a>
+        <span class="p-1"></span>
+        <button type="button" id="btnXoa" class="btn btn-danger">
+            Xóa
+        </button>
+    </div>
+    <!-- /Button Create / Delete -->
+    <!-- Table CustomerFollowUp-->
+    <div class="card">
+        <div class="table-responsive p-3">
+            <table id="myTable" class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Mã khách hàng</th>
+                        <th>Nhân viên tạo lịch chăm khách</th>
+                        <th>Trạng thái</th>
+                        <th>Chi nhánh chịu trách nhiệm</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--/Table CustomerFollowUp -->
+
+</div>
+<!-- / Content -->
+@section Scripts {
+    <script>
+        function LoadListing() {
+            $.ajax({
+                type: "POST",
+                url: "/Admin/CustomerFollowUp/GetALL",
+                datatype: "json",
+                success: function (data) {
+                    // Xóa dữ liệu cũ (nếu có)
+                    $('#myTable').DataTable().clear().destroy();
+                    // Thêm dữ liệu mới
+                    $('#myTable').DataTable({
+                        data: data,
+                        columns: [
+                            {
+                                data: 'Id',
+                                render: function (data, type, row) {
+                                    return '<input data-checkbox-id="' + data + '" type="checkbox" />';
+                                }
+                            },
+                            {
+                                data: 'CustomerId',
+                                render: function (data, type, row) {
+                                    // Sử dụng `id` để gán giá link to Detail id
+                                    return '<a href="/Admin/CustomerFollowUp/Detail/' + row.Id + '">' + data + '</a>';
+                                }
+                            },
+                            {
+                                data: 'UserId',
+                                render: function (data, type, row) {
+                                    var n = ''; // Khởi tạo n với giá trị rỗng
+                                    var other = ''; // Khởi tạo n với giá trị rỗng
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/Admin/CustomerFollowUp/GetUser",
+                                        datatype: "json",
+                                        data: { id: data },
+                                        async: false, // Đặt thành true nếu bạn muốn sử dụng callback hoặc Promise
+                                        success: function (data1) {
+                                            n = data1.FullName;
+                                            other = data1.Other;
+                                        }
+                                    });
+                                    return '<p class="d-flex my-auto" title="' + other + '">' + n + '</p>';
+                                }
+                            },
+                            {
+                                data: 'FollowUpStatusId',
+                                render: function (data, type, row) {
+                                    var n = ''; // Khởi tạo n với giá trị rỗng
+                                    var other = ''; // Khởi tạo n với giá trị rỗng
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/Admin/CustomerFollowUp/GetFollowUpStatus",
+                                        datatype: "json",
+                                        data: { id: data },
+                                        async: false, // Đặt thành true nếu bạn muốn sử dụng callback hoặc Promise
+                                        success: function (data2) {
+                                            n = data2.StatusName;
+                                            other = data2.Other;
+                                        }
+                                    });
+                                    return '<p class="d-flex my-auto" title="' + other + '">' + n + '</p>';
+                                }
+                            },
+                            {
+                                data: 'FollowUpBranchId',
+                                render: function (data, type, row) {
+                                    var n = ''; // Khởi tạo n với giá trị rỗng
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/Admin/CustomerFollowUp/GetBranch",
+                                        datatype: "json",
+                                        data: { id: data },
+                                        async: false, // Đặt thành true nếu bạn muốn sử dụng callback hoặc Promise
+                                        success: function (data3) {
+                                            n = data3.Name;
+                                        }
+                                    });
+                                    return '<p class="d-flex my-auto">' + n + '</p>';
+                                }
+                            },
+                        ],
+                    });
+                }
+            });
+        }
+        $(document).ready(function () {
+
+
+
+            LoadListing();
+
+            //"Xóa" hàng loạt
+            $('#btnDelete').click(function () {
+                // Tạo một mảng để lưu trữ ID của các đối tượng được chọn
+                var selectedIds = [];
+                // Lặp qua các checkbox để xác định đối tượng nào được chọn
+                $('input[type="checkbox"]:checked').each(function () {
+                    var checkboxId = $(this).data("checkbox-id");
+                    selectedIds.push(parseInt(checkboxId));
+                });
+                if (selectedIds.length >= 1 && $('#accountActivation').is(':checked')) {
+                    // Gửi danh sách ID được chọn đến action bằng Ajax
+                    $.ajax({
+                        type: "POST",
+                        url: "/Admin/CustomerFollowUp/Delete",
+                        data: { ids: selectedIds }, // Truyền danh sách ID đến action
+                        success: function (data) {
+                            // Xử lý kết quả nếu cần
+                            // Sau khi xử lý xong, chuyển hướng đến view khác
+                            window.location.href = '/Admin/CustomerFollowUp/Index';
+                        }
+                    });
+                }
+            });
+
+            // Check xóa
+            $('#btnXoa').click(function () {
+                var selectedIds = [];
+                // Lặp qua các checkbox để xác định đối tượng nào được chọn
+                $('input[type="checkbox"]:checked').each(function () {
+                    var checkboxId = $(this).data("checkbox-id");
+                    selectedIds.push(parseInt(checkboxId));
+                });
+                if (selectedIds.length >= 1) {
+                    $("#DeleteModal").modal("show");
+                }
+            });
+        });
+
+
+    </script>
+}
+

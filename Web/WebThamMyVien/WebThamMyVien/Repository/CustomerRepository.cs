@@ -128,7 +128,7 @@ namespace WebThamMyVien.Repository
 
         public async Task<CustomerDto> GetCustomerBySDT(string sdt)
         {
-            var apiUrl = $"{_apiUrl}/api/CustomerBySDT/{sdt}"; // Điền đường dẫn API tại đây
+            var apiUrl = $"{_apiUrl}/api/Customer/CustomerBySDT/{sdt}"; // Điền đường dẫn API tại đây
 
             var response = await _httpClient.GetAsync(apiUrl);
 

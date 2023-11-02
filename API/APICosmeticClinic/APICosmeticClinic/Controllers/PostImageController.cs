@@ -32,9 +32,20 @@ namespace APICosmeticClinic.Controllers
 
             return Ok(postImages);
         }
+		// Get ALL 
+		[HttpGet("PostImageByPost/{postId}")]
+		[ProducesResponseType(200, Type = typeof(IEnumerable<PostImage>))]
+		public IActionResult GetAllPostImage(int postId)
+		{
+			var postImages = _mapper.Map<List<PostImageDto>>(_postImageRepository.GetAllPostImageByPost(postId));
 
-        // Get By ID
-        [HttpGet("{postImageId}")]
+			if (!ModelState.IsValid)
+				return BadRequest(ModelState);
+
+			return Ok(postImages);
+		}
+		// Get By ID
+		[HttpGet("{postImageId}")]
         [ProducesResponseType(200, Type = typeof(PostImage))]
         //[ProducesResponseType(400)]
         public IActionResult GetPostImage(int postImageId)
