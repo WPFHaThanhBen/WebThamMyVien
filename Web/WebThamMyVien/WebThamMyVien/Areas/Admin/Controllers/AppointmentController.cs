@@ -71,11 +71,6 @@ namespace WebThamMyVien.Areas.Admin.Controllers
                     TempData["error"] = "Thêm mới thông tin thất bại";
                 }
             }
-            // AppointmentDto không hợp lệ
-            else
-            {
-                TempData["warning"] = "Thông tin không hợp lệ";
-            }
             return View(_AppointmentDto);
         }
 

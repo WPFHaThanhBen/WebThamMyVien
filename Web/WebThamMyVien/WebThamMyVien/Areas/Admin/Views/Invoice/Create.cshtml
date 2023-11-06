@@ -138,23 +138,37 @@
 									</div>
 									@* Form Khác *@
 									<div class="tab-pane fade" id="khac" role="tabpanel">
-										<p>
-											Oat cake chupa chups dragée donut toffee. Sweet cotton candy jelly beans macaroon gummies
-											cupcake gummi bears cake chocolate.
-										</p>
-										<p class="mb-0">
-											Cake chocolate bar cotton candy apple pie tootsie roll ice cream apple pie brownie cake. Sweet
-											roll icing sesame snaps caramels danish toffee. Brownie biscuit dessert dessert. Pudding jelly
-											jelly-o tart brownie jelly.
-										</p>
+										<h5 class="modal-title">Thêm chi tiết hóa đơn (Khác)</h5>
+										<div class="row">
+											<div class="mb-3 col-sm">
+												<label class="form-label text-none">Tên chi tiết</label>
+												<input id="txtKhac" type="text" class="form-control " placeholder="Nhập tên chi tiết cần thêm vào hóa đơn" />
+											</div>
+											<div class="mb-3 col-sm">
+												<label class="form-label text-capitalize">Giá</label>
+												<input id="txtPriceKhac" type="number" class="form-control " placeholder="Nhập giá" />
+											</div>
+										</div>
+										<div class="row">
+
+											<div class="mb-3 col-sm">
+												<label class="form-label text-capitalize">Số lượng</label>
+												<input id="txtQuantityKhac" type="number" class="form-control " value="1" placeholder="Nhập số lượng" />
+											</div>
+											<div class="mb-3 col-sm">
+												<label class="form-label text-none">Khuyến mãi áp dụng</label>
+												<select id="cbbPromotionKhac" class="form-control" asp-items="ViewBag.promotion"></select>
+											</div>
+										</div>
 										<div class="pb-2">
-											<button type="button" class="btn btn-success text-white">
-												Thêm chi tiết
+											<button type="reset" class="btn btn-secondary">
+												Nhập lại
 											</button>
 											<span class="p-1"></span>
-											<button type="button" class="btn btn-danger">
-												Xóa
+											<button id="btnCreateKhac" type="button" class="btn btn-success text-white">
+												Thêm chi tiết
 											</button>
+
 										</div>
 									</div>
 								</div>
@@ -173,11 +187,11 @@
             </a>
             <h4 class="align-self-center ms-2">THÔNG TIN CHI TIẾT HÓA ĐƠN</h4>
         </div>
-                <form id="formCreate" asp-area="Admin" asp-controller="Invoice" asp-action="Create">
-					<div class="container bootstrap snippets bootdey card p-5">
-						<div class="panel panel-default">
-							<div class="panel-body">
-								<div class="row">
+		<form>
+			<div class="container bootstrap snippets bootdey card p-5">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="row">
 
 							<div class="col-md-6 col-sm-6 text-right">
 								<div class="row ">
@@ -190,14 +204,13 @@
 								</div>
 
 								<ul class="list-unstyled mt-2">
-									<input type="hidden" asp-for="Id" />
 									<li><strong>Số điện thoại:</strong> 0123456789</li>
 									<li><strong>Email:</strong> thammyvienhd@gmail.com</li>
 									<li><strong>ID hóa đơn:</strong> DFFG5678901CODE</li>
 									@* cbb nhân viên ở đây *@
-									<div class="mb-3" >
+									<div class="mb-3">
 										<label class="form-label text-capitalize" style="font-size: 15px">Nhân viên tạo hóa đơn</label>
-										<input asp-for="CreatedByUserId" type="number" class="form-control " placeholder="nhập mã  nhân viên" />
+										<input id="txtIdUser" type="number" class="form-control " placeholder="nhập mã  nhân viên" />
 									</div>
 								</ul>
 
@@ -211,7 +224,7 @@
 											<input id="txtSDTCustomer" type="number" class="form-control " placeholder="nhập số điện thoại khách hàng" />
 										</div>
 									</li>
-									<input id="txtIdCustomer" type="hidden" asp-for="CustomerId" />
+									<input id="txtIdCustomer" type="hidden" />
 									<li>
 										<div class="mb-3">
 											<label class="form-label text-capitalize" style="font-size: 15px">Tên khách hàng</label>
@@ -221,14 +234,14 @@
 									<li>
 										<div class="mb-3">
 											<label class="form-label text-capitalize" style="font-size: 15px">Loại hóa đơn</label>
-											<select name="InvoiceTypeId" class="form-control" asp-items="ViewBag.InvoiceType"></select>
+											<select id="cbbInvoiceTypeId" class="form-control" asp-items="ViewBag.InvoiceType"></select>
 										</div>
 									</li>
-									<li><strong>Ngày tạo:</strong> <span id="currentDateTime">dd/mm/yyyy</span></li>
+									<li><strong>Ngày tạo:</strong><span id="currentDateTime">dd/mm/yyyy</span></li>
 								</ul>
 							</div>
-								</div>
-								<div class="table-responsive">
+						</div>
+						<div class="table-responsive">
 							<div class="pb-2">
 								<button id="btnCreateDetail" type="button" class="btn btn-success text-white">
 									Thêm chi tiết
@@ -252,47 +265,46 @@
 								<tbody>
 								</tbody>
 							</table>
-								</div>
-
-								<hr class="nomargin-top">
-								<div class="row">
-								<div class="row">
-									<div class="col-sm-6 text-left">
-								<div class="mb-3">
-										<label class="form-label text-capitalize" style="font-size: 15px">Ghi chú</label>
-									<textarea  asp-for="Other" class="form-control"
-											  placeholder="nhập ghi chú"></textarea>
-								</div>
-									</div>
-									<div class="col-sm-6 text-right">
-								<div class="mb-3">
-									<label class="form-label text-capitalize" style="font-size: 15px">Hình thức thanh toán</label>
-									<select class="form-control ">
-										<option>Tiền mặt</option>
-										<option>Chuyển khoản</option>
-										<option>Ghi nợ</option>
-										<option>Khác</option>
-									</select>
-								</div>
-								<ul class="list-unstyled">
-										<input id="TotalAmount" type="hidden" asp-for="TotalAmount" />
-										<li><strong style="font-size: 20px">Tổng tiền:</strong> <p id="TotalAmountview" style="font-size: 20px"></p></li>
-								</ul>
-
-									</div>
-								</div>
-							</div>
 						</div>
 
-						<div class="panel panel-default text-right">
-							<div class="panel-body">
-							<a class="btn btn-success text-white">TẠO MỚI HÓA ĐƠN</a>
-							<a class="btn btn-primary text-white">PRINT</a>
+						<hr class="nomargin-top">
+						<div class="row">
+							<div class="row">
+								<div class="col-sm-6 text-left">
+									<div class="mb-3">
+										<label class="form-label text-capitalize" style="font-size: 15px">Ghi chú</label>
+										<textarea id="txtOther" class="form-control"
+												  placeholder="nhập ghi chú"></textarea>
+									</div>
+								</div>
+								<div class="col-sm-6 text-right">
+									<div class="mb-3">
+										<label class="form-label text-capitalize" style="font-size: 15px">Hình thức thanh toán</label>
+										<select id="cbbHinhThucThanhToan" class="form-control ">
+											<option>Tiền mặt</option>
+											<option>Chuyển khoản</option>
+											<option>Ghi nợ</option>
+											<option>Khác</option>
+										</select>
+									</div>
+									<ul class="list-unstyled">
+										<input id="TotalAmount" type="hidden" />
+										<li><strong style="font-size: 20px">Tổng tiền:</strong> <p id="TotalAmountview" style="font-size: 20px"></p></li>
+									</ul>
+
+								</div>
 							</div>
 						</div>
 					</div>
-                </form>
-    </div>
+
+					<div>
+						<button form="" id="btnCreateInvoice" class="btn btn-success text-white">TẠO MỚI HÓA ĐƠN</button>
+						<button form="" id="btnPrintInvoice" class="btn btn-primary text-white">PRINT</button>
+					</div>
+				</div>
+		    </div>
+		</form>
+		</div>
 </div>
 
 @section Scripts{
@@ -300,10 +312,10 @@
 		//"Xóa" hàng loạt
 		$('#btnDelete').click(function () {
 			// Tạo một mảng để lưu trữ ID của các đối tượng được chọn
-			var selectedIds = [];
+			let selectedIds = [];
 			// Lặp qua các checkbox để xác định đối tượng nào được chọn
 			$('input[type="checkbox"]:checked').each(function () {
-				var checkboxId = $(this).data("checkbox-id");
+				let checkboxId = $(this).data("checkbox-id");
 				selectedIds.push(parseInt(checkboxId));
 			});
 			if (selectedIds.length >= 1 && $('#accountActivation').is(':checked')) {
@@ -327,22 +339,46 @@
 			loadCbbServiceType();
 			loadCbbProductType();
 		});
+		function displayToastrMessages(status, mesg) {
+			let successData = '';
+			let errorData = '';
+			let warningData = '';
+			if (status == 1) {
+				successData = mesg;
+			}
+			else if (status == 2) {
+				warningData = mesg;
+			}
+			else {
+				errorData = mesg;
+			}
 
+
+			if (successData !== '') {
+				toastr.success(successData);
+			}
+			if (errorData !== '') {
+				toastr.error(errorData);
+			}
+			if (warningData !== '') {
+				toastr.warning(warningData);
+			}
+		}
 		function updateDateTime() {
-			var currentDate = new Date();
-			var formattedDate = currentDate.toLocaleTimeString() + " " + currentDate.toLocaleDateString();
+			let currentDate = new Date();
+			let formattedDate = currentDate.toLocaleTimeString() + " " + currentDate.toLocaleDateString();
 			$("#currentDateTime").text(formattedDate);
 		}
 		function formatToVND(number) {
 			// Sử dụng hàm replace để chèn dấu chấm vào số tiền
-			var formattedNumber = number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+			let formattedNumber = number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 			// Thêm dấu đồng
 			formattedNumber += ' đ';
 
 			return formattedNumber;
 		}
 		function loadCbbService() {
-			var selectedValue = $('#cbbservice').val();
+			let selectedValue = $('#cbbservice').val();
 			$.ajax({
 				type: "POST",
 				url: "/Admin/Invoice/GetService",
@@ -357,7 +393,7 @@
 		}
 		function loadCbbServiceType() {
 			$('#cbbservice').empty();
-			var selectedValue = $('#serviceType').val();
+			let selectedValue = $('#serviceType').val();
 			$.ajax({
 				type: "POST",
 				url: "/Admin/Invoice/GetALLServiceByType",
@@ -376,7 +412,7 @@
 			loadCbbService();
 		}
 		function loadCbbProduct() {
-			var selectedValue = $('#cbbproduct').val();
+			let selectedValue = $('#cbbproduct').val();
 			$.ajax({
 				type: "POST",
 				url: "/Admin/Invoice/GetProduct",
@@ -392,7 +428,7 @@
 		function loadCbbProductType() {
 			// Lấy giá trị đã chọn
 			$('#cbbproduct').empty();
-			var selectedValue = $('#productType').val();
+			let selectedValue = $('#productType').val();
 			$.ajax({
 				type: "POST",
 				url: "/Admin/Invoice/GetALLProductByType",
@@ -412,17 +448,22 @@
 		}
 
 		function loadTotalPrice(invoiceDetailsArray) {
-			var totalPrice = 0;
+			let totalPrice = 0;
 			$.each(invoiceDetailsArray, function (index, item) {
 				totalPrice += item.TotalPrice;
 			});
 			$("#TotalAmount").val(totalPrice);
 			$("#TotalAmountview").text(formatToVND(totalPrice));
 		}
+
+		
+
+
+
 		// Gọi hàm updateDateTime khi trang web được tải hoặc bất kỳ sự kiện nào khác
 		$(document).ready(function () {
 			// Lưu trữ chi tiết hóa đơn
-			var invoiceDetailsArray = [];
+			let invoiceDetailsArray = [];
 
 			updateDateTime();
 
@@ -430,7 +471,7 @@
 			$('#serviceType').on('change', function () {
 				// Lấy giá trị đã chọn
 				$('#cbbservice').empty();
-				var selectedValue = $(this).val();
+				let selectedValue = $(this).val();
 				$.ajax({
 					type: "POST",
 					url: "/Admin/Invoice/GetALLServiceByType",
@@ -451,7 +492,7 @@
 			});
 			$('#cbbservice').on('change', function () {
 				// Lấy giá trị đã chọn GetALLService
-				var selectedValue = $(this).val();
+				let selectedValue = $(this).val();
 				$.ajax({
 					type: "POST",
 					url: "/Admin/Invoice/GetService",
@@ -467,7 +508,7 @@
 			});
 			$('#txtSDTCustomer').on('input', function () {
 				// Lấy giá trị đã chọn
-				var selectedValue = $(this).val();
+				let selectedValue = $(this).val();
 				if (selectedValue.length >= 10) {
 					$.ajax({
 						type: "POST",
@@ -484,13 +525,13 @@
 			$('#btnCreateService').on('click', function () {
 
 				// Lấy mục đang được chọn
-				var selectedOption = $('#cbbservice').find('option:selected');
-				var content = selectedOption.text();
-				var price = $('#cbbprice').val();
-				var quantity = $('#txtQuantity').val();
-				var discount = $('#cbbpromotion').val();
+				let selectedOption = $('#cbbservice').find('option:selected');
+				let content = selectedOption.text();
+				let price = $('#cbbprice').val();
+				let quantity = $('#txtQuantity').val();
+				let discount = $('#cbbpromotion').val();
 
-				var giamgia;
+				let giamgia;
 				$.ajax({
 					type: "POST",
 					url: "/Admin/Invoice/GetPromotion",
@@ -501,13 +542,13 @@
 						giamgia = dataa.PromotionValue;
 					}
 				});
-				var priceInt = parseInt(price, 10); // Giá trị đã chuyển đổi thành kiểu int
-				var quantityInt = parseInt(quantity, 10); //
-				var tiensaugiamgia = priceInt - ((priceInt * giamgia) / 100);
+				let priceInt = parseInt(price, 10); // Giá trị đã chuyển đổi thành kiểu int
+				let quantityInt = parseInt(quantity, 10); //
+				let tiensaugiamgia = priceInt - ((priceInt * giamgia) / 100);
 
-				var totalPrice = (tiensaugiamgia * quantityInt);
-				var seqNumber = invoiceDetailsArray.length + 1;
-				var invoiceDetail = {
+				let totalPrice = (tiensaugiamgia * quantityInt);
+				let seqNumber = invoiceDetailsArray.length + 1;
+				let invoiceDetail = {
 					Id: 0,
 					SeqNumber: seqNumber,
 					InvoiceId: 0,
@@ -518,8 +559,8 @@
 					TotalPrice: totalPrice
 				};
 				invoiceDetailsArray.push(invoiceDetail);
-				var table = $('#myTable').DataTable();
-				var newRowData = [
+				let table = $('#myTable').DataTable();
+				let newRowData = [
 					seqNumber,
 					content,
 					quantity,
@@ -529,6 +570,7 @@
 				];
 				table.row.add(newRowData).draw();
 				loadTotalPrice(invoiceDetailsArray);
+				$("#CreateModal").modal("hide");
 			});
 
 
@@ -536,7 +578,7 @@
 			$('#productType').on('change', function () {
 				// Lấy giá trị đã chọn
 				$('#cbbproduct').empty();
-				var selectedValue = $(this).val();
+				let selectedValue = $(this).val();
 				$.ajax({
 					type: "POST",
 					url: "/Admin/Invoice/GetALLProductByType",
@@ -557,7 +599,7 @@
 			});
 			$('#cbbproduct').on('change', function () {
 				// Lấy giá trị đã chọn GetALLService
-				var selectedValue = $('#cbbproduct').val();
+				let selectedValue = $('#cbbproduct').val();
 				$.ajax({
 					type: "POST",
 					url: "/Admin/Invoice/GetProduct",
@@ -574,13 +616,13 @@
 			$('#btnCreateProduct').on('click', function () {
 
 				// Lấy mục đang được chọn
-				var selectedOption = $('#cbbproduct').find('option:selected');
-				var content = selectedOption.text();
-				var price = $('#cbbPriceProduct').val();
-				var quantity = $('#txtQuantityProduct').val();
-				var discount = $('#cbbPromotionProduct').val();
+				let selectedOption = $('#cbbproduct').find('option:selected');
+				let content = selectedOption.text();
+				let price = $('#cbbPriceProduct').val();
+				let quantity = $('#txtQuantityProduct').val();
+				let discount = $('#cbbPromotionProduct').val();
 
-				var giamgia;
+				let giamgia;
 				$.ajax({
 					type: "POST",
 					url: "/Admin/Invoice/GetPromotion",
@@ -591,13 +633,13 @@
 						giamgia = dataa.PromotionValue;
 					}
 				});
-				var priceInt = parseInt(price, 10); // Giá trị đã chuyển đổi thành kiểu int
-				var quantityInt = parseInt(quantity, 10); //
-				var tiensaugiamgia = priceInt - ((priceInt * giamgia) / 100);
+				let priceInt = parseInt(price, 10); // Giá trị đã chuyển đổi thành kiểu int
+				let quantityInt = parseInt(quantity, 10); //
+				let tiensaugiamgia = priceInt - ((priceInt * giamgia) / 100);
 
-				var totalPrice = (tiensaugiamgia * quantityInt);
-				var seqNumber = invoiceDetailsArray.length + 1;
-				var invoiceDetail = {
+				let totalPrice = (tiensaugiamgia * quantityInt);
+				let seqNumber = invoiceDetailsArray.length + 1;
+				let invoiceDetail = {
 					Id: 0,
 					SeqNumber: seqNumber,
 					InvoiceId: 0,
@@ -608,8 +650,8 @@
 					TotalPrice: totalPrice
 				};
 				invoiceDetailsArray.push(invoiceDetail);
-				var table = $('#myTable').DataTable();
-				var newRowData = [
+				let table = $('#myTable').DataTable();
+				let newRowData = [
 					seqNumber,
 					content,
 					quantity,
@@ -619,6 +661,103 @@
 				];
 				table.row.add(newRowData).draw();
 				loadTotalPrice(invoiceDetailsArray);
+				$("#CreateModal").modal("hide");
+			});
+			$('#btnCreateKhac').on('click', function () {
+
+				// Lấy mục đang được chọn
+				let content = $('#txtKhac').val();
+				let price = $('#txtPriceKhac').val();
+				let quantity = $('#txtQuantityKhac').val();
+				let discount = $('#cbbPromotionKhac').val();
+
+				let giamgia;
+				$.ajax({
+					type: "POST",
+					url: "/Admin/Invoice/GetPromotion",
+					dataType: "json",
+					async: false,
+					data: { id: discount },
+					success: function (dataa) {
+						giamgia = dataa.PromotionValue;
+					}
+				});
+				let priceInt = parseInt(price, 10); // Giá trị đã chuyển đổi thành kiểu int
+				let quantityInt = parseInt(quantity, 10); //
+				let tiensaugiamgia = priceInt - ((priceInt * giamgia) / 100);
+
+				let totalPrice = (tiensaugiamgia * quantityInt);
+				let seqNumber = invoiceDetailsArray.length + 1;
+				let invoiceDetail = {
+					Id: 0,
+					SeqNumber: seqNumber,
+					InvoiceId: 0,
+					Content: content,
+					Price: price,
+					Quantity: quantity,
+					Discount: discount,
+					TotalPrice: totalPrice
+				};
+				invoiceDetailsArray.push(invoiceDetail);
+				let table = $('#myTable').DataTable();
+				let newRowData = [
+					seqNumber,
+					content,
+					quantity,
+					price,
+					giamgia + "%",
+					totalPrice
+				];
+				table.row.add(newRowData).draw();
+				loadTotalPrice(invoiceDetailsArray);
+				$("#CreateModal").modal("hide");
+			});
+
+			$('#btnCreateInvoice').on('click', function () {
+				if (invoiceDetailsArray.length > 0) {
+					let selectedOption = $('#cbbHinhThucThanhToan').find('option:selected');
+					let totalPrice = 0;
+					$.each(invoiceDetailsArray, function (index, item) {
+						totalPrice += item.TotalPrice;
+					});
+					let invoiceTypeId = $('#cbbInvoiceTypeId').val();
+					let invoiceDate = $('#currentDateTime').text();
+					let createdByUserId = $('#txtIdUser').val();
+					let customerId = $('#txtIdCustomer').val();
+					let paymentMethod = selectedOption.text();
+					let totalAmount = totalPrice;
+					let other = $('#txtOther').val();
+					
+					let invoice = {
+						Id: 0,
+						InvoiceTypeId: invoiceTypeId,
+						InvoiceDate: invoiceDate,
+						CreatedByUserId: createdByUserId,
+						CustomerId: customerId,
+						PaymentMethod: paymentMethod,
+						TotalAmount: totalAmount,
+						BranchId: 0,
+						Other: other
+					};
+
+					alert(invoice.invoiceDate);
+					$.ajax({
+						url: "/Admin/Invoice/CreateInvoiceDetail",
+						type: 'POST',
+						data: { invoiceDetailsArray: JSON.stringify(invoiceDetailsArray), invoice: JSON.stringify(invoice) },
+						contentType: 'application/json; charset=utf-8',
+						success: function (result) {
+							alert(result);
+							// Xử lý kết quả từ Action ở đây (nếu cần)
+						},
+						error: function (error) {
+							// Xử lý lỗi ở đây (nếu có)
+						}
+					});
+				}
+				else {
+					displayToastrMessages(2, "Không thể tạo hóa đơn rỗng")
+				}
 			});
 		});
     </script>

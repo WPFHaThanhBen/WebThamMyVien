@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using System;
 using WebThamMyVien.Interfaces;
 using WebThamMyVien.Models;
 
@@ -71,11 +72,7 @@ namespace WebThamMyVien.Areas.Admin.Controllers
                 }
             }
             // InvoiceDto không hợp lệ
-            else
-            {
-                TempData["warning"] = "Thông tin không hợp lệ";
-            }
-            return View(_InvoiceDto);
+            return View();
         }
 
         [Area("Admin")]
@@ -262,7 +259,7 @@ namespace WebThamMyVien.Areas.Admin.Controllers
 			return Content(json, "application/json");
 		}
 
-		[Area("Admin")]
+		
         [HttpPost]
         public async Task<IActionResult> GetUser(int id)
         {
@@ -273,5 +270,18 @@ namespace WebThamMyVien.Areas.Admin.Controllers
             return Content(json, "application/json");
         }
 
+		[Area("Admin")]
+		[HttpPost]
+		public async Task<IActionResult> CreateInvoiceDetail(List<InvoiceDetailDto> invoiceDetailsArray, InvoiceDto invoice)
+		{
+
+
+			foreach (var detail in invoiceDetailsArray)
+			{
+				// Sử dụng detail ở đây để thực hiện các thao tác cần thiết
+			}
+			string json = JsonConvert.SerializeObject(true);
+			return Content(json, "application/json");
+		}
 	}
 }
