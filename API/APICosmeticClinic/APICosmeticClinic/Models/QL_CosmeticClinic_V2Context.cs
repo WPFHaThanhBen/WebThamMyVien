@@ -40,8 +40,6 @@ namespace APICosmeticClinic.Models
         public virtual DbSet<OrderStatus> OrderStatuses { get; set; } = null!;
         public virtual DbSet<PaymentStatus> PaymentStatuses { get; set; } = null!;
         public virtual DbSet<Post> Posts { get; set; } = null!;
-        public virtual DbSet<PostContent> PostContents { get; set; } = null!;
-        public virtual DbSet<PostImage> PostImages { get; set; } = null!;
         public virtual DbSet<PostType> PostTypes { get; set; } = null!;
         public virtual DbSet<Product> Products { get; set; } = null!;
         public virtual DbSet<ProductBranch> ProductBranches { get; set; } = null!;
@@ -341,37 +339,37 @@ namespace APICosmeticClinic.Models
                 entity.HasOne(d => d.ConsultingUser)
                     .WithMany(p => p.CustomerHistoryConsultingUsers)
                     .HasForeignKey(d => d.ConsultingUserId)
-                    .HasConstraintName("FK__CustomerH__Consu__40F9A68C");
+                    .HasConstraintName("FK__CustomerH__Consu__3B40CD36");
 
                 entity.HasOne(d => d.CustomerCareUser)
                     .WithMany(p => p.CustomerHistoryCustomerCareUsers)
                     .HasForeignKey(d => d.CustomerCareUserId)
-                    .HasConstraintName("FK__CustomerH__Custo__41EDCAC5");
+                    .HasConstraintName("FK__CustomerH__Custo__3C34F16F");
 
                 entity.HasOne(d => d.Invoice)
                     .WithMany(p => p.CustomerHistories)
                     .HasForeignKey(d => d.InvoiceId)
-                    .HasConstraintName("FK__CustomerH__Invoi__40058253");
+                    .HasConstraintName("FK__CustomerH__Invoi__3A4CA8FD");
 
                 entity.HasOne(d => d.ServiceBranch)
                     .WithMany(p => p.CustomerHistories)
                     .HasForeignKey(d => d.ServiceBranchId)
-                    .HasConstraintName("FK__CustomerH__Servi__43D61337");
+                    .HasConstraintName("FK__CustomerH__Servi__3E1D39E1");
 
                 entity.HasOne(d => d.Service)
                     .WithMany(p => p.CustomerHistories)
                     .HasForeignKey(d => d.ServiceId)
-                    .HasConstraintName("FK__CustomerH__Servi__3E1D39E1");
+                    .HasConstraintName("FK__CustomerH__Servi__3864608B");
 
                 entity.HasOne(d => d.TechnicalUser)
                     .WithMany(p => p.CustomerHistoryTechnicalUsers)
                     .HasForeignKey(d => d.TechnicalUserId)
-                    .HasConstraintName("FK__CustomerH__Techn__42E1EEFE");
+                    .HasConstraintName("FK__CustomerH__Techn__3D2915A8");
 
                 entity.HasOne(d => d.Warranty)
                     .WithMany(p => p.CustomerHistories)
                     .HasForeignKey(d => d.WarrantyId)
-                    .HasConstraintName("FK__CustomerH__Warra__3F115E1A");
+                    .HasConstraintName("FK__CustomerH__Warra__395884C4");
             });
 
             modelBuilder.Entity<CustomerImage>(entity =>
@@ -387,7 +385,7 @@ namespace APICosmeticClinic.Models
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.CustomerImages)
                     .HasForeignKey(d => d.CustomerId)
-                    .HasConstraintName("FK__CustomerI__Custo__1DB06A4F");
+                    .HasConstraintName("FK__CustomerI__Custo__17F790F9");
             });
 
             modelBuilder.Entity<CustomerStatus>(entity =>
@@ -472,22 +470,22 @@ namespace APICosmeticClinic.Models
                 entity.HasOne(d => d.Branch)
                     .WithMany(p => p.Invoices)
                     .HasForeignKey(d => d.BranchId)
-                    .HasConstraintName("FK__Invoice__BranchI__30C33EC3");
+                    .HasConstraintName("FK__Invoice__BranchI__2B0A656D");
 
                 entity.HasOne(d => d.CreatedByUser)
                     .WithMany(p => p.Invoices)
                     .HasForeignKey(d => d.CreatedByUserId)
-                    .HasConstraintName("FK__Invoice__Created__2EDAF651");
+                    .HasConstraintName("FK__Invoice__Created__29221CFB");
 
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.Invoices)
                     .HasForeignKey(d => d.CustomerId)
-                    .HasConstraintName("FK__Invoice__Custome__2FCF1A8A");
+                    .HasConstraintName("FK__Invoice__Custome__2A164134");
 
                 entity.HasOne(d => d.InvoiceType)
                     .WithMany(p => p.Invoices)
                     .HasForeignKey(d => d.InvoiceTypeId)
-                    .HasConstraintName("FK__Invoice__Invoice__2DE6D218");
+                    .HasConstraintName("FK__Invoice__Invoice__282DF8C2");
             });
 
             modelBuilder.Entity<InvoiceDetail>(entity =>
@@ -503,12 +501,12 @@ namespace APICosmeticClinic.Models
                 entity.HasOne(d => d.DiscountNavigation)
                     .WithMany(p => p.InvoiceDetails)
                     .HasForeignKey(d => d.Discount)
-                    .HasConstraintName("FK__InvoiceDe__Disco__3493CFA7");
+                    .HasConstraintName("FK__InvoiceDe__Disco__2EDAF651");
 
                 entity.HasOne(d => d.Invoice)
                     .WithMany(p => p.InvoiceDetails)
                     .HasForeignKey(d => d.InvoiceId)
-                    .HasConstraintName("FK__InvoiceDe__Invoi__339FAB6E");
+                    .HasConstraintName("FK__InvoiceDe__Invoi__2DE6D218");
             });
 
             modelBuilder.Entity<InvoiceType>(entity =>
@@ -545,17 +543,17 @@ namespace APICosmeticClinic.Models
                 entity.HasOne(d => d.Branch)
                     .WithMany(p => p.OnlinePayments)
                     .HasForeignKey(d => d.BranchId)
-                    .HasConstraintName("FK__OnlinePay__Branc__3B40CD36");
+                    .HasConstraintName("FK__OnlinePay__Branc__3587F3E0");
 
                 entity.HasOne(d => d.Invoice)
                     .WithMany(p => p.OnlinePayments)
                     .HasForeignKey(d => d.InvoiceId)
-                    .HasConstraintName("FK__OnlinePay__Invoi__395884C4");
+                    .HasConstraintName("FK__OnlinePay__Invoi__339FAB6E");
 
                 entity.HasOne(d => d.PaymentStatus)
                     .WithMany(p => p.OnlinePayments)
                     .HasForeignKey(d => d.PaymentStatusId)
-                    .HasConstraintName("FK__OnlinePay__Payme__3A4CA8FD");
+                    .HasConstraintName("FK__OnlinePay__Payme__3493CFA7");
             });
 
             modelBuilder.Entity<Order>(entity =>
@@ -583,17 +581,17 @@ namespace APICosmeticClinic.Models
                 entity.HasOne(d => d.Branch)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.BranchId)
-                    .HasConstraintName("FK__Order__BranchID__236943A5");
+                    .HasConstraintName("FK__Order__BranchID__1DB06A4F");
 
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.CustomerId)
-                    .HasConstraintName("FK__Order__CustomerI__245D67DE");
+                    .HasConstraintName("FK__Order__CustomerI__1EA48E88");
 
                 entity.HasOne(d => d.OrderStatus)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.OrderStatusId)
-                    .HasConstraintName("FK__Order__OrderStat__22751F6C");
+                    .HasConstraintName("FK__Order__OrderStat__1CBC4616");
             });
 
             modelBuilder.Entity<OrderDetail>(entity =>
@@ -611,17 +609,17 @@ namespace APICosmeticClinic.Models
                 entity.HasOne(d => d.Order)
                     .WithMany(p => p.OrderDetails)
                     .HasForeignKey(d => d.OrderId)
-                    .HasConstraintName("FK__OrderDeta__Order__2739D489");
+                    .HasConstraintName("FK__OrderDeta__Order__2180FB33");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.OrderDetails)
                     .HasForeignKey(d => d.ProductId)
-                    .HasConstraintName("FK__OrderDeta__Produ__282DF8C2");
+                    .HasConstraintName("FK__OrderDeta__Produ__22751F6C");
 
                 entity.HasOne(d => d.Promotion)
                     .WithMany(p => p.OrderDetails)
                     .HasForeignKey(d => d.PromotionId)
-                    .HasConstraintName("FK__OrderDeta__Promo__29221CFB");
+                    .HasConstraintName("FK__OrderDeta__Promo__236943A5");
             });
 
             modelBuilder.Entity<OrderStatus>(entity =>
@@ -654,11 +652,15 @@ namespace APICosmeticClinic.Models
 
                 entity.Property(e => e.DateDelete).HasMaxLength(20);
 
+                entity.Property(e => e.Introduce).HasMaxLength(255);
+
                 entity.Property(e => e.PostTypeId).HasColumnName("PostTypeID");
 
                 entity.Property(e => e.PostedByUserId).HasColumnName("PostedByUserID");
 
-                entity.Property(e => e.PostingDate).HasMaxLength(20);
+                entity.Property(e => e.PostingDateCreate).HasMaxLength(20);
+
+                entity.Property(e => e.PostingDateUpdate).HasMaxLength(20);
 
                 entity.Property(e => e.Title).HasMaxLength(255);
 
@@ -671,44 +673,6 @@ namespace APICosmeticClinic.Models
                     .WithMany(p => p.Posts)
                     .HasForeignKey(d => d.PostedByUserId)
                     .HasConstraintName("FK__Post__PostedByUs__123EB7A3");
-            });
-
-            modelBuilder.Entity<PostContent>(entity =>
-            {
-                entity.ToTable("PostContent");
-
-                entity.Property(e => e.Id).HasColumnName("ID");
-
-                entity.Property(e => e.Content).HasMaxLength(1000);
-
-                entity.Property(e => e.DateDelete).HasMaxLength(20);
-
-                entity.Property(e => e.Link).HasMaxLength(255);
-
-                entity.Property(e => e.PostId).HasColumnName("PostID");
-
-                entity.Property(e => e.Title).HasMaxLength(255);
-
-                entity.HasOne(d => d.Post)
-                    .WithMany(p => p.PostContents)
-                    .HasForeignKey(d => d.PostId)
-                    .HasConstraintName("FK__PostConte__PostI__151B244E");
-            });
-
-            modelBuilder.Entity<PostImage>(entity =>
-            {
-                entity.ToTable("PostImage");
-
-                entity.Property(e => e.Id).HasColumnName("ID");
-
-                entity.Property(e => e.DateDelete).HasMaxLength(20);
-
-                entity.Property(e => e.PostContentId).HasColumnName("PostContentID");
-
-                entity.HasOne(d => d.PostContent)
-                    .WithMany(p => p.PostImages)
-                    .HasForeignKey(d => d.PostContentId)
-                    .HasConstraintName("FK__PostImage__PostC__17F790F9");
             });
 
             modelBuilder.Entity<PostType>(entity =>
@@ -793,7 +757,7 @@ namespace APICosmeticClinic.Models
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.ProductImages)
                     .HasForeignKey(d => d.ProductId)
-                    .HasConstraintName("FK__ProductIm__Produ__1AD3FDA4");
+                    .HasConstraintName("FK__ProductIm__Produ__151B244E");
             });
 
             modelBuilder.Entity<ProductType>(entity =>

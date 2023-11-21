@@ -25,8 +25,6 @@
         public IOrderRepository Order { get; set; }
         public IOrderStatusRepository OrderStatus { get; set; }
         public IPaymentStatusRepository PaymentStatus { get; set; }
-        public IPostContentRepository PostContent { get; set; }
-        public IPostImageRepository PostImage { get; set; }
         public IPostRepository Post { get; set; }
         public IPostTypeRepository PostType { get; set; }
         public IProductBranchRepository ProductBranch { get; set; }

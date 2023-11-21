@@ -1,6 +1,7 @@
 ﻿using APICosmeticClinic.Dto;
 using APICosmeticClinic.Interfaces;
 using APICosmeticClinic.Models;
+using APICosmeticClinic.Repository;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -49,9 +50,22 @@ namespace APICosmeticClinic.Controllers
 
             return Ok(map);
         }
+		
+        // Get By ID
+		[HttpGet("Final")]
+		[ProducesResponseType(200, Type = typeof(Invoice))]
+		//[ProducesResponseType(400)]
+		public IActionResult GetCustomer()
+		{
+			var map = _mapper.Map<CustomerDto>(_customerRepository.GetCustomerFinal());
 
-        // Get By SDT
-        [HttpGet("CustomerBySDT/{SDT}")]
+			if (!ModelState.IsValid)
+				return BadRequest(ModelState);
+
+			return Ok(map);
+		}
+		// Get By SDT
+		[HttpGet("CustomerBySDT/{SDT}")]
         [ProducesResponseType(200, Type = typeof(Customer))]
         //[ProducesResponseType(400)]
         public IActionResult GetCustomerBySDT(string SDT)

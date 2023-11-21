@@ -1,6 +1,7 @@
 ﻿using APICosmeticClinic.Dto;
 using APICosmeticClinic.Interfaces;
 using APICosmeticClinic.Models;
+using APICosmeticClinic.Repository;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -45,8 +46,21 @@ namespace APICosmeticClinic.Controllers
 			return Ok(products);
 		}
 
-		// Get By ID
-		[HttpGet("{productId}")]
+        [HttpGet("Final")]
+        [ProducesResponseType(200, Type = typeof(Invoice))]
+        //[ProducesResponseType(400)]
+        public IActionResult GetProduct()
+        {
+            var map = _mapper.Map<ProductDto>(_productRepository.GetProductFinal());
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(map);
+        }
+
+        // Get By ID
+        [HttpGet("{productId}")]
         [ProducesResponseType(200, Type = typeof(Product))]
         //[ProducesResponseType(400)]
         public IActionResult GetProduct(int productId)

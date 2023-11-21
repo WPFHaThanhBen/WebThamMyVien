@@ -6,6 +6,7 @@ namespace APICosmeticClinic.Interfaces
     {
         ICollection<Post> GetAllPost();
         Post GetPost(int id);
+        Post GetPostFinal();
         bool PostExists(int id);
         bool CreatePost(Post post);
         bool UpdatePost(Post post);

@@ -7,7 +7,8 @@ using WebThamMyVien.Models;
 
 namespace WebThamMyVien.Areas.Admin.Controllers
 {
-    public class InvoiceController : Controller
+	[Area("Admin")]
+	public class InvoiceController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
         public InvoiceController(IUnitOfWork unitOfWork)
@@ -15,20 +16,27 @@ namespace WebThamMyVien.Areas.Admin.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        [Area("Admin")]
         public async Task<IActionResult> Index()
         {
             TempData["menu"] = "Invoice";
             return View();
         }
 
-        [Area("Admin")]
         public async Task<IActionResult> Create(InvoiceDto? _InvoiceDto)
         {
+
             // Khởi tạo Menu (bắt buộc)
             TempData["menu"] = "Invoice";
-
-            IEnumerable<InvoiceTypeDto> InvoiceTypes = await _unitOfWork.InvoiceType.GetAllInvoiceType();
+			int IdUser = 0;
+			if (Request.Cookies.TryGetValue("IdUser", out string intString))
+			{
+				if (int.TryParse(intString, out int myIntValue))
+				{
+					IdUser = myIntValue;
+				}
+			}
+            ViewData["IdUser"] = IdUser;
+			IEnumerable<InvoiceTypeDto> InvoiceTypes = await _unitOfWork.InvoiceType.GetAllInvoiceType();
             InvoiceTypes = InvoiceTypes.ToList();
             ViewData["InvoiceType"] = new SelectList(InvoiceTypes, "Id", "InvoiceTypeName");
 
@@ -45,37 +53,10 @@ namespace WebThamMyVien.Areas.Admin.Controllers
 			ViewData["promotion"] = new SelectList(promotions, "Id", "PromotionName");
 
 			// InvoiceDto hợp lệ
-			if (ModelState.IsValid)
-            {
-                // Add data in DB
-                var n = await _unitOfWork.Invoice.CreateInvoice(_InvoiceDto);
-                // Add status is success
-                if (n)
-                {
-                    //Tự động Thêm Hitory action
-                    int IdUser = 0;
-                    if (Request.Cookies.TryGetValue("IdUser", out string intString))
-                    {
-                        if (int.TryParse(intString, out int myIntValue))
-                        {
-                            IdUser = myIntValue;
-                        }
-                    }
-                    await _unitOfWork.Action.CreateAction(IdUser, 1, "Thêm mới dữ liệu Hóa Đơn {" + _InvoiceDto.Id + "}");
-                    TempData["success"] = "Thêm mới thông tin thành công";
-                    return RedirectToAction("Index");
-                }
-                // Add status is error
-                else
-                {
-                    TempData["error"] = "Thêm mới thông tin thất bại";
-                }
-            }
-            // InvoiceDto không hợp lệ
+            // InvoiceDto không hợp lệ 
             return View();
         }
 
-        [Area("Admin")]
         public async Task<IActionResult> Detail(int? id = 1)
         {
             var n = await _unitOfWork.Invoice.GetInvoice((int)id);
@@ -83,8 +64,20 @@ namespace WebThamMyVien.Areas.Admin.Controllers
             InvoiceTypes = InvoiceTypes.ToList();
             ViewData["InvoiceType"] = new SelectList(InvoiceTypes, "Id", "InvoiceTypeName", n.InvoiceTypeId);
 
-            // lấy value cho Cbb PromotionDto
-            IEnumerable<UserDto> User = await _unitOfWork.User.GetAllUser();
+			var listInvoiceDetail = await _unitOfWork.InvoiceDetail.GetInvoiceDetailByInvoice((int)id);
+            ViewData["listInvoiceDetail"] = listInvoiceDetail;
+            List<string> promotion = new List<string>();
+
+			foreach (var item in listInvoiceDetail)
+            {
+                int a = (int)item.Discount;
+
+				PromotionDto po = await _unitOfWork.Promotion.GetPromotion(a);
+                promotion.Add(po.PromotionValue+"%");
+			}
+            ViewData["listPromotion"] = promotion;
+			// lấy value cho Cbb PromotionDto
+			IEnumerable<UserDto> User = await _unitOfWork.User.GetAllUser();
             User = User.ToList();
             ViewData["promotion"] = new SelectList(User, "Id", "FullName", n.CreatedByUserId);
             // Khởi tạo Menu (bắt buộc)
@@ -95,7 +88,6 @@ namespace WebThamMyVien.Areas.Admin.Controllers
             return View(n);
         }
 
-        [Area("Admin")]
         public async Task<IActionResult> Edit(InvoiceDto? _InvoiceDto)
         {
             // _InvoiceDto hợp lệ
@@ -136,7 +128,6 @@ namespace WebThamMyVien.Areas.Admin.Controllers
             return RedirectToAction("Detail", new { id = TempData["EditID"] });
         }
 
-        [Area("Admin")]
         public async Task<IActionResult> Delete(int[]? ids)
         {
             //Danh sách id cần xóa không rỗng
@@ -165,7 +156,6 @@ namespace WebThamMyVien.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        [Area("Admin")]
         [HttpPost]
         public async Task<IActionResult> GetALL()
         {
@@ -178,7 +168,6 @@ namespace WebThamMyVien.Areas.Admin.Controllers
             return Content(json, "application/json");
         }
 
-		[Area("Admin")]
 		[HttpPost]
 		public async Task<IActionResult> GetALLServiceByType(int id)
 		{
@@ -189,7 +178,6 @@ namespace WebThamMyVien.Areas.Admin.Controllers
 			return Content(json, "application/json");
 		}
 
-		[Area("Admin")]
 		[HttpPost]
 		public async Task<IActionResult> GetService(int id)
 		{
@@ -200,7 +188,16 @@ namespace WebThamMyVien.Areas.Admin.Controllers
 			return Content(json, "application/json");
 		}
 
-		[Area("Admin")]
+		[HttpPost]
+		public async Task<IActionResult> GetCustomer(int id)
+		{
+			// Trong một action method hoặc Invoice
+			CustomerDto list = await _unitOfWork.Customer.GetCustomer(id) as CustomerDto;
+			string json = JsonConvert.SerializeObject(list);
+			// Sử dụng biến json như bạn muốn, ví dụ:
+			return Content(json, "application/json");
+		}
+
 		[HttpPost]
 		public async Task<IActionResult> GetCustomerBySDT(string sdt)
 		{
@@ -211,7 +208,6 @@ namespace WebThamMyVien.Areas.Admin.Controllers
 			return Content(json, "application/json");
 		}
 
-		[Area("Admin")]
 		[HttpPost]
 		public async Task<IActionResult> GetALLProductByType(int id)
 		{
@@ -224,7 +220,6 @@ namespace WebThamMyVien.Areas.Admin.Controllers
 			return Content(json, "application/json");
 		}
 
-		[Area("Admin")]
 		[HttpPost]
 		public async Task<IActionResult> GetProduct(int id)
 		{
@@ -237,7 +232,6 @@ namespace WebThamMyVien.Areas.Admin.Controllers
 			return Content(json, "application/json");
 		}
 
-		[Area("Admin")]
         [HttpPost]
         public async Task<IActionResult> GetInvoiceType(int id)
         {
@@ -248,7 +242,6 @@ namespace WebThamMyVien.Areas.Admin.Controllers
             return Content(json, "application/json");
         }
 
-		[Area("Admin")]
 		[HttpPost]
 		public async Task<IActionResult> GetPromotion(int id)
 		{
@@ -259,7 +252,6 @@ namespace WebThamMyVien.Areas.Admin.Controllers
 			return Content(json, "application/json");
 		}
 
-		
         [HttpPost]
         public async Task<IActionResult> GetUser(int id)
         {
@@ -270,17 +262,52 @@ namespace WebThamMyVien.Areas.Admin.Controllers
             return Content(json, "application/json");
         }
 
-		[Area("Admin")]
 		[HttpPost]
-		public async Task<IActionResult> CreateInvoiceDetail(List<InvoiceDetailDto> invoiceDetailsArray, InvoiceDto invoice)
+		public async Task<ActionResult> CreateInvoiceDetailAsync(string invoiceDetailsArray, string invoice)
 		{
+			// Đảm bảo rằng dữ liệu được truyền qua AJAX đã được parse từ JSON thành các đối tượng tương ứng
+			InvoiceDetailDto[] details = JsonConvert.DeserializeObject<InvoiceDetailDto[]>(invoiceDetailsArray);
+			InvoiceDto invoiceObj = JsonConvert.DeserializeObject<InvoiceDto>(invoice);
 
-
-			foreach (var detail in invoiceDetailsArray)
-			{
-				// Sử dụng detail ở đây để thực hiện các thao tác cần thiết
+			var createInvoice = await _unitOfWork.Invoice.CreateInvoice(invoiceObj);
+            if (createInvoice)
+            {
+				var n = await _unitOfWork.Invoice.GetInvoiceFinal();
+				foreach (var detail in details)
+				{
+                    detail.InvoiceId = n.Id;
+					await _unitOfWork.InvoiceDetail.CreateInvoiceDetail(detail);
+				}
+				
 			}
 			string json = JsonConvert.SerializeObject(true);
+			return Content(json, "application/json");
+		}
+		
+		[HttpPost]
+		public async Task<ActionResult> CreateCustomer(string customer)
+		{
+            string json = JsonConvert.SerializeObject(false);
+			// Đảm bảo rằng dữ liệu được truyền qua AJAX đã được parse từ JSON thành các đối tượng tương ứng
+			CustomerDto customerObj = JsonConvert.DeserializeObject<CustomerDto>(customer);
+
+				var createInvoice = await _unitOfWork.Customer.CreateCustomer(customerObj);
+				if (createInvoice)
+				{
+					 json = JsonConvert.SerializeObject(true);
+				}
+			return Content(json, "application/json");
+		}
+
+		[HttpPost]
+		public async Task<ActionResult> GetInvoidFinal()
+		{
+			var n = await _unitOfWork.Invoice.GetInvoiceFinal();
+			string json = "";
+			if (n != null)
+			{
+				json = JsonConvert.SerializeObject(n.Id);
+			}
 			return Content(json, "application/json");
 		}
 	}

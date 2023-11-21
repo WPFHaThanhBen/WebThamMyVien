@@ -45,15 +45,12 @@ namespace APICosmeticClinic.Controllers
 			return Ok(invoices);
 		}
 		// Get By ID
-		[HttpGet("{invoiceId}")]
+		[HttpGet("Final")]
         [ProducesResponseType(200, Type = typeof(Invoice))]
         //[ProducesResponseType(400)]
-        public IActionResult GetInvoice(int invoiceId)
+        public IActionResult GetInvoice()
         {
-            if (!_invoiceRepository.InvoiceExists(invoiceId))
-                return NotFound();
-
-            var map = _mapper.Map<InvoiceDto>(_invoiceRepository.GetInvoice(invoiceId));
+            var map = _mapper.Map<PostDto>(_invoiceRepository.GetInvoiceFinal());
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -61,8 +58,25 @@ namespace APICosmeticClinic.Controllers
             return Ok(map);
         }
 
-        //Create
-        [HttpPost]
+		// Get By ID
+		[HttpGet("{invoiceId}")]
+		[ProducesResponseType(200, Type = typeof(Invoice))]
+		//[ProducesResponseType(400)]
+		public IActionResult GetInvoice(int invoiceId)
+		{
+			if (!_invoiceRepository.InvoiceExists(invoiceId))
+				return NotFound();
+
+			var map = _mapper.Map<InvoiceDto>(_invoiceRepository.GetInvoice(invoiceId));
+
+			if (!ModelState.IsValid)
+				return BadRequest(ModelState);
+
+			return Ok(map);
+		}
+
+		//Create
+		[HttpPost]
         //[ProducesResponseType(204)]
         //[ProducesResponseType(400)]
         public IActionResult CreateInvoice([FromBody] InvoiceDto create)

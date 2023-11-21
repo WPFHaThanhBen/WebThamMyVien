@@ -180,7 +180,42 @@
 			</div>
 		</div>
 		<!-- /Create Detail Modal -->
-
+		<!-- Delete Modal -->
+		<div class="modal fade" id="CreateCustomerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<!-- modal-xl  Lớn-->
+			<!-- modal-lg  Vừa-->
+			<!-- modal-sm  Nhỏ-->
+			<div class="modal-dialog modal-dialog-scrollable modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Thông báo</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body pt-0">
+						<div class="card-body pb-0">
+							<div class="col-12 mb-0">
+								<div class="alert alert-warning">
+									<h6 class="alert-heading fw-bold mb-1">Hệ thống phát hiện không tồn tại thông tin khách hàng.</h6>
+									<p class="mb-0">Bạn có muốn tạo mới thông tin khách hàng này không.</p>
+								</div>
+							</div>
+							<form  onsubmit="return false">
+								<div class="form-check pb-2">
+									<input class="form-check-input"
+										   type="checkbox"
+										   name="accountActivation"
+										   id="accountActivation" />
+									<label class="form-check-label" for="accountActivation">Tôi đồng ý</label>
+								</div>
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Quay lại</button>
+								<button type="button" id="btnCreateCustomer" class="btn btn-success deactivate-account">Tạo khách hàng</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Delete Modal -->
         <div class="d-flex flex-row">
             <a asp-area="Admin" asp-controller="Invoice" asp-action="Index" class="btn btn-icon rounded-pill btn-secondary mb-3 text-white">
                 <span class="bx bxs-log-out-circle display-3"></span>
@@ -210,7 +245,7 @@
 									@* cbb nhân viên ở đây *@
 									<div class="mb-3">
 										<label class="form-label text-capitalize" style="font-size: 15px">Nhân viên tạo hóa đơn</label>
-										<input id="txtIdUser" type="number" class="form-control " placeholder="nhập mã  nhân viên" />
+										<input id="txtIdUser" type="number" value="@ViewData["IdUser"]" class="form-control " disabled placeholder="nhập mã  nhân viên" />
 									</div>
 								</ul>
 
@@ -224,7 +259,7 @@
 											<input id="txtSDTCustomer" type="number" class="form-control " placeholder="nhập số điện thoại khách hàng" />
 										</div>
 									</li>
-									<input id="txtIdCustomer" type="hidden" />
+									<input id="txtIdCustomer" value="" type="hidden" />
 									<li>
 										<div class="mb-3">
 											<label class="form-label text-capitalize" style="font-size: 15px">Tên khách hàng</label>
@@ -258,7 +293,7 @@
 										<th>Thông tin chi tiết hóa đơn</th>
 										<th>SL</th>
 										<th>Giá</th>
-										<th>Giảm giá</th>
+										<th>Khuyến mãi</th>
 										<th>Tổng giá</th>
 									</tr>
 								</thead>
@@ -309,30 +344,84 @@
 
 @section Scripts{
     <script>
-		//"Xóa" hàng loạt
-		$('#btnDelete').click(function () {
-			// Tạo một mảng để lưu trữ ID của các đối tượng được chọn
-			let selectedIds = [];
-			// Lặp qua các checkbox để xác định đối tượng nào được chọn
-			$('input[type="checkbox"]:checked').each(function () {
-				let checkboxId = $(this).data("checkbox-id");
-				selectedIds.push(parseInt(checkboxId));
+		// Hàm sẽ được gọi sau 0.5 giây
+		function stopCompilation() {
+			let idInvoidFinal;
+			$.ajax({
+				url: '/Admin/Invoice/GetInvoidFinal', // Đường dẫn tới action Detail
+				type: 'POST', // Phương thức GET hoặc POST tùy vào cách bạn đã thiết lập action
+				async: false,
+				success: function (result) {
+					idInvoidFinal = result;
+				},
+				error: function (error) {
+					alert('Lỗi GetInvoidFinal');
+				}
 			});
-			if (selectedIds.length >= 1 && $('#accountActivation').is(':checked')) {
-				// Gửi danh sách ID được chọn đến action bằng Ajax
-				$.ajax({
-					type: "POST",
-					url: "/Admin/Service/Delete",
-					data: { ids: selectedIds }, // Truyền danh sách ID đến action
-					success: function (data) {
-						// Xử lý kết quả nếu cần
-						// Sau khi xử lý xong, chuyển hướng đến view khác
-						window.location.href = '/Admin/Service/Index';
-					}
+			window.location.href = '/Admin/Invoice/Detail?id=' + idInvoidFinal;
+		}
+		function stopCustomer(invoiceDetailsArray) {
+			let idCustomer;
+			$.ajax({
+				type: "POST",
+				url: "/Admin/Invoice/GetCustomerBySDT",
+				dataType: "json",
+				data: { sdt: $('#txtSDTCustomer').val() },
+				async: false,
+				success: function (dataa) {
+					idCustomer = dataa.Id;
+				}
+			});
+			if (invoiceDetailsArray.length > 0) {
+				let selectedOption = $('#cbbHinhThucThanhToan').find('option:selected');
+				let totalPrice = 0;
+				$.each(invoiceDetailsArray, function (index, item) {
+					totalPrice += item.TotalPrice;
 				});
-			}
-		});
+				let invoiceTypeId = $('#cbbInvoiceTypeId').val();
+				let invoiceDate = $('#currentDateTime').text();
+				let createdByUserId = $('#txtIdUser').val();
+				let customerId = idCustomer;
+				let paymentMethod = selectedOption.text();
+				let other = $('#txtOther').val();
+				let statusCreateInvoice;
+				let invoice = {
+					Id: 0,
+					InvoiceTypeId: invoiceTypeId,
+					InvoiceDate: invoiceDate,
+					CreatedByUserId: createdByUserId,
+					CustomerId: customerId,
+					PaymentMethod: paymentMethod,
+					TotalAmount: totalPrice,
+					BranchId: null,
+					Other: other
+				};
+				invoiceJSON = JSON.stringify(invoice);
+				invoiceDetailsArrayJSON = JSON.stringify(invoiceDetailsArray);
 
+				$.ajax({
+					url: "/Admin/Invoice/CreateInvoiceDetail",
+					type: 'POST',
+					data: { invoiceDetailsArray: invoiceDetailsArrayJSON, invoice: invoiceJSON },
+					async: false,
+					success: function (result) {
+						statusCreateInvoice = result;
+						// Xử lý kết quả từ Action ở đây (nếu cần)
+					},
+				});
+				if (statusCreateInvoice) {
+					setTimeout(stopCompilation, 500);
+					displayToastrMessages(1, "Tạo hóa đơn thành công");
+
+				}
+				else {
+					displayToastrMessages(2, "Tạo hóa đơn thất bại");
+				}
+			}
+			else {
+				displayToastrMessages(2, "Không thể tạo hóa đơn rỗng");
+			}
+		}
 		
 		$('#btnCreateDetail').click(function () {
 			$("#CreateModal").modal("show");
@@ -446,7 +535,6 @@
 			});
 			loadCbbProduct();
 		}
-
 		function loadTotalPrice(invoiceDetailsArray) {
 			let totalPrice = 0;
 			$.each(invoiceDetailsArray, function (index, item) {
@@ -458,8 +546,8 @@
 
 		
 
-
-
+		// Sử dụng setTimeout để gọi hàm stopCompilation sau 0.5 giây
+	
 		// Gọi hàm updateDateTime khi trang web được tải hoặc bất kỳ sự kiện nào khác
 		$(document).ready(function () {
 			// Lưu trữ chi tiết hóa đơn
@@ -714,6 +802,7 @@
 			});
 
 			$('#btnCreateInvoice').on('click', function () {
+				let status = false; 
 				if (invoiceDetailsArray.length > 0) {
 					let selectedOption = $('#cbbHinhThucThanhToan').find('option:selected');
 					let totalPrice = 0;
@@ -725,39 +814,92 @@
 					let createdByUserId = $('#txtIdUser').val();
 					let customerId = $('#txtIdCustomer').val();
 					let paymentMethod = selectedOption.text();
-					let totalAmount = totalPrice;
 					let other = $('#txtOther').val();
-					
-					let invoice = {
-						Id: 0,
-						InvoiceTypeId: invoiceTypeId,
-						InvoiceDate: invoiceDate,
-						CreatedByUserId: createdByUserId,
-						CustomerId: customerId,
-						PaymentMethod: paymentMethod,
-						TotalAmount: totalAmount,
-						BranchId: 0,
-						Other: other
-					};
+					if (createdByUserId.length == 0) {
+						displayToastrMessages(2, "Vui lòng nhập thông tin người tạo hóa đơn");
+						return;
+					}
+					else if (customerId.length == 0) {
+						$("#CreateCustomerModal").modal("show");
+						return;
+					}
+					else{
+						let invoice = {
+							Id: 0,
+							InvoiceTypeId: invoiceTypeId,
+							InvoiceDate: invoiceDate,
+							CreatedByUserId: createdByUserId,
+							CustomerId: customerId,
+							PaymentMethod: paymentMethod,
+							TotalAmount: totalPrice,
+							BranchId: null,
+							Other: other
+						};
+						invoiceJSON = JSON.stringify(invoice);
+						invoiceDetailsArrayJSON = JSON.stringify(invoiceDetailsArray);
+						$.ajax({
+							url: "/Admin/Invoice/CreateInvoiceDetail",
+							type: 'POST',
+							data: { invoiceDetailsArray: invoiceDetailsArrayJSON, invoice: invoiceJSON },
+							success: function (result) {
+							     
+								// Xử lý kết quả từ Action ở đây (nếu cần)
+							},
+							error: function (error) {
+								// Xử lý lỗi ở đây (nếu có)
+							}
+						});
+						status = true;
+						
 
-					alert(invoice.invoiceDate);
-					$.ajax({
-						url: "/Admin/Invoice/CreateInvoiceDetail",
-						type: 'POST',
-						data: { invoiceDetailsArray: JSON.stringify(invoiceDetailsArray), invoice: JSON.stringify(invoice) },
-						contentType: 'application/json; charset=utf-8',
-						success: function (result) {
-							alert(result);
-							// Xử lý kết quả từ Action ở đây (nếu cần)
-						},
-						error: function (error) {
-							// Xử lý lỗi ở đây (nếu có)
-						}
-					});
+					}
+					
 				}
 				else {
-					displayToastrMessages(2, "Không thể tạo hóa đơn rỗng")
+					displayToastrMessages(2, "Không thể tạo hóa đơn rỗng");
 				}
+				if(status == true){
+					setTimeout(stopCompilation, 500);
+				}
+			});
+
+			$('#btnCreateCustomer').click(function () {
+				$("#CreateCustomerModal").modal("hide");
+				var customer = {
+					Id: 0, // Giá trị của Id
+					FullName: $('#txtFullNameCustomer').val(), // Giá trị của FullName
+					Birthdate: "00/00/0000", // Giá trị của Birthdate
+					PhoneNumber: $('#txtSDTCustomer').val(), // Giá trị của PhoneNumber
+					Idcard: "0123456789", // Giá trị của Idcard
+					FacebookLink: "chưa cập nhật", // Giá trị của FacebookLink
+					ZaloLink: "chưa cập nhật", // Giá trị của ZaloLink
+					Email: "chưa cập nhật", // Giá trị của Email
+					Gender: "0", // Giá trị của Gender
+					Address: "chưa cập nhật", // Giá trị của Address
+					InterestedServices: "chưa cập nhật", // Giá trị của InterestedServices
+					CustomerStatusId: 1, // Giá trị của CustomerStatusId
+					CustomerTypeId: 1, // Giá trị của CustomerTypeId
+					Other: "chưa cập nhật" // Giá trị của Other
+				};
+				customerJSON = JSON.stringify(customer);
+				let statusCreateCustomer = false;
+				$.ajax({
+					url: "/Admin/Invoice/CreateCustomer",
+					type: 'POST',
+					async: false,
+					data: { customer: customerJSON },
+					success: function (result) {
+						statusCreateCustomer = result;
+					},
+				});
+				if (statusCreateCustomer) {
+					setTimeout(stopCustomer(invoiceDetailsArray), 400);
+				}
+				else {
+					displayToastrMessages(2, "Không thể tự động tạo khách hàng");
+				}
+
+
 			});
 		});
     </script>

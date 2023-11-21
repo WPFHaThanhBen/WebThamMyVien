@@ -40,8 +40,6 @@ builder.Services.AddScoped<IOrderDetailRepository,OrderDetailRepository>();
 builder.Services.AddScoped<IOrderRepository,OrderRepository>();
 builder.Services.AddScoped<IOrderStatusRepository,OrderStatusRepository>();
 builder.Services.AddScoped<IPaymentStatusRepository,PaymentStatusRepository>();
-builder.Services.AddScoped<IPostContentRepository,PostContentRepository>();
-builder.Services.AddScoped<IPostImageRepository,PostImageRepository>();
 builder.Services.AddScoped<IPostRepository,PostRepository>();
 builder.Services.AddScoped<IPostTypeRepository,PostTypeRepository>();
 builder.Services.AddScoped<IProductBranchRepository,ProductBranchRepository>();

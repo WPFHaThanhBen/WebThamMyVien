@@ -38,6 +38,11 @@ namespace APICosmeticClinic.Repository
             return _context.Posts.Where(e => e.Id == id && e.IsDelete != true).FirstOrDefault();
         }
 
+        public Post GetPostFinal()
+        {
+            return _context.Posts.Where(e => e.IsDelete != true).OrderByDescending(e => e.Id).FirstOrDefault();
+        }
+
         public bool PostExists(int id)
         {
             return _context.Posts.Any(c => c.Id == id && c.IsDelete != true);

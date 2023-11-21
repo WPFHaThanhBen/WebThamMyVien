@@ -41,6 +41,11 @@ namespace APICosmeticClinic.Repository
             return _context.Products.Where(e => e.Id == id && e.IsDelete != true).FirstOrDefault();
         }
 
+        public Product GetProductFinal()
+        {
+            return _context.Products.Where(e => e.IsDelete != true).OrderByDescending(e => e.Id).FirstOrDefault();
+        }
+
         public bool ProductExists(int id)
         {
             return _context.Products.Any(c => c.Id == id && c.IsDelete != true);

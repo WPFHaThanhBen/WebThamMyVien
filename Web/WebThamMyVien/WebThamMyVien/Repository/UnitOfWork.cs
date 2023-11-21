@@ -32,8 +32,6 @@ namespace WebThamMyVien.Repository
         public IOrderRepository Order { get; set; }
         public IOrderStatusRepository OrderStatus { get; set; }
         public IPaymentStatusRepository PaymentStatus { get; set; }
-        public IPostContentRepository PostContent { get; set; }
-        public IPostImageRepository PostImage { get; set; }
         public IPostRepository Post { get; set; }
         public IPostTypeRepository PostType { get; set; }
         public IProductBranchRepository ProductBranch { get; set; }
@@ -81,8 +79,6 @@ namespace WebThamMyVien.Repository
             Order = new OrderRepository(_httpClient, _connectionStrings);
             OrderStatus = new OrderStatusRepository(_httpClient, _connectionStrings);
             PaymentStatus = new PaymentStatusRepository(_httpClient, _connectionStrings);
-            PostContent = new PostContentRepository(_httpClient, _connectionStrings);
-            PostImage = new PostImageRepository(_httpClient, _connectionStrings);
             Post = new PostRepository(_httpClient, _connectionStrings);
             PostType = new PostTypeRepository(_httpClient, _connectionStrings);
             ProductBranch = new ProductBranchRepository(_httpClient, _connectionStrings);

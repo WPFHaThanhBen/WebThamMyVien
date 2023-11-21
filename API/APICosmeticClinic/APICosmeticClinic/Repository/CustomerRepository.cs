@@ -28,8 +28,11 @@ namespace APICosmeticClinic.Repository
         {
             return _context.Customers.Any(c => c.PhoneNumber == sdt && c.IsDelete != true);
         }
-
-        public bool DeleteCustomer(Customer customer)
+		public Customer GetCustomerFinal()
+		{
+			return _context.Customers.Where(e => e.IsDelete != true).OrderByDescending(e => e.Id).FirstOrDefault();
+		}
+		public bool DeleteCustomer(Customer customer)
         {
             customer.IsDelete = true;
             customer.DateDelete = sp.GetCurrentDate();

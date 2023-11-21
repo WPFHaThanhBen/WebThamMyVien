@@ -34,8 +34,6 @@ namespace APICosmeticClinic.Helper
             CreateMap<OrderStatus, OrderStatusDto>();
             CreateMap<PaymentStatus, PaymentStatusDto>();
             CreateMap<Post, PostDto>();
-            CreateMap<PostContent, PostContentDto>();
-            CreateMap<PostImage, PostImageDto>();
             CreateMap<PostType, PostTypeDto>();
             CreateMap<Product, ProductDto>();
             CreateMap<ProductBranch, ProductBranchDto>();
@@ -77,8 +75,6 @@ namespace APICosmeticClinic.Helper
             CreateMap<OrderStatusDto, OrderStatus>();
             CreateMap<PaymentStatusDto, PaymentStatus>();
             CreateMap<PostDto, Post>();
-            CreateMap<PostContentDto, PostContent>();
-            CreateMap<PostImageDto, PostImage>();
             CreateMap<PostTypeDto, PostType>();
             CreateMap<ProductDto, Product>();
             CreateMap<ProductBranchDto, ProductBranch>();

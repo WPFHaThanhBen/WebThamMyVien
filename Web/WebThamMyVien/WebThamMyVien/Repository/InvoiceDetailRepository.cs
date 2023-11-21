@@ -127,7 +127,7 @@ namespace WebThamMyVien.Repository
 
 		public async Task<ICollection<InvoiceDetailDto>> GetInvoiceDetailByInvoice(int id)
 		{
-			var apiUrl = $"{_apiUrl}/api/InvoiceDetail/InvoiceDetailByInvoice{id}"; // Điền đường dẫn API tại đây
+			var apiUrl = $"{_apiUrl}/api/InvoiceDetail/InvoiceDetailByInvoice/{id}"; // Điền đường dẫn API tại đây
 
 			var response = await _httpClient.GetAsync(apiUrl);
 

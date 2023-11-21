@@ -43,7 +43,12 @@ namespace APICosmeticClinic.Repository
             return _context.Invoices.Where(e => e.Id == id && e.IsDelete != true).FirstOrDefault();
         }
 
-        public bool InvoiceExists(int id)
+		public Invoice GetInvoiceFinal()
+		{
+			return _context.Invoices.Where( e => e.IsDelete != true).OrderByDescending(e => e.Id).FirstOrDefault();
+		}
+
+		public bool InvoiceExists(int id)
         {
             return _context.Invoices.Any(c => c.Id == id && c.IsDelete != true);
         }

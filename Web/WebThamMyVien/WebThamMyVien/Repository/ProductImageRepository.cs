@@ -125,7 +125,7 @@ namespace WebThamMyVien.Repository
 
 		public async Task<ICollection<ProductImageDto>> GetAllProductImageByProduct(int id)
 		{
-			var apiUrl = $"{_apiUrl}/api/ProductImage/ProductImageByProduct{id}"; // Điền đường dẫn API tại đây
+			var apiUrl = $"{_apiUrl}/api/ProductImage/ProductImageByProduct/{id}"; // Điền đường dẫn API tại đây
 
 			var response = await _httpClient.GetAsync(apiUrl);
 

@@ -308,7 +308,11 @@ CREATE TABLE PostType (
 CREATE TABLE Post (
     ID INT IDENTITY(1,1) PRIMARY KEY,
     Title NVARCHAR(255),
-    PostingDate NVARCHAR(20),
+	Introduce NVARCHAR(255),
+    PostingDateCreate NVARCHAR(20),
+	PostingDateUpdate NVARCHAR(20),
+	Content NVARCHAR(max),
+	"Image" NVARCHAR(max),
     ViewsCount INT,
     PostTypeID INT,
     PostedByUserID INT,
@@ -316,26 +320,6 @@ CREATE TABLE Post (
 	DateDelete nvarchar(20)
     FOREIGN KEY (PostTypeID) REFERENCES PostType(ID),
     FOREIGN KEY (PostedByUserID) REFERENCES UserAccount(ID)
-);
-CREATE TABLE PostContent (
-    ID INT IDENTITY(1,1) PRIMARY KEY,
-    SeqNumber INT,
-    PostID INT,
-    Content NVARCHAR(1000),
-    Title NVARCHAR(255),
-    Link NVARCHAR(255),
-    IsDelete bit,
-	DateDelete nvarchar(20),
-    FOREIGN KEY (PostID) REFERENCES Post(ID)
-);
-CREATE TABLE PostImage (
-    ID INT IDENTITY(1,1) PRIMARY KEY,
-    ContentSeqNumber INT,
-    PostContentID INT,
-    "Image" NVARCHAR(max),
-    IsDelete bit,
-	DateDelete nvarchar(20),
-    FOREIGN KEY (PostContentID) REFERENCES PostContent(ID)
 );
 CREATE TABLE ProductImage (
     ID INT IDENTITY(1,1) PRIMARY KEY,

@@ -1,36 +1,232 @@
-﻿@model InvoiceDto
+﻿@using System.Globalization;
+@model InvoiceDto
 @{
-    Layout = "_LayoutAdmin";
-    var id = Model.Id;
+
+	Layout = "_LayoutAdmin";
+	List<InvoiceDetailDto> listInvoiceDetail = ViewData["listInvoiceDetail"] as List<InvoiceDetailDto>;
+	List<string> listPromotionDto = ViewData["listPromotion"] as List<string>;
+}
+@functions {
+	public string Vnd(int value)
+	{
+		return value.ToString("N0") + "đ";
+	}
 }
 
-        <!-- Content -->
-        <div class="container-xxl flex-grow-1 container-p-y">
-            <div class="container-fluid">
+<!-- Content -->
+<div class="container-xxl flex-grow-1 container-p-y">
+	<div class="container-fluid">
 
+		<div class="d-flex flex-row">
+			<a asp-area="Admin" asp-controller="Invoice" asp-action="Index" class="btn btn-icon rounded-pill btn-secondary mb-3 text-white">
+				<span class="bx bxs-log-out-circle display-3"></span>
+			</a>
+			<h4 class="align-self-center ms-2">THÔNG TIN CHI TIẾT HÓA ĐƠN</h4>
+		</div>
+		<form id="formCreate" asp-area="Admin" asp-controller="Invoice" asp-action="Create">
+			<div class="container bootstrap snippets bootdey card p-5">
+				<div class="panel panel-default">
+					<div id="printableDiv" class="panel-body">
+						<div class="row">
+							<div class="col text-right">
+								<div class="row ">
+									<div class="w-auto">
+										<img class="w-px-75 h-px-75" src="/AdminAssets/assets/img/trademark/logoHD.png" />
+									</div>
+									<div class="col d-flex align-items-center ps-0">
+										<h4 class="text-start mt-3 "><strong>HD BEAUTY LUXURY</strong></h4>
+									</div>
+								</div>
 
+								<ul class="list-unstyled mt-2">
+									<li>
+										<div class="row h-px-20 mt-1 mb-1">
+											<strong class="col-auto">Số điện thoại: </strong>
+											<p class="col ms-0 ps-0"> 0123456789 </p>
+										</div>
+									</li>
+									<li>
+										<div class="row h-px-20 mt-1 mb-1">
+											<strong class="col-auto">Email: </strong>
+											<p class="col  ms-0 ps-0"> thammyvienhd@gmail.com </p>
+										</div>
+									</li>
+									<li>
+										<div class="row h-px-20 mt-1 mb-1">
+											<strong class="col-auto">ID hóa đơn: </strong>
+											<p class="col  ms-0 ps-0"> @Model.Id </p>
+											
+										</div>
+									</li>
+									<li>
+										<div class="row  h-px-20 mt-1 mb-1">
+											<strong class="col-auto">Nhân viên: </strong>
+											<p class="col  ms-0 ps-0" id="nameUser"></p>
+											<input type="hidden" id="idUser" value="@Model.CreatedByUserId" />
+										</div>
+									</li>
+								</ul>
 
+							</div>
 
+							<div class="col text-left mt-5 pt-1">
+								<ul class="list-unstyled mt-4 pt-2">
+									<li>
+										<div class="row  h-px-20 mt-1 mb-1">
+											<strong class="col-auto">Khách Hàng: </strong>
+											<p class="col  ms-0 ps-0" id="nameCustomer"></p>
+											<input type="hidden" id="idCustomer" value="@Model.CustomerId" />
+										</div>
+									</li>
+									<li>
+										<div class="row  h-px-20 mt-1 mb-1">
+											<strong class="col-auto">Số điện thoại: </strong>
+											<p class="col  ms-0 ps-0" id="sdtCustomer"></p>
+										</div>
+									</li>
+									<li>
+										<div class="row  h-px-20 mt-1 mb-1">
+											<strong class="col-auto">Loại hóa đơn:</strong>
+											<p class="col  ms-0 ps-0" id="nameInvoiceType"></p>
+											<input type="hidden" id="idInvoiceType" value="@Model.InvoiceTypeId" />
+										</div>
+									</li>
+									<li>
+										<div class="row  h-px-20 mt-1 mb-1">
+											<strong class="col-auto">Ngày tạo:</strong>
+											<p class="col  ms-0 ps-0"> @Model.InvoiceDate</p>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
 
+						<div class="table-responsive">
+							<table class="table table-condensed nomargin">
+								<thead>
+									<tr>
+										<th>Thông tin</th>
+										<th>Số lượng</th>
+										<th>Giá</th>
+										<th>Khuyến mãi</th>
+										<th>Tổng giá</th>
+									</tr>
+								</thead>
+								<tbody>
+									@for(int i=0; i<listInvoiceDetail.Count();i++)
+									{
+										<tr>
+											<td>
+												<div><p>@listInvoiceDetail[i].Content</p></div>
+											</td>
+											<td>@listInvoiceDetail[i].Quantity</td>
+											<td>@Vnd((int)listInvoiceDetail[i].Price)</td>
+											<td>@listPromotionDto[i]</td>
+											<td>@Vnd((int)listInvoiceDetail[i].TotalPrice)</td>
+										</tr>
+									}
+								</tbody>
+							</table>
+						</div>
 
+						<hr class="nomargin-top">
+						<div class="row">
+							<div class="col text-left">
+								@* <h4><strong>Contact</strong> Details</h4> *@
+								<p class="nomargin nopadding">
+									<strong>Note:</strong>
+									@Model.Other
+								</p><br><!-- no P margin for printing - use <br> instead -->
+							</div>
 
-                <div class="d-flex flex-row">
-                    <a asp-area="Admin" asp-controller="Invoice" asp-action="Index" class="btn btn-icon rounded-pill btn-secondary mb-3 text-white">
-                        <span class="bx bxs-log-out-circle display-3"></span>
-                    </a>
-                    <h4 class="align-self-center ms-2">CHI TIẾT HÓA ĐƠN</h4>
-                </div>
+							<div class="col text-right">
+								<div class="mb-3">
+									<div class="row h-px-20 mt-1 mb-1">
+										<strong class="col-auto">Hình thức thanh toán: </strong>
+										<p class="col ms-0 ps-0">@Model.PaymentMethod </p>
+									</div>
+								</div>
+								<ul class="list-unstyled">
+									<li><strong style="font-size: 20px">Tổng tiền:</strong> <p style="font-size: 20px">@Vnd((int)@Model.TotalAmount)</p></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
 
-                <form asp-area="Admin" asp-controller="Invoice" asp-action="Edit">
+			</div>
+		</form>
 
-                    <button type="reset" class="btn btn-secondary text-white">Nhập lại</button>
-                    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
-                </form>
+		<div>
+			<button onclick="customPrint()" class="btn btn-primary">Print</button>
+		</div>
+	</div>
+</div>
 
+@section Scripts{
+    <link href="~/AdminAssets/assets/css/print.css" rel="stylesheet" />
+	<script>
+		function loadInvoice() {
+			let idUser = $('#idUser').val();
+			$.ajax({
+				url: "/Admin/Invoice/GetUser",
+				type: 'POST',
+				data: { id: idUser },
+				success: function (result) {
+					$('#nameUser').text(result.FullName);
+				},
+			});
+			let idCustomer = $('#idCustomer').val();
+			$.ajax({
+				url: "/Admin/Invoice/GetCustomer",
+				type: 'POST',
+				data: { id: idCustomer },
+				success: function (result1) {
+					$('#nameCustomer').text(result1.FullName);
+					$('#sdtCustomer').text(result1.PhoneNumber);
+				},
+			});
 
+			let idInvoiceType = $('#idInvoiceType').val();
 
+			$.ajax({
+				url: "/Admin/Invoice/GetInvoiceType",
+				type: 'POST',
+				data: { id: idInvoiceType },
+				success: function (result1) {
+					$('#nameInvoiceType').text(result1.InvoiceTypeName);
+				},
+			});
+		}
+		function customPrint() {
+			// Customize the print options
+			var printOptions = {
+				silent: false, // Whether to print immediately or display the print dialog
+				printBackground: true, // Whether to include background graphics and colors
+				deviceName: 'My Printer', // Specify the printer name
+			};
 
+			// Initiate the print with the customized options
+			window.print(printOptions);
+		}
+		function stopCompilation() {
+			// Customize the print options
+			var printOptions = {
+				silent: false, // Whether to print immediately or display the print dialog
+				printBackground: true, // Whether to include background graphics and colors
+				deviceName: 'My Printer', // Specify the printer name
+			};
 
-            </div>
-        </div>
-        <!-- / Content -->
+			// Initiate the print with the customized options
+			window.print(printOptions);
+		}
+		// Call the custom print function
+		
+		$(document).ready(function () {
+			loadInvoice();
+			setTimeout(stopCompilation, 200);
+		});
+
+	</script>
+}
+<!-- / Content -->

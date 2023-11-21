@@ -4,6 +4,10 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using WebThamMyVien.Interfaces;
 using WebThamMyVien.Models;
+using System.IO;
+using System.Net;
+using System.Drawing;
+using System.Linq;
 
 namespace WebThamMyVien.Areas.Admin.Controllers
 {
@@ -199,6 +203,71 @@ namespace WebThamMyVien.Areas.Admin.Controllers
             PromotionDto n = await _unitOfWork.Promotion.GetPromotion(id);
             string json = JsonConvert.SerializeObject(n);
             // Sử dụng biến json như bạn muốn, ví dụ:
+            return Content(json, "application/json");
+        }
+
+
+
+        [Area("Admin")]
+        [HttpPost]
+        public async Task<IActionResult> AddImage(string listImage)
+        {
+            var productFinal = await _unitOfWork.Product.GetProductFinal();
+
+            bool n = false;
+            List<ProductImageDto> ImagesProduct = JsonConvert.DeserializeObject<List<ProductImageDto>>(listImage);
+            foreach (var item in ImagesProduct)
+            {
+                if(item != null)
+                {
+                    item.ProductId = productFinal.Id;
+                    n = await _unitOfWork.ProductImage.CreateProductImage(item);
+                }
+            }
+            string json = JsonConvert.SerializeObject(n);
+            // Sử dụng biến json như bạn muốn, ví d ụ:
+            return Content(json, "application/json");
+        }
+
+        [Area("Admin")]
+        [HttpPost]
+        public async Task<IActionResult> CreateImage(int id,string objectImage)
+        {
+            bool n = false;
+            ProductImageDto ImagesProduct = JsonConvert.DeserializeObject<ProductImageDto>(objectImage);
+
+                if (ImagesProduct != null)
+                {
+                    ImagesProduct.ProductId = id;
+                    n = await _unitOfWork.ProductImage.CreateProductImage(ImagesProduct);
+                }
+            string json = JsonConvert.SerializeObject(n);
+            // Sử dụng biến json như bạn muốn, ví d ụ:
+            return Content(json, "application/json");
+        }
+
+        [Area("Admin")]
+        [HttpPost]
+        public async Task<IActionResult> DeleteImage(int id)
+        {
+            var product = await _unitOfWork.ProductImage.GetProductImage(id);
+            bool n = false;
+            if(product != null)
+            {
+                n = await _unitOfWork.ProductImage.DeleteProductImage(product);
+            }
+            string json = JsonConvert.SerializeObject(n);
+            // Sử dụng biến json như bạn muốn, ví d ụ:
+            return Content(json, "application/json");
+        }
+
+        [Area("Admin")]
+        [HttpPost]
+        public async Task<IActionResult> LoadImage(int id)
+        {
+            var product = await _unitOfWork.ProductImage.GetAllProductImageByProduct(id);
+            string json = JsonConvert.SerializeObject(product);
+            // Sử dụng biến json như bạn muốn, ví d ụ:
             return Content(json, "application/json");
         }
     }

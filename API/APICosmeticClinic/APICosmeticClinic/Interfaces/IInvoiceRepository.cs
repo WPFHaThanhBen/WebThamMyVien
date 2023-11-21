@@ -7,7 +7,8 @@ namespace APICosmeticClinic.Interfaces
         ICollection<Invoice> GetAllInvoice();
         ICollection<Invoice> GetAllInvoiceByType(int id);
         Invoice GetInvoice(int id);
-        bool InvoiceExists(int id);
+        Invoice GetInvoiceFinal();
+        bool InvoiceExists(int id); 
         bool CreateInvoice(Invoice invoice);
         bool UpdateInvoice(Invoice invoice);
         bool DeleteInvoice(Invoice invoice);
