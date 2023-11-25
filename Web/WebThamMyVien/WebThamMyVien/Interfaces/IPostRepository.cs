@@ -5,6 +5,7 @@ namespace WebThamMyVien.Interfaces
     public interface IPostRepository
     {
         Task<ICollection<PostDto>> GetAllPost();
+        Task<ICollection<PostDto>> GetPostByPostType(int id);
         Task<PostDto> GetPost(int id);
         Task<PostDto> GetPostFinal();
         Task<bool> CreatePost(PostDto Post);

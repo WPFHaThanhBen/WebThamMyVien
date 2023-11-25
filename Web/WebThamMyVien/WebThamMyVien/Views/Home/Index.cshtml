@@ -1,7 +1,248 @@
-﻿@{
-    ViewData["Title"] = "Home";
-}
+﻿@using System.Globalization;
+@model WebThamMyVien.Models.WebHome
+@{
+    double timeDelay = 0.1;
+    double timeDelay1 = 0.1;
+    int indexProductView = 0;
+    List<PostDto> ListPost2 = Model.ListPost2;
+    int TinhTienKhuyenMai(int gia, int khuyenmai)
+    {
+        double a = (double)khuyenmai;
+        double b = (double)gia;
+        // Tính tiền sau khuyến mãi
+        double tienSauKhuyenMai = b * (1 - a / 100);
+        return (int)tienSauKhuyenMai;
+    }
+    string ConvertToCurrencyFormat(int amount)
+    {
+        // Sử dụng CultureInfo để định dạng số theo quy tắc của ngôn ngữ hiện tại
+        CultureInfo culture = CultureInfo.CurrentCulture;
 
-<div class="text-center">
-    <h1 class="display-4">Home</h1>
+        // Chuyển đổi số thành chuỗi định dạng tiền tệ
+        string formattedAmount = string.Format(culture, "{0:N0}", amount);
+
+        // Thêm ký tự "đ" hoặc "₫" (đồng) vào cuối chuỗi
+        formattedAmount += "đ";
+
+        return formattedAmount;
+    }
+    // List<PostDto> = Model
+}
+<!-- Carousel Start -->
+<div class="container-fluid p-0 mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">
+                <img class="img-fluid" src="/DefaultAssets/img/demoImage.jpg" alt="Image">
+            </button>
+            <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="1" aria-label="Slide 2">
+                <img class="img-fluid" src="https://scontent.fvca1-4.fna.fbcdn.net/v/t39.30808-6/362997375_250496427794356_2890872833701594625_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=dbBT8LMmBw0AX_3gtzl&_nc_ht=scontent.fvca1-4.fna&oh=00_AfCbDp4MYiYlqUWumib99WVB5CLEPg6bGXw_ICl2KqU7hQ&oe=65618CF4" alt="Image">
+            </button>
+            <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="2" aria-label="Slide 3">
+                <img class="img-fluid" src="/DefaultAssets/img/demoImage1.jpg" alt="Image">
+            </button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active overflow-hidden vh-100">
+                <img class="w-100 h-100" style="object-fit: cover" src="/DefaultAssets/img/demoImage.jpg" alt="Image">
+                <div class="carousel-caption">
+                    <div class="p-3" style="max-width: 900px;">
+                        <h4 class="text-white text-uppercase mb-4 animated zoomIn">HD BEAUTY LUXURY</h4>
+                        <h1 class="display-1 text-white mb-0 animated zoomIn">Nơi Đánh Thức Thanh Xuân</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item overflow-hidden vh-100">
+                <img class="w-100 h-100" style="object-fit: cover"
+                     src="https://scontent.fvca1-4.fna.fbcdn.net/v/t39.30808-6/362997375_250496427794356_2890872833701594625_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=dbBT8LMmBw0AX_3gtzl&_nc_ht=scontent.fvca1-4.fna&oh=00_AfCbDp4MYiYlqUWumib99WVB5CLEPg6bGXw_ICl2KqU7hQ&oe=65618CF4"
+                     alt="Image">
+                <div class="carousel-caption">
+                    <div class="p-3" style="max-width: 900px;">
+                        <h4 class="text-white text-uppercase mb-4 animated zoomIn">HD BEAUTY LUXURY</h4>
+                        <h1 class="display-1 text-white mb-0 animated zoomIn">Chất Lượng Hàng Đầu</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item overflow-hidden vh-100">
+                <img class="w-100 h-100" style="object-fit: cover"
+                     src="/DefaultAssets/img/demoImage1.jpg"
+                     alt="Image">
+                <div class="carousel-caption">
+                    <div class="p-3" style="max-width: 900px;">
+                        <h4 class="text-white text-uppercase mb-4 animated zoomIn">HD BEAUTY LUXURY</h4>
+                        <h1 class="display-1 text-white mb-0 animated zoomIn">Niềm Tin Tuyệt Vời</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
+                data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#header-carousel"
+                data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
 </div>
+<!-- Carousel End -->
+<!-- About Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="img-border">
+                    <img class="img-fluid" src="@Model.OnePost.Image" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="h-100">
+                    <h6 class="section-title bg-white text-start pe-3" style="color:purple">Nổi bật</h6>
+                    <h1 class="display-6 mb-4">@Model.OnePost.Title</h1>
+                    <p>@Model.OnePost.Introduce</p>
+                    <div class="d-flex align-items-center mb-4 pb-2">
+                    </div>
+                    <a class="btn rounded-pill py-3 px-5 text-white" asp-controller="Post" asp-action="Index" asp-route-id="@Model.OnePost.Id" asp-route-menu="TrangChu" as style="background:purple">Xem thêm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+<!-- Service Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h6 class="section-title bg-white text-center px-3 " style="color:purple">HD Beauty Luxury</h6>
+            <h1 class="display-6 mb-4">Các Dịch Vụ Nổi Bật</h1>
+        </div>
+        <div class="row g-4">
+            @foreach(var item in Model.ListPost)
+            {
+                var delay = timeDelay + 's';
+                timeDelay += 0.1;
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="@delay">
+                    <a class="service-item d-block rounded text-center h-100 p-4" asp-controller="Post" asp-action="Index" asp-route-id="@item.Id" asp-route-menu="TrangChu">
+                        <img class="img-fluid rounded mb-4 w-100"  src="@item.Image"  alt="">
+                        <h4 class="mb-0 ">@item.Title</h4>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- Service End -->
+<!-- Tại sao nên chọ HD Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h6 class="section-title bg-white text-center px-3 " style="color:purple">HD Beauty Luxury</h6>
+            <h1 class="display-6 mb-4">Tại Sao Nên Chọn HD Beauty Luxury</h1>
+        </div>
+        <div class="row g-4">
+            @foreach (var item in Model.ListPost1)
+            {
+                string delay = timeDelay1.ToString() + 's';
+                timeDelay1 += 0.1;
+                <div class="col-lg-3 col-md-6 wow fadeInUp " data-wow-delay="@delay">
+                    <a class="service-item d-block rounded text-center h-100 p-3" style="background:purple" asp-controller="Post" asp-action="Index" asp-route-id="@item.Id" asp-route-menu="TrangChu">
+                        <img class="img-fluid rounded-circle mb-4 " style="border-radius: 50%; border: 1.5px solid #ffc107;" src="@item.Image" alt="">
+                        <h4 class="mb-0 text-white">@item.Title</h4>
+                        <p class=" pt-3 text-white">@item.Introduce</p>
+
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- Tại sao nên chọ HD End -->
+<!-- Image Customer Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h6 class="section-title bg-white text-center px-3 " style="color:purple">HD Beauty Luxury</h6>
+            <h1 class="display-6 mb-4">Khách Hàng Sau Khi Sử Dụng Dịch Vụ</h1>
+        </div>
+        <div class="row g-4" >
+            @* Left *@
+            <div class="col-lg-4 col-md-6 wow fadeInUp " data-wow-delay="0.1s">
+                <div class="row p-0" style="height:280px">
+                    <a class="service-item d-block rounded h-100 p-1 position-relative text-center" asp-controller="Post" asp-action="Index" asp-route-id="@ListPost2[0].Id" asp-route-menu="TrangChu">
+                        <img class="img-fluid rounded w-100 h-100 bg-dark p-0 m-0" style="object-fit: cover;" src="@ListPost2[0].Image" alt="">
+                    </a>
+                </div>
+
+                <div class="row  p-0" style="height:280px">
+                    <a class="service-item d-block rounded h-100 p-1 position-relative text-center" asp-controller="Post" asp-action="Index" asp-route-id="@ListPost2[1].Id" asp-route-menu="TrangChu">
+                        <img class="img-fluid rounded w-100 h-100 bg-dark p-0 m-0" style="object-fit: cover;" src="@ListPost2[1].Image" alt="">
+                    </a>
+                </div>
+             </div>
+             @* Center *@
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="row  p-0" style="height:560px">
+                    <a class="service-item d-block rounded  p-1 " asp-controller="Post" asp-action="Index" asp-route-id="@ListPost2[2].Id" asp-route-menu="TrangChu">
+                        <img class="img-fluid rounded  bg-dark p-0 m-0" style=" object-fit: cover; height: 100%; width: 100%;  height:560px;" src="@ListPost2[2].Image" alt="">
+                    </a>
+                </div>
+            </div>
+            @* Right *@
+            <div class="col-lg-4 col-md-6 wow fadeInUp " data-wow-delay="0.2s">
+                <div class="row  p-0" style="height:280px">
+                    <a class="service-item d-block rounded h-100 p-1 position-relative text-center" asp-controller="Post" asp-action="Index" asp-route-id="@ListPost2[3].Id" asp-route-menu="TrangChu">
+                        <img class="img-fluid rounded w-100 h-100 bg-dark p-0 m-0" style="object-fit: cover;" src="@ListPost2[3].Image" alt="">
+                    </a>
+                </div>
+                <div class="row  p-0" style="height:280px">
+                    <a class="service-item d-block rounded h-100 p-1 position-relative text-center" asp-controller="Post" asp-action="Index" asp-route-id="@ListPost2[4].Id" asp-route-menu="TrangChu">
+                        <img class="img-fluid rounded w-100 h-100 bg-dark p-0 m-0" style="object-fit: cover;" src="@ListPost2[4].Image" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Image Customer End -->
+
+<!-- Product Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h6 class="section-title bg-white text-center px-3 " style="color:purple">HD Beauty Luxury</h6>
+            <h1 class="display-6 mb-4">Một Số Mỹ Phẩm</h1>
+        </div>
+        <div class="owl-carousel project-carousel wow fadeInUp" data-wow-delay="0.1s">
+
+            @foreach (var item in Model.ListProductView)
+            {
+                <div class="project-item border rounded h-100 p-4" data-dot="@(indexProductView += 1)">
+                    <div class="position-relative mb-4">
+                        <div class="bg-gray position-absolute end-0 rounded-circle text-center px-2" style="background:red">
+                            <h6 class="pt-2" style="color:white">@item.Promotion%</h6>
+                        </div>
+
+                        @if(item.Images.Count() > 0)
+                        {
+                            @for (int i = 0; i < 1; i++)
+                            {
+                                <img src="@item.Images[i].Image" class="img-fluid rounded" style="height:180px; object-fit: cover;" alt="Lỗi hiển thị ảnh">
+                            }
+                        }
+                        else
+                        {
+                            <img class="img-fluid rounded" style="height:180px; object-fit: cover;" src="data:image/png;base64,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" alt="">
+                        }
+                    </div>
+                    <h6>@item.Product.ProductName</h6>
+                    <h6 class="text-secondary text-decoration-line-through">@ConvertToCurrencyFormat((int)item.Product.SellingPrice)</h6>
+                    <h5 style="color:red">@ConvertToCurrencyFormat(TinhTienKhuyenMai((int)item.Product.SellingPrice,item.Promotion))</h5>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- Product End -->
+

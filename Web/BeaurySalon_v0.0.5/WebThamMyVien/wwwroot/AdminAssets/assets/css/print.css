@@ -1,0 +1,15 @@
+﻿@media print {
+    body * {
+        visibility: hidden;
+    }
+    #printableDiv {
+        position: absolute;
+        left: 0;
+        top: 0;
+        /* Add additional print styles here */
+    }
+    #printableDiv, #printableDiv * {
+        visibility: visible;
+        font-size: 12px;
+    }
+}

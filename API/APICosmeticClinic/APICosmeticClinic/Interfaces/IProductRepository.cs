@@ -6,6 +6,7 @@ namespace APICosmeticClinic.Interfaces
     {
         ICollection<Product> GetAllProduct();
         ICollection<Product> GetAllProductByType(int id);
+        ICollection<Product> GetAllProductSkip(int start, int skip);
         Product GetProduct(int id);
         Product GetProductFinal();
         bool ProductExists(int id);

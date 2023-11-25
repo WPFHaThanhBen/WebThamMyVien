@@ -12,7 +12,5 @@
         public int? ViewsCount { get; set; }
         public int? PostTypeId { get; set; }
         public int? PostedByUserId { get; set; }
-        public bool? IsDelete { get; set; }
-        public string? DateDelete { get; set; }
     }
 }

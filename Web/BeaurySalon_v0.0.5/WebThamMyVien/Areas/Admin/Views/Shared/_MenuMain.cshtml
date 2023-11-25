@@ -1,0 +1,749 @@
+﻿@if(TempData["menu"] != null)
+{
+    <!-- Menu -->
+    <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+
+        <div class="app-brand demo">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="app-brand-link">
+                <img class="w-25 h-25" src="/AdminAssets/assets/img/trademark/logoHD.png" />
+                <span class="app-brand-text menu-text demo fw-bolder ms-2 text-uppercase">ADMIN</span>
+            </a>
+            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+                <i class="bx bx-chevron-left bx-sm align-middle"></i>
+            </a>
+        </div>
+
+        <div class="menu-inner-shadow"></div>
+        <ul class="menu-inner py-1">
+            <!-- Trang chủ-->
+            @if (TempData["menu"] == "Home")
+            {
+                <li class="menu-item active open">
+                    <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                        <div data-i18n="Analytics">Trang chủ</div>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="menu-item">
+                    <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                        <div data-i18n="Analytics">Trang chủ</div>
+                    </a>
+                </li>
+            }
+@*             <!-- Chi nhánh-->
+            @if (TempData["menu"] == "Branch")
+            {
+                <li class="menu-item active open">
+                    <a asp-area="Admin" asp-controller="Branch" asp-action="Index" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-sitemap"></i>
+                        <div data-i18n="Analytics">Chi nhánh</div>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="menu-item">
+                    <a asp-area="Admin" asp-controller="Branch" asp-action="Index" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-sitemap"></i>
+                        <div data-i18n="Analytics">Chi nhánh</div>
+                    </a>
+                </li>
+            } *@
+             <!-- Người dùng -->
+            @if (TempData["menu"] == "User" || TempData["menu"] == "UserType")
+            {
+                <li class="menu-item active open">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bxs-user"></i>
+                        <div data-i18n="Authentications">Người dùng</div>
+                    </a>
+                    <ul class="menu-sub">
+                        @if (TempData["menu"] == "User")
+                        {
+                            <li class="menu-item active">
+                                <a asp-area="Admin" asp-controller="User" asp-action="Index" class="menu-link">
+                                    <div data-i18n="User">Người dùng</div>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="menu-item">
+                                <a asp-area="Admin" asp-controller="User" asp-action="Index" class="menu-link">
+                                    <div data-i18n="User">Người dùng</div>
+                                </a>
+                            </li>
+                        }
+                        @if (TempData["menu"] == "UserType")
+                        {
+                            <li class="menu-item active">
+                                <a asp-area="Admin" asp-controller="UserType" asp-action="Index" class="menu-link">
+                                    <div data-i18n="User">Loại người dùng</div>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="menu-item">
+                                <a asp-area="Admin" asp-controller="UserType" asp-action="Index" class="menu-link">
+                                    <div data-i18n="User">Loại người dùng</div>
+                                </a>
+                            </li>
+                        }
+
+                    </ul>
+                </li>
+            }
+            else
+            {
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bxs-user"></i>
+                        <div data-i18n="Authentications">Người dùng</div>
+                    </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <a asp-area="Admin" asp-controller="User" asp-action="Index" class="menu-link">
+                                <div data-i18n="User">Người dùng</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a asp-area="Admin" asp-controller="UserType" asp-action="Index" class="menu-link">
+                                <div data-i18n="User">Loại người dùng</div>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+            }
+             
+            <!-- Khách Hàng -->
+            @if (TempData["menu"] == "Customer" || TempData["menu"] == "CustomerType" || TempData["menu"] == "CustomerStatus" || TempData["menu"] == "CustomerHistory")
+            {
+                <li class="menu-item active open">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bx-user-pin"></i>
+                        <div data-i18n="Customer">Khách Hàng</div>
+                    </a>
+                    <ul class="menu-sub">
+                        @if (TempData["menu"] == "Customer")
+                        {
+                            <li class="menu-item active">
+                                <a asp-area="Admin" asp-controller="Customer" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Customer">Khách hàng</div>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="menu-item">
+                                <a asp-area="Admin" asp-controller="Customer" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Customer">Khách hàng</div>
+                                </a>
+                            </li>
+                        }
+                        @if (TempData["menu"] == "CustomerType")
+                        {
+                            <li class="menu-item active">
+                                <a asp-area="Admin" asp-controller="CustomerType" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Customer">Loại khách hàng</div>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="menu-item">
+                                <a asp-area="Admin" asp-controller="CustomerType" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Customer">Loại khách hàng</div>
+                                </a>
+                            </li>
+                        }
+                        @if (TempData["menu"] == "CustomerStatus")
+                        {
+                            <li class="menu-item active">
+                                <a asp-area="Admin" asp-controller="CustomerStatus" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Customer">Trạng thái khách hàng</div>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="menu-item">
+                                <a asp-area="Admin" asp-controller="CustomerStatus" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Customer">Trạng thái khách hàng</div>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+            else
+            {
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bx-user-pin"></i>
+                        <div data-i18n="Customer">Khách Hàng</div>
+                    </a>
+                    <ul class="menu-sub">
+
+                        <li class="menu-item">
+                            <a asp-area="Admin" asp-controller="Customer" asp-action="Index" class="menu-link">
+                                <div data-i18n="Customer">Khách hàng</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a asp-area="Admin" asp-controller="CustomerType" asp-action="Index" class="menu-link">
+                                <div data-i18n="Customer">Loại khách hàng</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a asp-area="Admin" asp-controller="CustomerStatus" asp-action="Index" class="menu-link">
+                                <div data-i18n="Customer">Trạng thái khách hàng</div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            }
+@*             <!-- Chăm Khách -->
+            @if (TempData["menu"] == "CustomerFollowUp" || TempData["menu"] == "FollowUpStatus")
+            {
+                <li class="menu-item active open">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bxs-user"></i>
+                        <div data-i18n="CustomerFollowUp">Chăm Khách</div>
+                    </a>
+                    <ul class="menu-sub">
+                        @if (TempData["menu"] == "CustomerFollowUp")
+                        {
+                            <li class="menu-item active">
+                                <a asp-area="Admin" asp-controller="CustomerFollowUp" asp-action="Index" class="menu-link">
+                                    <div data-i18n="CustomerFollowUp">Chăm Khách</div>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="menu-item">
+                                <a asp-area="Admin" asp-controller="CustomerFollowUp" asp-action="Index" class="menu-link">
+                                    <div data-i18n="CustomerFollowUp">Chăm Khách</div>
+                                </a>
+                            </li>
+                        }
+                        @if (TempData["menu"] == "FollowUpStatus")
+                        {
+                            <li class="menu-item active">
+                                <a asp-area="Admin" asp-controller="FollowUpStatus" asp-action="Index" class="menu-link">
+                                    <div data-i18n="FollowUpStatus">Trạng thái chăm khách</div>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="menu-item">
+                                <a asp-area="Admin" asp-controller="FollowUpStatus" asp-action="Index" class="menu-link">
+                                    <div data-i18n="FollowUpStatus">Trạng thái chăm khách</div>
+                                </a>
+                            </li>
+                        }
+
+                    </ul>
+                </li>
+            }
+            else
+            {
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bxs-user"></i>
+                        <div data-i18n="Authentications">Chăm Khách</div>
+                    </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <a asp-area="Admin" asp-controller="CustomerFollowUp" asp-action="Index" class="menu-link">
+                                <div data-i18n="CustomerFollowUp">Chăm Khách</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a asp-area="Admin" asp-controller="FollowUpStatus" asp-action="Index" class="menu-link">
+                                <div data-i18n="FollowUpStatus">Trạng thái chăm khách</div>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+            } *@
+            <!-- Lịch Hẹn -->
+            @if (TempData["menu"] == "Appointment" || TempData["menu"] == "AppointmentStatus" || TempData["menu"] == "AppointmentType")
+            {
+                <li class="menu-item active open">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bxs-timer"></i>
+                        <div data-i18n="Authentications">Lịch Hẹn</div>
+                    </a>
+                    <ul class="menu-sub">
+
+                        @if (TempData["menu"] == "Appointment")
+                        {
+                            <li class="menu-item active">
+                                <a asp-area="Admin" asp-controller="Appointment" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Appointment">Lịch hẹn</div>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="menu-item">
+                                <a asp-area="Admin" asp-controller="Appointment" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Appointment">Lịch hẹn</div>
+                                </a>
+                            </li>
+                        }
+                        @if (TempData["menu"] == "AppointmentStatus")
+                        {
+                            <li class="menu-item active">
+                                <a asp-area="Admin" asp-controller="AppointmentStatus" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Appointment">Trạng thái lịch hẹn</div>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="menu-item">
+                                <a asp-area="Admin" asp-controller="AppointmentStatus" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Appointment">Trạng thái lịch hẹn</div>
+                                </a>
+                            </li>
+                        }
+                        @if (TempData["menu"] == "AppointmentType")
+                        {
+                            <li class="menu-item active">
+                                <a asp-area="Admin" asp-controller="AppointmentType" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Appointment">Loại lịch hẹn</div>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="menu-item">
+                                <a asp-area="Admin" asp-controller="AppointmentType" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Appointment">Loại lịch hẹn</div>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+            else
+            {
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bxs-timer"></i>
+                        <div data-i18n="Appointment">Lịch Hẹn</div>
+                    </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <a asp-area="Admin" asp-controller="Appointment" asp-action="Index" class="menu-link">
+                                <div data-i18n="Appointment">Lịch hẹn</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a asp-area="Admin" asp-controller="AppointmentStatus" asp-action="Index" class="menu-link">
+                                <div data-i18n="Appointment">Trạng thái lịch hẹn</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a asp-area="Admin" asp-controller="AppointmentType" asp-action="Index" class="menu-link">
+                                <div data-i18n="Appointment">Loại lịch hẹn</div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            }
+
+            <!-- Hóa đơn-->
+            @if (TempData["menu"] == "Invoice" || TempData["menu"] == "InvoiceType")
+            {
+                <li class="menu-item active open">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bx-edit"></i>
+                        <div data-i18n="Invoice">Hóa đơn</div>
+                    </a>
+                    <ul class="menu-sub">
+
+                        @if (TempData["menu"] == "Invoice")
+                        {
+                            <li class="menu-item active">
+                                <a asp-area="Admin" asp-controller="Invoice" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Invoice">Hóa đơn</div>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="menu-item">
+                                <a asp-area="Admin" asp-controller="Invoice" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Invoice">Hóa đơn</div>
+                                </a>
+                            </li>
+                        }
+                        @if (TempData["menu"] == "InvoiceType")
+                        {
+                            <li class="menu-item active">
+                                <a asp-area="Admin" asp-controller="InvoiceType" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Invoice">Loại hóa đơn</div>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="menu-item">
+                                <a asp-area="Admin" asp-controller="InvoiceType" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Invoice">Loại hóa đơn</div>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+            else
+            {
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bx-edit"></i>
+                        <div data-i18n="Appointment">Hóa đơn</div>
+                    </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <a asp-area="Admin" asp-controller="Invoice" asp-action="Index" class="menu-link">
+                                <div data-i18n="Invoice">Hóa đơn</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a asp-area="Admin" asp-controller="InvoiceType" asp-action="Index" class="menu-link">
+                                <div data-i18n="Invoice">Loại hóa đơn</div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            }
+
+            <!-- Hệ Thống -->
+            @if (TempData["menu"] == "UserAccount" || TempData["menu"] == "Action")
+            {
+                <li class="menu-item active open">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bxs-ruler"></i>
+                        <div data-i18n="Authentications">Hệ thống</div>
+                    </a>
+                    <ul class="menu-sub">
+                        @if (TempData["menu"] == "UserAccount")
+                        {
+                            <li class="menu-item active">
+                                <a asp-area="Admin" asp-controller="UserAccount" asp-action="Index" class="menu-link">
+                                    <div data-i18n="UserAccount">Tài khoản</div>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="menu-item">
+                                <a asp-area="Admin" asp-controller="UserAccount" asp-action="Index" class="menu-link">
+                                    <div data-i18n="UserAccount">Tài khoản</div>
+                                </a>
+                            </li>
+                        }
+                        @if (TempData["menu"] == "Action")
+                        {
+                            <li class="menu-item active">
+                                <a asp-area="Admin" asp-controller="Action" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Action">Lịch sử thao tác</div>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="menu-item">
+                                <a asp-area="Admin" asp-controller="Action" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Action">Lịch sử thao tác</div>
+                                </a>
+                            </li>
+                        }
+
+                    </ul>
+                </li>
+            }
+            else
+            {
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bxs-ruler"></i>
+                        <div data-i18n="Authentications">Hệ thống</div>
+                    </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <a asp-area="Admin" asp-controller="UserAccount" asp-action="Index" class="menu-link">
+                                <div data-i18n="UserAccount">Tài khoản</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a asp-area="Admin" asp-controller="Action" asp-action="Index" class="menu-link">
+                                <div data-i18n="Action">Lịch sử thao tác</div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            }
+            <!-- Bài đăng -->
+            @if (TempData["menu"] == "PostType" || TempData["menu"] == "Post")
+            {
+                <li class="menu-item active open">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx  bx-devices"></i>
+                        <div data-i18n="Authentications">Bài đăng</div>
+                    </a>
+                    <ul class="menu-sub">
+                        @if (TempData["menu"] == "PostType")
+                        {
+                            <li class="menu-item active">
+                                <a asp-area="Admin" asp-controller="PostType" asp-action="Index" class="menu-link">
+                                    <div data-i18n="PostType">Danh mục</div>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="menu-item">
+                                <a asp-area="Admin" asp-controller="PostType" asp-action="Index" class="menu-link">
+                                    <div data-i18n="PostType">Danh mục</div>
+                                </a>
+                            </li>
+                        }
+                        @if (TempData["menu"] == "Post")
+                        {
+                            <li class="menu-item active">
+                                <a asp-area="Admin" asp-controller="Post" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Post">Bài đăng</div>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="menu-item">
+                                <a asp-area="Admin" asp-controller="Post" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Post">Bài đăng</div>
+                                </a>
+                            </li>
+                        }
+
+                    </ul>
+                </li>
+            }
+            else
+            {
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx  bx-devices"></i>
+                        <div data-i18n="PostType">Bài đăng</div>
+                    </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <a asp-area="Admin" asp-controller="PostType" asp-action="Index" class="menu-link">
+                                <div data-i18n="PostType">Danh mục</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a asp-area="Admin" asp-controller="Post" asp-action="Index" class="menu-link">
+                                <div data-i18n="Post">Bài đăng</div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            }
+
+            <!-- Dịch vụ -->
+            @if (TempData["menu"] == "ServiceType" || TempData["menu"] == "Service")
+            {
+            <li class="menu-item active open">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bxs-florist"></i>
+                    <div data-i18n="Authentications">Dịch vụ</div>
+                </a>
+                <ul class="menu-sub">
+                        @if (TempData["menu"] == "Service")
+                        {
+                            <li class="menu-item active">
+                                <a asp-area="Admin" asp-controller="Service" asp-action="Index" class="menu-link">
+                                    <div data-i18n="DichVu">Dịch vụ</div>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="menu-item">
+                                <a asp-area="Admin" asp-controller="Service" asp-action="Index" class="menu-link">
+                                    <div data-i18n="DichVu">Dịch vụ</div>
+                                </a>
+                            </li>
+                        }
+                    @if (TempData["menu"] == "ServiceType")
+                    {
+                            <li class="menu-item active">
+                                <a asp-area="Admin" asp-controller="ServiceType" asp-action="Index" class="menu-link">
+                                    <div data-i18n="LoaiDichVu">Loại dịch vụ</div>
+                                </a>
+                            </li>
+                    }
+                    else
+                    {
+                            <li class="menu-item">
+                                <a asp-area="Admin" asp-controller="ServiceType" asp-action="Index" class="menu-link">
+                                    <div data-i18n="LoaiDichVu">Loại dịch vụ</div>
+                                </a>
+                            </li>
+                    }
+
+
+                    </ul>
+                </li>
+            }
+            else
+            {
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bxs-florist"></i>
+                        <div data-i18n="Authentications">Dịch vụ</div>
+                    </a>
+                    <ul class="menu-sub">
+
+                        <li class="menu-item">
+                            <a asp-area="Admin" asp-controller="Service" asp-action="Index" class="menu-link">
+                                <div data-i18n="Basic">Dịch vụ</div>
+                            </a>
+                        </li>
+                            <li class="menu-item">
+                                <a asp-area="Admin" asp-controller="ServiceType" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Basic">Loại dịch vụ</div>
+                                </a>
+                            </li>
+
+                    </ul>
+                </li>
+            }
+
+
+            <!-- Sản phẩm -->
+            @if (TempData["menu"] == "ProductType" || TempData["menu"] == "Product")
+            {
+                <li class="menu-item active open">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bx-cube"></i>
+                        <div data-i18n="Authentications">Sản phẩm</div>
+                    </a>
+                    <ul class="menu-sub">
+                        @if (TempData["menu"] == "Product")
+                        {
+                            <li class="menu-item active">
+                                <a asp-area="Admin" asp-controller="Product" asp-action="Index" class="menu-link">
+                                    <div data-i18n="SanPham">Sản phẩm</div>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="menu-item">
+                                <a asp-area="Admin" asp-controller="Product" asp-action="Index" class="menu-link">
+                                    <div data-i18n="SanPham">Sản phẩm</div>
+                                </a>
+                            </li>
+                        }
+                        @if (TempData["menu"] == "ProductType")
+                        {
+                            <li class="menu-item active">
+                                <a asp-area="Admin" asp-controller="ProductType" asp-action="Index" class="menu-link">
+                                    <div data-i18n="SanPham">Loại sản phẩm</div>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="menu-item">
+                                <a asp-area="Admin" asp-controller="ProductType" asp-action="Index" class="menu-link">
+                                    <div data-i18n="SanPham">Loại Sản phẩm</div>
+                                </a>
+                            </li>
+                        }
+
+
+                    </ul>
+                </li>
+            }
+            else
+            {
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bx-cube"></i>
+                        <div data-i18n="Authentications">Sản phẩm</div>
+                    </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <a asp-area="Admin" asp-controller="Product" asp-action="Index" class="menu-link">
+                                <div data-i18n="Sanpham">Sản phẩm</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a asp-area="Admin" asp-controller="ProductType" asp-action="Index" class="menu-link">
+                                <div data-i18n="Sanpham">Loại sản phẩm</div>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+            }
+
+
+            <!-- Khuyến mãi -->
+            @if (TempData["menu"] == "Promotion")
+            {
+                <li class="menu-item active open">
+                    <a asp-area="Admin" asp-controller="Promotion" asp-action="Index" class="menu-link">
+                        <i class="menu-icon tf-icons bx bxs-gift"></i>
+                        <div data-i18n="Misc">Khuyến mãi</div>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="menu-item">
+                    <a asp-area="Admin" asp-controller="Promotion" asp-action="Index" class="menu-link">
+                        <i class="menu-icon tf-icons bx bxs-gift"></i>
+                        <div data-i18n="Misc">Khuyến mãi</div>
+                    </a>
+                </li>
+            }
+            <!-- Thống kê -->
+            <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-bar-chart-square"></i>
+                    <div data-i18n="Misc">Thống kê</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i18n="Error">Sản phẩm</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i18n="Under Maintenance">Bài đặng</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </aside>
+    <!-- / Menu -->
+}

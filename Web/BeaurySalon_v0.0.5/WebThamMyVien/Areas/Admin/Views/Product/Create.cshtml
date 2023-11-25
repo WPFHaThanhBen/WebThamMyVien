@@ -1,0 +1,274 @@
+﻿@model ProductDto
+@{
+    Layout = "_LayoutAdmin";
+}
+
+        <!-- Content -->
+        <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="container-fluid">
+
+        <div class="d-flex flex-row">
+            <a asp-area="Admin" asp-controller="Product" asp-action="Index" class="btn btn-icon rounded-pill btn-secondary mb-3 text-white">
+                <span class="bx bxs-log-out-circle display-3"></span>
+            </a>
+            <h4 class="align-self-center ms-2">THÔNG TIN SẢN PHẨM</h4>
+        </div>
+        <div class="row">
+            @* Show Detail Product *@
+            <form class="col-sm-6" id="formCreate" asp-area="Admin" asp-controller="Product" asp-action="Create">
+                <div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="mb-3">
+                        <label class="form-label text-capitalize">Tên sản phẩm</label>
+                        <input asp-for="ProductName" id="nameProduct" type="text" class="form-control " placeholder="Nhập tên sản phẩm" />
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-sm">
+                            <label class="form-label text-capitalize">Chọn loại sản phẩm</label>
+                            <select name="ProductTypeId" class="form-control" asp-items="ViewBag.ProductType"></select>
+                        </div>
+                        <div class="mb-3 col-sm">
+                            <label class="form-label text-none">Chọn khuyến mãi áp dụng</label>
+                            <select name="AppliedPromotionId" class="form-control" asp-items="ViewBag.promotion"></select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="mb-3 col-sm">
+                            <label class="form-label text-capitalize">Giá bán sản phẩm</label>
+                            <input asp-for="SellingPrice" id="priceBProduct" type="number" class="form-control " placeholder="Nhập giá bán sản phẩm" />
+                        </div>
+                        <div class="mb-3 col-sm">
+                            <label class="form-label text-none">Giá nhập sản phẩm</label>
+                            <input asp-for="PurchasePrice" id="priceNProduct" type="number" class="form-control " placeholder="Nhập giá nhập sản phẩm" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-capitalize">Giới thiệu sản phẩm</label>
+                        <textarea asp-for="Introduction" id="gioiThieuProduct" class="form-control"
+                                  placeholder="Nhập chi tiết giới thiệu sản phẩm"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-capitalize">Công dụng sản phẩm</label>
+                        <textarea asp-for="Functionality" id="congDungProcduct" class="form-control"
+                                  placeholder="Nhập công dụng sản phẩm"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-capitalize">Xuất xứ</label>
+                        <textarea asp-for="Origin" class="form-control"
+                                  placeholder="Nhập xuất xứ sản phẩm"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-capitalize">Ghi chú</label>
+                        <textarea asp-for="Other" class="form-control"
+                                  placeholder="Nhập ghi chú"></textarea>
+                    </div>
+                </div>
+
+            </form>
+             
+            @* Show Image *@
+            <div class="col-md-6">
+                <h5 class="my-4">Hình Ảnh Sản Phẩm</h5>
+
+                <div class="pb-3">
+                    <!-- Thêm ảnh -->
+                    <button class="btn btn-success" onclick="openFileInput()">Thêm ảnh</button>
+
+                    <!-- Thẻ input ẩn để chọn file -->
+                    <input type="file" id="fileInput" style="display:none" accept="image/*" onchange="handleFileSelect(this)">
+
+                    <button class="btn btn-danger text-white" onclick="deleteImage()">Xóa ảnh</button>
+                </div>
+                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-bs-target="#carouselExample" data-bs-slide-to="0" class="active"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100"  src="\adminassets\assets\img\backgrounds\18.jpg" />
+                            <div class="carousel-caption d-none d-md-block">
+                                <h3>Thêm ảnh</h3>
+                                <p>Vui lòng thêm ảnh để hệ thống phục vụ bạn tốt hơn</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExample" role="button" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExample" role="button" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+               
+
+        <div class ="pt-3">
+            <button type="reset" form="formCreate" class="btn btn-secondary text-white">Nhập lại</button>
+            <button id="btnCreate" class="btn btn-success">Tạo mới</button>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+
+        // Định nghĩa đối tượng ảnh
+        function ImageObject(Id, ProductId, Image) {
+            this.Id = Id;
+            this.ProductId = ProductId;
+            this.Image = Image;
+        }
+
+        // Mảng chứa đối tượng ảnh
+        var imageArray = [];
+
+        // Hàm mở hộp thoại chọn ảnh
+        function openFileInput() {
+            $("#fileInput").click();
+        }
+
+        // Hàm xử lý khi chọn ảnh
+        function handleFileSelect(input) {
+            var file = input.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var imageData = e.target.result;
+
+                    // Tạo đối tượng ảnh mới và thêm vào mảng
+                    var newImage = new ImageObject(0, null, imageData);
+                    imageArray.push(newImage);
+
+                    // Cập nhật carouselExample
+                    updateCarousel();
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        // Hàm xóa ảnh
+        function deleteImage() {
+            if (imageArray.length > 0) {
+                imageArray.pop(); // Xóa ảnh cuối cùng trong mảng
+                updateCarousel();
+            }
+        }
+
+        // Hàm cập nhật carousel-indicators
+        function updateIndicators() {
+            var carouselIndicators = $("#carouselExample .carousel-indicators");
+            carouselIndicators.empty(); // Xóa tất cả các chỉ số hiện tại
+
+            // Thêm chỉ số mới vào carouselIndicators
+            for (var i = 0; i < imageArray.length; i++) {
+                var activeClass = i === (imageArray.length - 1) ? "active" : "";
+
+                var indicator =
+                    '<li data-bs-target="#carouselExample" data-bs-slide-to="' + i + '" class="' + activeClass + '"></li>';
+
+                carouselIndicators.append(indicator);
+            }
+        }
+
+        // Hàm cập nhật cả carousel-indicators và carousel-inner
+        function updateCarousel() {
+            updateIndicators(); // Cập nhật chỉ số trước
+            var carouselInner = $("#carouselExample .carousel-inner");
+            carouselInner.empty(); // Xóa tất cả các ảnh hiện tại
+
+            // Thêm ảnh mới vào carouselInner
+            for (var i = 0; i < imageArray.length; i++) {
+                var image = imageArray[i];
+                var activeClass = i === (imageArray.length - 1) ? "active" : "";
+
+                var carouselItem =
+                    '<div class="carousel-item ' + activeClass + '">' +
+                    '<img class="d-block w-100" src="' + image.Image + '" alt="Slide ' + (i + 1) + '">' +
+                    '<div class="carousel-caption d-none d-md-block">' +
+                    '<p>Hình ảnh ' + (i + 1) + '</p>' +
+                    '</div>' +
+                    '</div>';
+
+                carouselInner.append(carouselItem);
+            }
+        }
+        // Hàm hiển hiện Tin Nhắn Thông Báo
+        function displayToastrMessages(status, mesg) {
+            let successData = '';
+            let errorData = '';
+            let warningData = '';
+            if (status == 1) {
+                successData = mesg;
+            }
+            else if (status == 2) {
+                warningData = mesg;
+            }
+            else {
+                errorData = mesg;
+            }
+
+
+            if (successData !== '') {
+                toastr.success(successData);
+            }
+            if (errorData !== '') {
+                toastr.error(errorData);
+            }
+            if (warningData !== '') {
+                toastr.warning(warningData);
+            }
+        }
+
+
+        $(document).ready(function () {
+            $("#btnCreate").click(function () {
+                if ($("#nameProduct").val().trim().length <= 0) {
+                    displayToastrMessages(2, 'Bạn đang để rỗng tên sản phẩm');
+                }
+                else if ($("#priceBProduct").val().trim().length <= 0) {
+                    displayToastrMessages(2, 'Bạn đang để rỗng giá bán sản phẩm');
+                }
+                else if ($("#priceNProduct").val().trim().length <= 0) {
+                    displayToastrMessages(2, 'Bạn đang để rỗng giá nhập sản phẩm');
+                }
+                else if ($("#gioiThieuProduct").val().trim().length <= 0) {
+                    displayToastrMessages(2, 'Bạn đang để rỗng giới thiệu sản phẩm');
+                }
+                else if ($("#priceNProduct").val().trim().length <= 0) {
+                    displayToastrMessages(2, 'Bạn đang để rỗng giá nhập sản phẩm');
+                }
+                else if ($("#congDungProcduct").val().trim().length <= 0) {
+                    displayToastrMessages(2, 'Bạn đang để rỗng công dụng sản phẩm');
+                }
+                else {
+                    $("#formCreate").submit();
+
+                    imageArrayJSON = JSON.stringify(imageArray);
+                    $.ajax({
+                        url: "/Admin/Product/AddImage",
+                        type: 'POST',
+                        data: { listImage: imageArrayJSON },
+                        success: function (result) {
+
+                            // Xử lý kết quả từ Action ở đây (nếu cần)
+                        },
+                        error: function (error) {
+                            // Xử lý lỗi ở đây (nếu có)
+                        }
+                    });
+                }
+
+            });
+
+        });
+    </script>
+}
+<!-- / Content -->

@@ -50,6 +50,20 @@ namespace APICosmeticClinic.Controllers
             return Ok(map);
         }
 
+        // Get By ID
+        [HttpGet("ByName/{name}")]
+        [ProducesResponseType(200, Type = typeof(PostType))]
+        //[ProducesResponseType(400)]
+        public IActionResult GetPostType(string name)
+        {
+            var map = _mapper.Map<PostTypeDto>(_postTypeRepository.GetPostTypeByName(name));
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(map);
+        }
+
         //Create
         [HttpPost]
         //[ProducesResponseType(204)]

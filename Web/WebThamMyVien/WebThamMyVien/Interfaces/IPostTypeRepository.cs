@@ -6,6 +6,7 @@ namespace WebThamMyVien.Interfaces
     {
         Task<ICollection<PostTypeDto>> GetAllPostType();
         Task<PostTypeDto> GetPostType(int id);
+        Task<PostTypeDto> GetPostTypeByName(string name);
         Task<bool> CreatePostType(PostTypeDto PostType);
         Task<bool> UpdatePostType(PostTypeDto PostType);
         Task<bool> DeletePostType(PostTypeDto PostType);

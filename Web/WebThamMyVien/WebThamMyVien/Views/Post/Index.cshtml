@@ -1,0 +1,26 @@
+﻿@using System.Globalization;
+@model WebThamMyVien.Models.PostDto
+
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h6 class="section-title bg-white text-center px-3 " style="color:purple">@Model.Title</h6>
+        </div>
+        <div class="row g-5">
+            <div class="container" id="summernoteDisplay">
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Lấy giá trị Summernote từ ViewBag hoặc ViewModel
+            var summernoteContent = '@Html.Raw(ViewBag.SummernoteContent)';
+
+            // Gán giá trị vào phần tử có id là "summernoteDisplay"
+            $('#summernoteDisplay').html(summernoteContent);
+        });
+    </script>
+}

@@ -1,0 +1,59 @@
+﻿@model BranchDto
+@{
+    Layout = "_LayoutAdmin";
+    int id = Model.Id;
+}
+
+
+    <!-- Content -->
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="container-fluid">
+
+
+
+            <div class="d-flex flex-row">
+                <a asp-area="Admin" asp-controller="Branch" asp-action="Index" class="btn btn-icon rounded-pill btn-secondary mb-3 text-white">
+                    <span class="bx bxs-log-out-circle display-3"></span>
+                </a>
+                <h4 class="align-self-center ms-2">THÔNG TIN LOẠI SẢN PHẨM</h4>
+            </div>
+
+
+
+
+            <form asp-area="Admin" asp-controller="Branch" asp-action="Edit">
+            <div>
+                <input type="hidden" asp-for="Id" />
+                <div class="mb-3">
+                    <label class="form-label text-capitalize">Tên chi nhánh</label>
+                    <input asp-for="Name" type="text" class="form-control " placeholder="nhập tên chi nhánh" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label text-capitalize">Đại chỉ chi nhánh</label>
+                    <input asp-for="Address" type="text" class="form-control " placeholder="nhập địa chỉ chi nhánh" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-capitalize">Số điện thoại chi nhánh</label>
+                    <input asp-for="Phone" type="number" class="form-control " placeholder="nhập số điện thoại chi nhánh" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-capitalize">Email chi nhánh</label>
+                    <input asp-for="Email" type="email" class="form-control " placeholder="nhập email chi nhánh" />
+                </div>
+            </div>
+                <button type="reset" class="btn btn-secondary text-white">Nhập lại</button>
+                <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+            </form>
+
+
+
+
+
+        </div>
+    </div>
+    <!-- / Content -->
+
+<!-- Content wrapper -->
+
+<!-- / Layout page -->

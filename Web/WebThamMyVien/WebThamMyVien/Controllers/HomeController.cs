@@ -1,32 +1,48 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 using System.Diagnostics;
+using WebThamMyVien.Interfaces;
 using WebThamMyVien.Models;
 
 namespace WebThamMyVien.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IUnitOfWork _unitOfWork;
+        public HomeController(IUnitOfWork unitOfWork)
         {
-            _logger = logger;
+            _unitOfWork = unitOfWork;
         }
-
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
-        }
+            WebHome webHome = new WebHome();
+            ViewData["menuDefault"] = "TrangChu";
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+            // Get List Item Menu DichVu
+            List<ServiceTypeDto> list = await _unitOfWork.ServiceType.GetAllServiceType() as List<ServiceTypeDto>;
+            ViewData["menuDefaultServiceTypeDto"] = list;
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            // Get #1 Post start
+            webHome.OnePost = await _unitOfWork.Post.GetPost(1);
+            webHome.ListPost = (List<PostDto>)await _unitOfWork.Post.GetPostByPostType(1);
+            webHome.ListPost1 = (List<PostDto>)await _unitOfWork.Post.GetPostByPostType(2);
+            webHome.ListPost2 = (List<PostDto>)await _unitOfWork.Post.GetPostByPostType(3);
+            var ListProduct = (List<ProductDto>)await _unitOfWork.Product.GetAllProductByType(1);
+            foreach (var item in ListProduct)
+            {
+                ProductView productView = new ProductView();
+                productView.Product = item;
+                var promotion = await _unitOfWork.Promotion.GetPromotion((int)item.AppliedPromotionId);
+                productView.Promotion = int.Parse(promotion.PromotionValue);  
+                productView.Images = (List<ProductImageDto>)await _unitOfWork.ProductImage.GetAllProductImageByProduct(item.Id);
+                webHome.ListProductView.Add(productView);
+            }
+            if (webHome.ListPost.Count > 0)
+            {
+                webHome.ListPost.RemoveAt(0); // Xóa phần tử đầu tiên
+            }
+            return View(webHome);
         }
     }
 }

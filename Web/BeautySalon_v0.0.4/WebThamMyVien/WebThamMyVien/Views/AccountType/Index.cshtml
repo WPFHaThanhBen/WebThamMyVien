@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "AccountType";
+    var listAccountType = ViewData["AllAccountType"] as List<AccountTypeDto>;
+}
+
+<div>
+    @if (listAccountType!=null)
+    {
+        <table class="table border">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Note</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var n in listAccountType)
+                {
+                    <tr>
+                        <td>@n.Id</td>
+                        <td>@n.AccountTypeName</td>
+                        <td>@n.Other</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h2>Không có dữ liệu để hiển thị</h2>
+    }
+
+
+</div>

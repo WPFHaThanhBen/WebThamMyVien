@@ -35,6 +35,11 @@ namespace WebThamMyVien.Areas.Admin.Controllers
             {
                 // Add data in DB
                 var n = await _unitOfWork.ServiceType.CreateServiceType(value);
+                PostTypeDto postType = new PostTypeDto();
+                postType.Id = 0;
+                postType.TypeName = value.TypeName;
+                postType.Other = "Hệ thống tự động tạo " + value.TypeName + "này, Vui lòng không thay đổi thông tin này để tránh ảnh hưởng đến hệ thống";
+                var m = await _unitOfWork.PostType.CreatePostType(postType);
                 // Add status is success
                 if (n)
                 {
@@ -87,7 +92,13 @@ namespace WebThamMyVien.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 // Update data in Db
+                var serviceCu = await _unitOfWork.ServiceType.GetServiceType(value.Id);
                 var n = await _unitOfWork.ServiceType.UpdateServiceType(value);
+                PostTypeDto postType = await _unitOfWork.PostType.GetPostTypeByName(serviceCu.TypeName);
+                string nameType = value.TypeName;
+                postType.TypeName = nameType;
+                postType.Other = "Hệ thống cập nhật đã " + value.TypeName + "này, Vui lòng không thay đổi thông tin này để tránh ảnh hưởng đến hệ thống";
+                var m = await _unitOfWork.PostType.UpdatePostType(postType);
                 // Update status is success
                 if (n)
                 {

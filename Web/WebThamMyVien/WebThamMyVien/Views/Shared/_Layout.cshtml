@@ -1,55 +1,167 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WebThamMyVien</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/WebThamMyVien.styles.css" asp-append-version="true" />
+    <meta charset="utf-8">
+    <title>DGcom - Web Design Agency HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="/AdminAssets/assets/img/favicon/logoHD.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="/DefaultAssets/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/DefaultAssets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/DefaultAssets/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/DefaultAssets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="/DefaultAssets/css/style.css" rel="stylesheet">
+
 </head>
+
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebThamMyVien</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="AccountType" asp-action="Index">AccountType</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a>
-                        </li>
-                    </ul>
+
+
+    <!-- Brand & Contact Start -->
+    <div class="container-fluid py-2 px-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="row align-items-center top-bar">
+            <div class="col-lg-5 col-md-12 text-center text-lg-start">
+                <a href="" class="navbar-brand m-0 p-0">
+                    <h1 class="fw-bold m-0" style="color: purple">
+                        <img class="img-fluid me-3 mb-1" style="width:60px; height:60px; color:orange"  src="/AdminAssets/assets/img/favicon/logoHD.ico" alt="Image"/>HD Beauty Luxury</h1>
+                    <!-- <img src="/DefaultAssets/img/logo.png" alt="Logo"> -->
+                </a>
+            </div>
+            <div class="col-lg-7 col-md-7 d-none d-lg-block">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="d-flex align-items-center justify-content-start">
+                            <div class="flex-shrink-0 btn-lg-square border rounded-circle">
+                                <i class="far fa-clock" style="color:purple"></i>
+                            </div>
+                            <div class="ps-3" >
+                                <p class="mb-2" style="font-size:14px">Mở cữa</p>
+                                <h6 class="mb-0" style="font-size:14px">Thứ 2 - CN, 8:30 - 20:00</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="d-flex align-items-center justify-content-start">
+                            <div class="flex-shrink-0 btn-lg-square border rounded-circle">
+                                <i class="fa fa-phone " style="color:purple"></i>
+                            </div>
+                            <div class="ps-3">
+                                <p class="mb-2" style="font-size:14px">Điện thoại</p>
+                                <h6 class="mb-0" style="font-size:14px">012 345 6789</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="d-flex align-items-center justify-content-start">
+                            <div class="flex-shrink-0 btn-lg-square border rounded-circle">
+                                <i class="far fa-envelope" style="color:purple"></i>
+                            </div>
+                            <div class="ps-3">
+                                <p class="mb-2" style="font-size:14px">Email</p>
+                                <h6 class="mb-0" style="font-size:14px">hdbeautyluxury@gmail.com</h6>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - WebThamMyVien - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    </div>
+    <!-- Brand & Contact End -->
+    @await Html.PartialAsync("_Menu")
+
+
+    @RenderBody()
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-body footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-light mb-4">Chi Nhánh Cần Thơ</h5>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>180C Đường Mạc Thiên Tích , Phường An Phú , Quận Ninh Kiều , Cần Thơ, Can Tho, Vietnam, Can Tho, Vietnam</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>012 345 67890</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>hdbeautyluxury@gmail.com</p>
+                    <div class="d-flex pt-2">
+                        @* <a class="btn btn-square btn-outline-secondary rounded-circle me-1" href="https://www.facebook.com/profile.php?id=100085020003835"><i class="fab fa-twitter"></i></a> *@
+                        <a class="btn btn-square btn-outline-secondary rounded-circle me-1" href="https://www.facebook.com/profile.php?id=100085020003835"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-outline-secondary rounded-circle me-1" href="https://www.facebook.com/profile.php?id=100085020003835"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-outline-secondary rounded-circle me-0" href="https://www.facebook.com/profile.php?id=100085020003835"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-light mb-4">Chi Nhánh Sóc Trăng</h5>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>PG - 01-06 Khu nhà phố Vincom , Đường Trần Hưng Đạo , Phường 2 , TP. Sóc Trăng</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>012 345 67890</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>hdbeautyluxury@gmail.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-square btn-outline-secondary rounded-circle me-1" href="https://www.facebook.com/profile.php?id=100085020003835"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-outline-secondary rounded-circle me-1" href="https://www.facebook.com/profile.php?id=100085020003835"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-outline-secondary rounded-circle me-0" href="https://www.facebook.com/profile.php?id=100085020003835"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-light mb-4">Chi Nhánh Cần Thơ</h5>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>48b Nguyễn Trãi , Phường Mỹ Long , TP Long Xuyên</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>012 345 67890</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>hdbeautyluxury@gmail.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-square btn-outline-secondary rounded-circle me-1" href="https://www.facebook.com/profile.php?id=100085020003835"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-outline-secondary rounded-circle me-1" href="https://www.facebook.com/profile.php?id=100085020003835"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-outline-secondary rounded-circle me-0" href="https://www.facebook.com/profile.php?id=100085020003835"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-light mb-4">Liên Hệ Chúng Tôi</h5>
+                    <p>Gửi cho chúng tôi dịch vụ và sản phẩm mà bạn quan tâm</p>
+                    <div class="position-relative mx-auto" style="max-width: 400px;">
+                        <input class="form-control bg-transparent border-secondary w-100 py-3 ps-4 pe-5" type="text" placeholder="Email của bạn">
+                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">Đăng ký</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/DefaultAssets/lib/wow/wow.min.js"></script>
+    <script src="/DefaultAssets/lib/easing/easing.min.js"></script>
+    <script src="/DefaultAssets/lib/waypoints/waypoints.min.js"></script>
+    <script src="/DefaultAssets/lib/counterup/counterup.min.js"></script>
+    <script src="/DefaultAssets/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/DefaultAssets/lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="/DefaultAssets/js/main.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

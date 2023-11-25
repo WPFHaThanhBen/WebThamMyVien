@@ -38,6 +38,11 @@ namespace APICosmeticClinic.Repository
             return _context.PostTypes.Where(e => e.Id == id && e.IsDelete != true).FirstOrDefault();
         }
 
+        public PostType GetPostTypeByName(string name)
+        {
+            return _context.PostTypes.Where(e => e.TypeName == name && e.IsDelete != true).FirstOrDefault();
+        }
+
         public bool PostTypeExists(int id)
         {
             return _context.PostTypes.Any(c => c.Id == id && c.IsDelete != true);

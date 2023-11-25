@@ -33,6 +33,18 @@ namespace APICosmeticClinic.Controllers
 
             return Ok(customers);
         }
+        // Get ALL 
+        [HttpGet("Skip/{start}/{skip}")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Customer>))]
+        public IActionResult GetAllCustomerSkip(int start, int skip)
+        {
+            var customers = _mapper.Map<List<CustomerDto>>(_customerRepository.GetAllCustomerSkip(start,skip));
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(customers);
+        }
 
         // Get By ID
         [HttpGet("{customerId}")]

@@ -1,0 +1,341 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = WebThamMyVien
+build_property.RootNamespace = WebThamMyVien
+build_property.ProjectDir = C:\Users\mavuo\OneDrive\Tài liệu\GitHub\WebThamMyVien\Web\WebThamMyVien\WebThamMyVien\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\mavuo\OneDrive\Tài liệu\GitHub\WebThamMyVien\Web\WebThamMyVien\WebThamMyVien
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Action/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWN0aW9uXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/AppointmentStatus/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXBwb2ludG1lbnRTdGF0dXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/AppointmentStatus/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXBwb2ludG1lbnRTdGF0dXNcRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/AppointmentStatus/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXBwb2ludG1lbnRTdGF0dXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/AppointmentType/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXBwb2ludG1lbnRUeXBlXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/AppointmentType/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXBwb2ludG1lbnRUeXBlXERldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/AppointmentType/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXBwb2ludG1lbnRUeXBlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Appointment/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXBwb2ludG1lbnRcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Appointment/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXBwb2ludG1lbnRcRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Appointment/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXBwb2ludG1lbnRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Branch/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQnJhbmNoXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Branch/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQnJhbmNoXERldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Branch/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQnJhbmNoXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/CustomerFollowUp/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ3VzdG9tZXJGb2xsb3dVcFxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/CustomerFollowUp/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ3VzdG9tZXJGb2xsb3dVcFxEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/CustomerFollowUp/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ3VzdG9tZXJGb2xsb3dVcFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/CustomerStatus/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ3VzdG9tZXJTdGF0dXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/CustomerStatus/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ3VzdG9tZXJTdGF0dXNcRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/CustomerStatus/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ3VzdG9tZXJTdGF0dXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/CustomerType/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ3VzdG9tZXJUeXBlXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/CustomerType/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ3VzdG9tZXJUeXBlXERldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/CustomerType/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ3VzdG9tZXJUeXBlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Customer/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ3VzdG9tZXJcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Customer/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ3VzdG9tZXJcRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Customer/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ3VzdG9tZXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/FollowUpStatus/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRm9sbG93VXBTdGF0dXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/FollowUpStatus/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRm9sbG93VXBTdGF0dXNcRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/FollowUpStatus/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRm9sbG93VXBTdGF0dXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/InvoiceType/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSW52b2ljZVR5cGVcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/InvoiceType/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSW52b2ljZVR5cGVcRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/InvoiceType/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSW52b2ljZVR5cGVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Invoice/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSW52b2ljZVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Invoice/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSW52b2ljZVxEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Invoice/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSW52b2ljZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Invoice/Print.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSW52b2ljZVxQcmludC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/PostType/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUG9zdFR5cGVcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/PostType/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUG9zdFR5cGVcRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/PostType/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUG9zdFR5cGVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Post/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUG9zdFxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Post/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUG9zdFxEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Post/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUG9zdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/ProductType/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdFR5cGVcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/ProductType/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdFR5cGVcRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/ProductType/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdFR5cGVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Product/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdFxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Product/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdFxEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Product/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Promotion/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvbW90aW9uXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Promotion/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvbW90aW9uXERldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Promotion/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvbW90aW9uXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/ServiceType/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2VydmljZVR5cGVcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/ServiceType/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2VydmljZVR5cGVcRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/ServiceType/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2VydmljZVR5cGVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Service/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2VydmljZVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Service/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2VydmljZVxEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Service/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2VydmljZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Shared/_MenuMain.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9NZW51TWFpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Shared/_NotificationAlert.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9Ob3RpZmljYXRpb25BbGVydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/UserAccount/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlckFjY291bnRcRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/UserAccount/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlckFjY291bnRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/UserType/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclR5cGVcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/UserType/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclR5cGVcRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/UserType/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclR5cGVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/User/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/User/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclxEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/User/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Views/AccountType/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFR5cGVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Views/Shared/_Menu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9NZW51LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9MYXlvdXRBZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = b-x04n24oe0s
+
+[C:/Users/mavuo/OneDrive/Tài liệu/GitHub/WebThamMyVien/Web/WebThamMyVien/WebThamMyVien/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-1dq2b8fqef

@@ -1,0 +1,360 @@
+﻿@model CustomerDto
+@{
+    Layout = "_LayoutAdmin";
+    var id = Model.Id;
+}
+
+        <!-- Content -->
+        <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="container-fluid">
+
+
+
+
+        <div class="d-flex flex-row">
+            <a asp-area="Admin" asp-controller="Customer" asp-action="Index" class="btn btn-icon rounded-pill btn-secondary mb-3 text-white">
+                <span class="bx bxs-log-out-circle display-3"></span>
+            </a>
+            <h4 class="align-self-center ms-2">THÔNG TIN KHÁCH HÀNG</h4>
+        </div>
+
+
+
+
+
+        <div class="card mb-4">
+            <h5 class="card-header">Thông tin chi tiết</h5>
+            <!-- Account -->
+            <div class="card-body">
+                <div class="d-flex align-items-start align-items-sm-center gap-4">
+                    <img src="/AdminAssets/assets/img/avatars/1.png"
+                         alt="user-avatar"
+                         class="d-block rounded"
+                         height="100"
+                         width="100"
+                         id="uploadedAvatar" />
+                    <p>
+                        "Phục vụ khách hàng là nghệ thuật tôn trọng, nơi mỗi cử chỉ chân thành tạo nên câu chuyện không gian đẹp của sự quan tâm và hài lòng."
+                    </p>
+                </div>
+            </div>
+            <hr class="my-0" />
+            <div class="card-body">
+                <div class="row">
+                    <form class="col-md-7" id="formCreate" sp-area="Admin" asp-controller="Customer" asp-action="Edit">
+                    <div class="row">
+                        <input type="hidden" id="idCustomer" asp-for="Id" />
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Họ và Tên</label>
+                            <input class="form-control" asp-for="FullName"
+                                   type="text"
+                                   placeholder="Nguyễn Văn A"
+                                   autofocus />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Số CCCD</label>
+                            <input class="form-control" asp-for="Idcard"
+                                   placeholder="0912123456"
+                                   type="number" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Ngày sinh</label>
+                            <input class="form-control" asp-for="Birthdate"
+                                   placeholder="30/03/2002"
+                                   type="text" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Giới tính(1:Nam/0:Nữ)</label>
+                            <input class="form-control" asp-for="Gender"
+                                   placeholder="1"
+                                   type="number" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Số điện thoại</label>
+                            <input class="form-control" asp-for="PhoneNumber"
+                                   placeholder="0123456789"
+                                   type="number" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Facebook</label>
+                            <input class="form-control" asp-for="FacebookLink"
+                                   placeholder="https://??"
+                                   type="text" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Zalo</label>
+                            <input class="form-control" asp-for="ZaloLink"
+                                   placeholder="https://??"
+                                   type="tel" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Email</label>
+                            <input class="form-control" asp-for="Email"
+                                   placeholder="nguyenvana2002@gmail.com"
+                                   type="email" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Địa chỉ</label>
+                            <input class="form-control" asp-for="Address"
+                                   placeholder="Vĩnh Phong-Vĩnh Thuận-Kiên Giang"
+                                   type="text" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Phân loại người dùng</label>
+                            <select name="CustomerStatusId" class="form-control" asp-items="ViewBag.CustomerStatus"></select>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Trạng thái người dùng</label>
+                            <select name="CustomerTypeId" class="form-control" asp-items="ViewBag.CustomerType"></select>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Dịch vụ quan tâm</label>
+                            <textarea asp-for="InterestedServices" class="form-control"
+                                      placeholder="Nhập dịch vụ khách hàng quan tâm"></textarea>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Ghi chú</label>
+                            <textarea asp-for="Other" class="form-control"
+                                      placeholder="Nhập ghi chú"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="mt-2">
+                        <button type="reset" class="btn btn-secondary">Nhập lại</button>
+                        <button type="submit" class="btn btn-primary me-2">Lưu thay đổi</button>
+                    </div>
+                </form>
+                    @* Show Image *@
+                    <div class="col-md-5">
+                        <h5 class="my-4">Hình Ảnh Khách Hàng</h5>
+
+                        <div class="pb-3">
+                            <!-- Thêm ảnh -->
+                            <button class="btn btn-success" onclick="openFileInput()">Thêm ảnh</button>
+
+                            <!-- Thẻ input ẩn để chọn file -->
+                            <input type="file" id="fileInput" style="display:none" accept="image/*" onchange="handleFileSelect(this)">
+
+                            <button class="btn btn-danger text-white" onclick="deleteImage()">Xóa ảnh</button>
+                        </div>
+                        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-bs-target="#carouselExample" data-bs-slide-to="0" class="active"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100" src="\adminassets\assets\img\backgrounds\18.jpg" />
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h3>Thêm ảnh</h3>
+                                        <p>Vui lòng thêm ảnh để hệ thống phục vụ bạn tốt hơn</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExample" role="button" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExample" role="button" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Account -->
+        </div>
+
+
+            </div>
+        </div>
+
+@section Scripts{
+    <script>
+        // Định nghĩa đối tượng ảnh
+        function ImageObject(Id, CustomerId, Image) {
+            this.Id = Id;
+            this.CustomerId = CustomerId;
+            this.Image = Image;
+        }
+
+        // Mảng chứa đối tượng ảnh
+        var imageArray = [];
+
+        // Hàm mở hộp thoại chọn ảnh
+        function openFileInput() {
+            $("#fileInput").click();
+        }
+
+        // Hàm xử lý khi chọn ảnh
+        function handleFileSelect(input) {
+            var file = input.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var imageData = e.target.result;
+
+                    // Tạo đối tượng ảnh mới và thêm vào mảng
+                    var newImage = new ImageObject(0, null, imageData);
+                    imageArray.push(newImage);
+                    let idCustomer1 = $("#idCustomer").val();
+                    let newImageJSON = JSON.stringify(newImage);
+                    $.ajax({
+                        url: "/Admin/Customer/CreateImage",
+                        type: 'POST',
+                        data: { id: idCustomer1, objectImage: newImageJSON },
+                        async: false,
+                        success: function (result) {
+                            updateCarousel();
+                            // Xử lý kết quả từ Action ở đây (nếu cần)
+                        },
+                        error: function (error) {
+                            alert("Lõiio");
+                        }
+                    });
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Hàm xóa ảnh
+        function deleteImage() {
+            if (imageArray.length > 0) {
+                var lastImage = imageArray.pop(); // Xóa ảnh cuối cùng trong mảng
+                $.ajax({
+                    url: "/Admin/Customer/DeleteImage",
+                    type: 'POST',
+                    data: { id: lastImage.Id },
+                    async: false,
+                    success: function (result) {
+                    },
+                    error: function (error) {
+                        alert("Lỗi");
+                    }
+                });
+                updateCarousel();
+            }
+        }
+
+        // Hàm cập nhật carousel-indicators
+        function updateIndicators() {
+            var carouselIndicators = $("#carouselExample .carousel-indicators");
+            carouselIndicators.empty(); // Xóa tất cả các chỉ số hiện tại
+
+            // Thêm chỉ số mới vào carouselIndicators
+            for (var i = 0; i < imageArray.length; i++) {
+                var activeClass = i === (imageArray.length - 1) ? "active" : "";
+
+                var indicator =
+                    '<li data-bs-target="#carouselExample" data-bs-slide-to="' + i + '" class="' + activeClass + '"></li>';
+
+                carouselIndicators.append(indicator);
+            }
+        }
+
+        // Hàm cập nhật cả carousel-indicators và carousel-inner
+        function updateCarousel() {
+            updateIndicators(); // Cập nhật chỉ số trước
+            var carouselInner = $("#carouselExample .carousel-inner");
+            carouselInner.empty(); // Xóa tất cả các ảnh hiện tại
+
+            // Thêm ảnh mới vào carouselInner
+            for (var i = 0; i < imageArray.length; i++) {
+                var image = imageArray[i];
+                if (i == (imageArray.length - 1)) {
+                    $('#uploadedAvatar').attr('src', image.Image);
+                }
+                var activeClass = i === (imageArray.length - 1) ? "active" : "";
+
+                var carouselItem =
+                    '<div class="carousel-item ' + activeClass + '">' +
+                    '<img class="d-block w-100" src="' + image.Image + '" alt="Slide ' + (i + 1) + '">' +
+                    '<div class="carousel-caption d-none d-md-block">' +
+                    '<p>Hình ảnh ' + (i + 1) + '</p>' +
+                    '</div>' +
+                    '</div>';
+
+                carouselInner.append(carouselItem);
+            }
+        }
+        // Hàm hiển hiện Tin Nhắn Thông Báo
+        function displayToastrMessages(status, mesg) {
+            let successData = '';
+            let errorData = '';
+            let warningData = '';
+            if (status == 1) {
+                successData = mesg;
+            }
+            else if (status == 2) {
+                warningData = mesg;
+            }
+            else {
+                errorData = mesg;
+            }
+
+
+            if (successData !== '') {
+                toastr.success(successData);
+            }
+            if (errorData !== '') {
+                toastr.error(errorData);
+            }
+            if (warningData !== '') {
+                toastr.warning(warningData);
+            }
+        }
+
+        function loadImage() {
+
+            let idCustomer1 = $("#idCustomer").val();
+            $.ajax({
+                url: "/Admin/Customer/LoadImage",
+                type: 'POST',
+                data: { id: idCustomer1 },
+                async: false,
+                success: function (result) {
+                    imageArray = result;
+                    updateCarousel();
+                    // Xử lý kết quả từ Action ở đây (nếu cần)
+                },
+                error: function (error) {
+                    alert("Lõiio");
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            loadImage();
+            $("#btnCreate").click(function () {
+                if ($("#nameCustomer").val().trim().length <= 0) {
+                    displayToastrMessages(2, 'Bạn đang để rỗng tên khách hàng');
+                }
+                else if ($("#sdt").val().trim().length <= 0) {
+                    displayToastrMessages(2, 'Bạn đang để rỗng số điện thoại khách hàng');
+                }
+                else {
+                    $("#formCreate").submit();
+
+                    imageArrayJSON = JSON.stringify(imageArray);
+                    alert(imageArray[0].Image);
+                    let idCustomer = $("#idCustomer").val();
+                    $.ajax({
+                        url: "/Admin/Customer/UpdateImage",
+                        type: 'POST',
+                        data: { id: idCustomer, listImage: imageArrayJSON, },
+                        success: function (result) {
+
+                            // Xử lý kết quả từ Action ở đây (nếu cần)
+                        },
+                        error: function (error) {
+                            // Xử lý lỗi ở đây (nếu có)
+                        }
+                    });
+                }
+
+            });
+
+        });
+    </script>
+}
+        <!-- / Content -->

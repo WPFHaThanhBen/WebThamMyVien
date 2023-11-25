@@ -652,7 +652,7 @@ namespace APICosmeticClinic.Models
 
                 entity.Property(e => e.DateDelete).HasMaxLength(20);
 
-                entity.Property(e => e.Introduce).HasMaxLength(255);
+                entity.Property(e => e.Introduce).HasMaxLength(2000);
 
                 entity.Property(e => e.PostTypeId).HasColumnName("PostTypeID");
 

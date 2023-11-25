@@ -1,0 +1,287 @@
+﻿@model PostDto
+@{
+    Layout = "_LayoutAdmin";
+}
+
+        <!-- Content -->
+        <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="container-fluid">
+
+
+        <div class="d-flex flex-row">
+            <a asp-area="Admin" asp-controller="Post" asp-action="Index" class="btn btn-icon rounded-pill btn-secondary mb-3 text-white">
+                <span class="bx bxs-log-out-circle display-3"></span>
+            </a>
+            <h4 class="align-self-center ms-2">THÔNG TIN BÀI ĐĂNG</h4>
+        </div>
+
+
+
+
+        <div class="row">
+            <div class="col-sm">
+                    <div>
+                    <form id="formCreate" asp-area="Admin" asp-controller="Post" asp-action="Create">
+                        <input id="Cid" type="hidden" asp-for="Id" />
+                        <input id="CTitle" type="hidden" asp-for="Title" />
+                        <input id="CIntroduce" type="hidden" asp-for="Introduce" />
+                        <input id="CPostingDateCreate" type="hidden" asp-for="PostingDateCreate" />
+                        <input id="CPostingDateUpdate" type="hidden" asp-for="PostingDateUpdate" />
+                        <input id="CContent" type="hidden" asp-for="Content" />
+                        <input id="CImage" type="hidden" asp-for="Image" />
+                        <input id="CViewsCount" type="hidden" asp-for="ViewsCount" />
+                        <input id="CPostTypeId" type="hidden" asp-for="PostTypeId" />
+                        <input id="CPostedByUserId" type="hidden" asp-for="PostedByUserId" />
+                        </form>
+                        <div class="row">
+                            <div class="col-sm-7">
+                                    <div class="col-sm mb-3">
+                                        <label class="form-label text-capitalize">Tiêu đề</label>
+                                        <textarea id="title" asp-for="Title" class="form-control"
+                                                  placeholder="Nhập tiêu đề"></textarea>
+                                    </div>
+                                    <div class="mb-3 col-sm">
+                                        <label class="form-label text-capitalize">Chọn danh mục</label>
+                                        <select id="postTypeId" name="PostTypeId" class="form-control" asp-items="ViewBag.PostType"></select>
+                                    </div>
+                                <div class="row">
+                                    <div class="mb-3 col-sm">
+                                        <label class="form-label text-capitalize">Ngày tạo</label>
+                                        <input id="postingDateCreate" asp-for="PostingDateCreate" type="text" class="form-control" disabled placeholder="Nhập ngày tạo bài đăng" />
+                                    </div>
+                                    <div class="mb-3 col-sm">
+                                        <label class="form-label text-capitalize">Ngày cập nhật</label>
+                                        <input id="postingDateUpdate" asp-for="PostingDateUpdate" type="text" class="form-control" disabled placeholder="Nhập ngày cập nhật" />
+                                    </div>
+                                </div>
+                                <div class="mb-3 col-sm">
+                                    <label class="form-label text-none">Ưu tiên hiển thị (giảm dần)</label>
+                                <input id="viewsCount" asp-for="ViewsCount" type="number" class="form-control " placeholder="Nhập số ưu tiên" />
+                                </div>
+                                    <div class="mb-3 col-sm">
+                                        <label class="form-label text-capitalize">Mô tả</label>
+                                        <textarea id="introduce" asp-for="Introduce" class="form-control"
+                                                  placeholder="Nhập mô tả ngắn"></textarea>
+                                    </div>
+
+                            </div>
+
+                            @* Show Image *@
+                            <div class="col-sm-5">
+                                <h5 class="my-4">Hình Ảnh Bài Đăng (1 ảnh)</h5>
+
+                                <div class="pb-3">
+                                    <!-- Thêm ảnh -->
+                                    <button class="btn btn-success" onclick="openFileInput()">Thêm ảnh</button>
+
+                                    <!-- Thẻ input ẩn để chọn file -->
+                                    <input type="file" id="fileInput" style="display:none" accept="image/*" onchange="handleFileSelect(this)">
+
+                                    <button class="btn btn-danger text-white" onclick="deleteImage()">Xóa ảnh</button>
+                                </div>
+                                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                                    <ol class="carousel-indicators">
+                                        <li data-bs-target="#carouselExample" data-bs-slide-to="0" class="active"></li>
+                                    </ol>
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <img class="d-block w-100" src="\adminassets\assets\img\backgrounds\18.jpg" />
+                                            <div class="carousel-caption d-none d-md-block">
+                                                <h3>Thêm ảnh</h3>
+                                                <p>Vui lòng thêm ảnh để hệ thống phục vụ bạn tốt hơn</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselExample" role="button" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselExample" role="button" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row ps-3 pe-3">
+                            <label class="form-label text-none ps-0">Nội dung bài đăng</label>
+                                <textarea id="summernote" name="editordata"></textarea>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <button  id="btnCreate"  class="btn btn-success">Tạo mới</button>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+@section Scripts{
+    <!-- include summernote css/js-->
+    <link href="~/adminassets/assets/summernote/summernote-lite.css" rel="stylesheet" />
+    <script src="~/adminassets/assets/summernote/summernote-lite.js"></script>
+    <script>
+        // Mảng chứa đối tượng ảnh
+        var post = {
+            Id: 0,
+            Title: "",
+            Introduce: "",
+            PostingDateCreate: "",
+            PostingDateUpdate: "",
+            Content: "",
+            Image: "",
+            ViewsCount: 0,
+            PostTypeId: 0,
+            PostedByUserId: 0
+        };
+        function openFileInput() {
+            $("#fileInput").click();
+        }
+
+        // Hàm xóa ảnh
+        function deleteImage() {
+            post.Image = ""; // Xóa ảnh cuối cùng trong mảng
+        }
+        // Hàm cập nhật carousel-indicators
+        function updateIndicators() {
+            var carouselIndicators = $("#carouselExample .carousel-indicators");
+            carouselIndicators.empty(); // Xóa tất cả các chỉ số hiện tại
+
+            // Thêm chỉ số mới vào carouselIndicators
+            var activeClass = "active";
+
+            var indicator =
+                '<li data-bs-target="#carouselExample" data-bs-slide-to="' + 0 + '" class="' + activeClass + '"></li>';
+
+            carouselIndicators.append(indicator);
+        }
+        // Hàm cập nhật cả carousel-indicators và carousel-inner
+        function updateCarousel() {
+            updateIndicators(); // Cập nhật chỉ số trước
+            var carouselInner = $("#carouselExample .carousel-inner");
+            carouselInner.empty(); // Xóa tất cả các ảnh hiện tại
+
+            // Thêm ảnh mới vào carouselInner
+            var image = post.Image;
+            var activeClass = "active";
+
+            var carouselItem =
+                '<div class="carousel-item ' + activeClass + '">' +
+                '<img class="d-block w-100" src="' + image + '" alt="Slide ' + (1) + '">' +
+                '<div class="carousel-caption d-none d-md-block">' +
+                '<p>Hình ảnh ' + (1) + '</p>' +
+                '</div>' +
+                '</div>';
+
+            carouselInner.append(carouselItem);
+        }
+        // Hàm xử lý khi chọn ảnh
+        function handleFileSelect(input) {
+            var file = input.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var imageData = e.target.result;
+                    post.Image = imageData;
+                    updateCarousel();
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        function displayToastrMessages(status, mesg) {
+            let successData = '';
+            let errorData = '';
+            let warningData = '';
+            if (status == 1) {
+                successData = mesg;
+            }
+            else if (status == 2) {
+                warningData = mesg;
+            }
+            else {
+                errorData = mesg;
+            }
+
+
+            if (successData !== '') {
+                toastr.success(successData);
+            }
+            if (errorData !== '') {
+                toastr.error(errorData);
+            }
+            if (warningData !== '') {
+                toastr.warning(warningData);
+            }
+        }
+       
+        // Hàm mở hộp thoại chọn ảnh
+        $(document).ready(function () {
+
+            let currentDate = new Date();
+            var formattedDate = currentDate.toLocaleTimeString() + " " + currentDate.toLocaleDateString();
+            $("#postingDateCreate").val(formattedDate);
+            $("#postingDateUpdate").val (formattedDate);
+
+            $("#summernote").summernote({
+                height: 400,
+            });
+
+            $("#btnCreate").click(function () {
+
+                post.Content = $("#summernote").summernote('code');
+
+                if ($("#title").val().trim().length <= 0) {
+                    displayToastrMessages(2, 'Bạn đang để rỗng tiêu đề');
+                }
+                else if ($("#introduce").val().trim().length <= 0) {
+                    displayToastrMessages(2, 'Bạn đang để rỗng mô tả');
+                }
+                else if ($("#viewsCount").val().trim().length <= 0) {
+                    displayToastrMessages(2, 'Bạn đang để rỗng giá trị ưu tiên');
+                }
+                else if (post.Image.length <= 0) {
+                    displayToastrMessages(2, 'Bạn đang để rỗng hình ảnh');
+                }
+                else if (post.Content.length <= 0) {
+                    displayToastrMessages(2, 'Bạn đang để rỗng nội dung bài đăng');
+                }
+                else {
+                    post.Id = 0;
+                    post.Title = $("#title").val();
+                    post.Introduce = $("#introduce").val();
+                    post.PostingDateCreate = $("#postingDateCreate").val();
+                    post.PostingDateUpdate = $("#postingDateUpdate").val();
+                    post.ViewsCount = $("#viewsCount").val();
+                    post.PostTypeId = $("#postTypeId").val();
+                    post.PostedByUserId = null;
+
+                    $("#Cid").val(post.Id);
+                    $("#CTitle").val(post.Title);
+                    $("#CIntroduce").val(post.Introduce);
+                    $("#CPostingDateCreate").val(post.PostingDateCreate);
+                    $("#CPostingDateUpdate").val(post.PostingDateUpdate);
+                    $("#CContent").val(post.Content);
+                    $("#CImage").val(post.Image);
+                    $("#CViewsCount").val(post.ViewsCount);
+                    $("#CPostTypeId").val(post.PostTypeId);
+                    $("#CPostedByUserId").val(post.PostedByUserId);
+
+                    $("#formCreate").submit();
+                }
+
+            });
+
+        });
+
+
+    </script>
+}
+<!-- / Content -->

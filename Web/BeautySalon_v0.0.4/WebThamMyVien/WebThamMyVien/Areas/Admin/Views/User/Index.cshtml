@@ -1,0 +1,217 @@
+﻿@model IEnumerable<UserDto>
+@{
+    Layout = "_LayoutAdmin";
+    List<int> deletes = new List<int>();
+}
+
+<!-- Content -->
+<div class="container-xxl flex-grow-1 container-p-y">
+
+    <h4 class="align-self-center">DỊCH VỤ</h4>
+    <!-- Button Create / Delete -->
+    <div class="pb-2">
+        <a asp-area="Admin" asp-controller="User" asp-action="Create" class="btn btn-success text-white">
+            Tạo mới
+        </a>
+        <span class="p-1"></span>
+        <button type="button" id="btnXoa" class="btn btn-danger">
+            Xóa
+        </button>
+    </div>
+    <!-- /Button Create / Delete -->
+    <!-- Table User-->
+    <div class="card">
+        <div class="table-responsive p-3">
+            <table id="myTable" class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Tên người dùng</th>
+                        <th>Giới tính</th>
+                        <th>Phân loại</th>
+                        <th>Trạng thái</th> 
+                        <th>CCCD</th>
+                        <th>Lương</th>
+                        <th>Chi nhánh</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--/Table User -->
+
+</div>
+<!-- / Content -->
+@section Scripts {
+    <script>
+        function formatToVND(number) {
+            // Sử dụng hàm replace để chèn dấu chấm vào số tiền
+            var formattedNumber = number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+            // Thêm dấu đồng
+            formattedNumber += ' đ';
+
+            return formattedNumber;
+        }
+        function LoadListing() {
+            $.ajax({
+                type: "POST",
+                url: "/Admin/User/GetALL",
+                datatype: "json",
+                success: function (data) {
+                    // Xóa dữ liệu cũ (nếu có)
+                    $('#myTable').DataTable().clear().destroy();
+                    // Thêm dữ liệu mới
+                    $('#myTable').DataTable({
+                        data: data,
+                        columns: [
+                            {
+                                data: 'Id',
+                                render: function (data, type, row) {
+                                    return '<input data-checkbox-id="' + data + '" type="checkbox" />';
+                                }
+                            },
+                            {
+                                data: 'FullName',
+                                render: function (data, type, row) {
+                                    // Sử dụng `id` để gán giá link to Detail id
+                                    return '<a href="/Admin/User/Detail/' + row.Id + '">' + data + '</a>';
+                                }
+                            },
+                            {
+                                data: 'Gender',
+                                render: function (data, type, row) {
+                                    var h = "";
+                                    if(data == 1){
+                                        h = 'Nam';
+                                    }
+                                    else if(data == 0){
+                                        h = 'Nữ';
+                                    }
+                                    else{
+                                        h = '???';
+                                    }
+                                    // Sử dụng `id` để gán giá link to Detail id
+                                    return h;
+                                }
+                            },
+                            {
+                                data: 'UserTypeId',
+                                render: function (data, type, row) {
+                                    var n = ''; // Khởi tạo n với giá trị rỗng
+                                    var other = ''; // Khởi tạo n với giá trị rỗng
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/Admin/User/GetUserType",
+                                        datatype: "json",
+                                        data: { id: data },
+                                        async: false, // Đặt thành true nếu bạn muốn sử dụng callback hoặc Promise
+                                        success: function (data1) {
+                                            n = data1.Name;
+                                            other = data1.Other;
+                                        }
+                                    });
+                                    return '<p class="d-flex my-auto" title="' + other + '">' + n + '</p>';
+                                }
+                            },
+                            {
+                                data: 'UserStatusId',
+                                render: function (data, type, row) {
+                                    var n = ''; // Khởi tạo n với giá trị rỗng
+                                    var other = ''; // Khởi tạo n với giá trị rỗng
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/Admin/User/GetUserStatus",
+                                        datatype: "json",
+                                        data: { id: data },
+                                        async: false, // Đặt thành true nếu bạn muốn sử dụng callback hoặc Promise
+                                        success: function (data2) {
+                                            n = data2.StatusName;
+                                            other = data2.Other;
+                                        }
+                                    });
+                                    return '<p class="d-flex my-auto" title="' + other + '">' + n + '</p>';
+                                }
+                            },
+                            { data: 'Idcard' },
+                            {
+                                data: 'Salary',
+                                render: function (data, type, row) {
+                                    // Sử dụng `id` để gán giá link to Detail id
+                                    return formatToVND(data);
+                                }
+                            },
+                            {
+                                data: 'BranchId',
+                                render: function (data, type, row) {
+                                    var n = ''; // Khởi tạo n với giá trị rỗng
+                                    var other = ''; // Khởi tạo n với giá trị rỗng
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/Admin/User/GetBranch",
+                                        datatype: "json",
+                                        data: { id: data },
+                                        async: false, // Đặt thành true nếu bạn muốn sử dụng callback hoặc Promise
+                                        success: function (data3) {
+                                            n = data3.Name;
+                                            other = data3.Other;
+                                        }
+                                    });
+                                    return '<p class="d-flex my-auto" title="' + other + '">' + n + '</p>';
+                                }
+                            },
+                        ],
+                    });
+                }
+            });
+        }
+        $(document).ready(function () {
+
+
+
+            LoadListing();
+
+            //"Xóa" hàng loạt
+            $('#btnDelete').click(function () {
+                // Tạo một mảng để lưu trữ ID của các đối tượng được chọn
+                var selectedIds = [];
+                // Lặp qua các checkbox để xác định đối tượng nào được chọn
+                $('input[type="checkbox"]:checked').each(function () {
+                    var checkboxId = $(this).data("checkbox-id");
+                    selectedIds.push(parseInt(checkboxId));
+                });
+                if (selectedIds.length >= 1 && $('#accountActivation').is(':checked')) {
+                    // Gửi danh sách ID được chọn đến action bằng Ajax
+                    $.ajax({
+                        type: "POST",
+                        url: "/Admin/User/Delete",
+                        data: { ids: selectedIds }, // Truyền danh sách ID đến action
+                        success: function (data) {
+                            // Xử lý kết quả nếu cần
+                            // Sau khi xử lý xong, chuyển hướng đến view khác
+                            window.location.href = '/Admin/User/Index';
+                        }
+                    });
+                }
+            });
+
+            // Check xóa
+            $('#btnXoa').click(function () {
+                var selectedIds = [];
+                // Lặp qua các checkbox để xác định đối tượng nào được chọn
+                $('input[type="checkbox"]:checked').each(function () {
+                    var checkboxId = $(this).data("checkbox-id");
+                    selectedIds.push(parseInt(checkboxId));
+                });
+                if (selectedIds.length >= 1) {
+                    $("#DeleteModal").modal("show");
+                }
+            });
+        });
+
+
+    </script>
+}
+

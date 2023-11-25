@@ -33,9 +33,22 @@ namespace APICosmeticClinic.Repository
             return _context.Posts.Where(c => c.IsDelete != true).ToList();
         }
 
+        public ICollection<Post> GetAllPostSkip(int start, int skip)
+        {
+            return _context.Posts.Where(c => c.IsDelete != true).OrderByDescending(x => x.Id)
+    .Skip(start)
+    .Take(skip)
+    .ToList();
+        }
+
         public Post GetPost(int id)
         {
             return _context.Posts.Where(e => e.Id == id && e.IsDelete != true).FirstOrDefault();
+        }
+
+        public ICollection<Post> GetPostByPostType(int id)
+        {
+            return _context.Posts.Where(c => c.IsDelete != true && c.PostTypeId == id).ToList();
         }
 
         public Post GetPostFinal()

@@ -34,6 +34,18 @@ namespace APICosmeticClinic.Controllers
             return Ok(posts);
         }
 
+        [HttpGet("Skip/{start}/{skip}")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Post>))]
+        public IActionResult GetAllPostSkip(int start, int skip)
+        {
+            var posts = _mapper.Map<List<PostDto>>(_postRepository.GetAllPostSkip(start,skip));
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(posts);
+        }
+
         // Get By ID
         [HttpGet("{postIdRepository}")]
         [ProducesResponseType(200, Type = typeof(Post))]
@@ -50,13 +62,29 @@ namespace APICosmeticClinic.Controllers
 
             return Ok(map);
         }
+
+
+
         // Get By ID
         [HttpGet("Final")]
-        [ProducesResponseType(200, Type = typeof(Invoice))]
+        [ProducesResponseType(200, Type = typeof(Post))]
         //[ProducesResponseType(400)]
         public IActionResult GetPost()
         {
-            var map = _mapper.Map<CustomerDto>(_postRepository.GetPostFinal());
+            var map = _mapper.Map<PostDto>(_postRepository.GetPostFinal());
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(map);
+        }
+
+        // Get By ID
+        [HttpGet("ByPostType/{id}")]
+        [ProducesResponseType(200, Type = typeof(Post))]
+        public IActionResult GetPostByPostType(int id)
+        {
+            var map = _mapper.Map<List<PostDto>>(_postRepository.GetPostByPostType(id));
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

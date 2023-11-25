@@ -1,0 +1,907 @@
+﻿@model InvoiceDto
+@{
+    Layout = "_LayoutAdmin";
+}
+        <!-- Content -->
+        <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="container-fluid">
+		<!-- Create Detail Modal -->
+		<div class="modal fade" id="CreateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<!-- modal-xl  Lớn-->
+			<!-- modal-lg  Vừa-->
+			<!-- modal-sm  Nhỏ-->
+			<div class="modal-dialog modal-dialog-scrollable modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">CHI TIẾT HÓA ĐƠN</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body pt-0">
+						<div class="card-body pb-0">
+							<div class="nav-align-top mb-4">
+								<ul class="nav nav-tabs nav-fill" role="tablist">
+									<li class="nav-item">
+										<button type="button"
+												class="nav-link active"
+												role="tab"
+												data-bs-toggle="tab"
+												data-bs-target="#service"
+												aria-controls="service"
+												aria-selected="true">
+											 Dịch vụ
+											<span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger">3</span>
+										</button>
+									</li>
+									<li class="nav-item">
+										<button type="button"
+												class="nav-link"
+												role="tab"
+												data-bs-toggle="tab"
+												data-bs-target="#product"
+												aria-controls="product"
+												aria-selected="false">
+											Sản phẩm
+										</button>
+									</li>
+									<li class="nav-item">
+										<button type="button"
+												class="nav-link"
+												role="tab"
+												data-bs-toggle="tab"
+												data-bs-target="#khac"
+												aria-controls="khac"
+												aria-selected="false">
+											 Khác
+										</button>
+									</li>
+								</ul>
+								<div class="tab-content">
+									 @* Form Dịch Vụ *@
+										<div class="tab-pane fade show active" id="service" role="tabpanel">
+											<h5 class="modal-title">Thêm dịch vụ vào hóa đơn</h5>
+											<div class="row">
+												<div class="mb-3 col-sm">
+													<label class="form-label text-capitalize">Loại dịch vụ</label>
+													<select id="serviceType"  class="form-control" asp-items="ViewBag.serviceType"></select>
+												</div>
+
+												<div class="mb-3 col-sm">
+													<label class="form-label text-none">Dịch vụ</label>
+													<select id="cbbservice" class="form-control"></select>
+												</div>
+											</div>
+											<div class="row">
+												<div class="mb-3 col-sm">
+													<label class="form-label text-capitalize">Giá dịch vụ</label>
+													<input id="cbbprice" type="number" class="form-control " placeholder="Nhập giá dịch vụ" />
+												</div>
+
+												<div class="mb-3 col-sm">
+													<label class="form-label text-none">Khuyến mãi áp dụng</label>
+													<select id="cbbpromotion"  class="form-control" asp-items="ViewBag.promotion"></select>
+												</div>
+											</div>
+											<div class="mb-3 col-sm">
+												<label class="form-label text-capitalize">Số lượng</label>
+												<input id="txtQuantity" type="number" class="form-control " value="1" placeholder="Nhập số lượng" />
+											</div>
+											<div class="pb-2">
+												<button type="reset" class="btn btn-secondary">
+													Nhập lại
+												</button>
+												<span class="p-1"></span>
+												<button id="btnCreateService" type="button" class="btn btn-success text-white">
+													Thêm chi tiết
+												</button>
+
+											</div>
+										</div>
+									@* Form Sản Phẩm *@
+									<div class="tab-pane fade" id="product" role="tabpanel">
+										<h5 class="modal-title">Thêm sản phẩm vào hóa đơn</h5>
+										<div class="row">
+											<div class="mb-3 col-sm">
+												<label class="form-label text-capitalize">Loại sản phẩm</label>
+												<select id="productType" class="form-control" asp-items="ViewBag.productType"></select>
+											</div>
+
+											<div class="mb-3 col-sm">
+												<label class="form-label text-none">Sản phẩm</label>
+												<select id="cbbproduct" class="form-control"></select>
+											</div>
+										</div>
+										<div class="row">
+											<div class="mb-3 col-sm">
+												<label class="form-label text-capitalize">Giá sản phẩm</label>
+												<input id="cbbPriceProduct" type="number" class="form-control " placeholder="Nhập giá sản phẩm" />
+											</div>
+
+											<div class="mb-3 col-sm">
+												<label class="form-label text-none">Khuyến mãi áp dụng</label>
+												<select id="cbbPromotionProduct" class="form-control" asp-items="ViewBag.promotion"></select>
+											</div>
+										</div>
+										<div class="mb-3 col-sm">
+											<label class="form-label text-capitalize">Số lượng</label>
+											<input id="txtQuantityProduct" type="number" class="form-control " value="1" placeholder="Nhập số lượng" />
+										</div>
+										<div class="pb-2">
+											<button type="reset" class="btn btn-secondary">
+												Nhập lại
+											</button>
+											<span class="p-1"></span>
+											<button id="btnCreateProduct" type="button" class="btn btn-success text-white">
+												Thêm chi tiết
+											</button>
+
+										</div>
+									</div>
+									@* Form Khác *@
+									<div class="tab-pane fade" id="khac" role="tabpanel">
+										<h5 class="modal-title">Thêm chi tiết hóa đơn (Khác)</h5>
+										<div class="row">
+											<div class="mb-3 col-sm">
+												<label class="form-label text-none">Tên chi tiết</label>
+												<input id="txtKhac" type="text" class="form-control " placeholder="Nhập tên chi tiết cần thêm vào hóa đơn" />
+											</div>
+											<div class="mb-3 col-sm">
+												<label class="form-label text-capitalize">Giá</label>
+												<input id="txtPriceKhac" type="number" class="form-control " placeholder="Nhập giá" />
+											</div>
+										</div>
+										<div class="row">
+
+											<div class="mb-3 col-sm">
+												<label class="form-label text-capitalize">Số lượng</label>
+												<input id="txtQuantityKhac" type="number" class="form-control " value="1" placeholder="Nhập số lượng" />
+											</div>
+											<div class="mb-3 col-sm">
+												<label class="form-label text-none">Khuyến mãi áp dụng</label>
+												<select id="cbbPromotionKhac" class="form-control" asp-items="ViewBag.promotion"></select>
+											</div>
+										</div>
+										<div class="pb-2">
+											<button type="reset" class="btn btn-secondary">
+												Nhập lại
+											</button>
+											<span class="p-1"></span>
+											<button id="btnCreateKhac" type="button" class="btn btn-success text-white">
+												Thêm chi tiết
+											</button>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!-- /Create Detail Modal -->
+		<!-- Delete Modal -->
+		<div class="modal fade" id="CreateCustomerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<!-- modal-xl  Lớn-->
+			<!-- modal-lg  Vừa-->
+			<!-- modal-sm  Nhỏ-->
+			<div class="modal-dialog modal-dialog-scrollable modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Thông báo</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body pt-0">
+						<div class="card-body pb-0">
+							<div class="col-12 mb-0">
+								<div class="alert alert-warning">
+									<h6 class="alert-heading fw-bold mb-1">Hệ thống phát hiện không tồn tại thông tin khách hàng.</h6>
+									<p class="mb-0">Bạn có muốn tạo mới thông tin khách hàng này không.</p>
+								</div>
+							</div>
+							<form  onsubmit="return false">
+								<div class="form-check pb-2">
+									<input class="form-check-input"
+										   type="checkbox"
+										   name="accountActivation"
+										   id="accountActivation" />
+									<label class="form-check-label" for="accountActivation">Tôi đồng ý</label>
+								</div>
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Quay lại</button>
+								<button type="button" id="btnCreateCustomer" class="btn btn-success deactivate-account">Tạo khách hàng</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Delete Modal -->
+        <div class="d-flex flex-row">
+            <a asp-area="Admin" asp-controller="Invoice" asp-action="Index" class="btn btn-icon rounded-pill btn-secondary mb-3 text-white">
+                <span class="bx bxs-log-out-circle display-3"></span>
+            </a>
+            <h4 class="align-self-center ms-2">THÔNG TIN CHI TIẾT HÓA ĐƠN</h4>
+        </div>
+		<form>
+			<div class="container bootstrap snippets bootdey card p-5">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="row">
+
+							<div class="col-md-6 col-sm-6 text-right">
+								<div class="row ">
+									<div class="w-auto">
+										<img class="w-px-75 h-px-75" src="/AdminAssets/assets/img/trademark/logoHD.png" />
+									</div>
+									<div class="col d-flex align-items-center ps-0">
+										<h4 class="text-start mt-3 "><strong>HD BEAUTY LUXURY</strong></h4>
+									</div>
+								</div>
+
+								<ul class="list-unstyled mt-2">
+									<li><strong>Số điện thoại:</strong> 0123456789</li>
+									<li><strong>Email:</strong> thammyvienhd@gmail.com</li>
+									<li><strong>ID hóa đơn:</strong> DFFG5678901CODE</li>
+									@* cbb nhân viên ở đây *@
+									<div class="mb-3">
+										<label class="form-label text-capitalize" style="font-size: 15px">Nhân viên tạo hóa đơn</label>
+										<input id="txtIdUser" type="number" value="@ViewData["IdUser"]" class="form-control " disabled placeholder="nhập mã  nhân viên" />
+									</div>
+								</ul>
+
+							</div>
+
+							<div class="col-md-6 col-sm-6 text-left mt-4 pt-4">
+								<ul class="list-unstyled mt-2 pt-2">
+									<li>
+										<div class="mb-3">
+											<label class="form-label text-capitalize" style="font-size: 15px">Sô điện thoại khách</label>
+											<input id="txtSDTCustomer" type="number" class="form-control " placeholder="nhập số điện thoại khách hàng" />
+										</div>
+									</li>
+									<input id="txtIdCustomer" value="" type="hidden" />
+									<li>
+										<div class="mb-3">
+											<label class="form-label text-capitalize" style="font-size: 15px">Tên khách hàng</label>
+											<input id="txtFullNameCustomer" type="text" class="form-control " placeholder="nhập tên khách hàng" />
+										</div>
+									</li>
+									<li>
+										<div class="mb-3">
+											<label class="form-label text-capitalize" style="font-size: 15px">Loại hóa đơn</label>
+											<select id="cbbInvoiceTypeId" class="form-control" asp-items="ViewBag.InvoiceType"></select>
+										</div>
+									</li>
+									<li><strong>Ngày tạo:</strong><span id="currentDateTime">dd/mm/yyyy</span></li>
+								</ul>
+							</div>
+						</div>
+						<div class="table-responsive">
+							<div class="pb-2">
+								<button id="btnCreateDetail" type="button" class="btn btn-success text-white">
+									Thêm chi tiết
+								</button>
+								<span class="p-1"></span>
+								<button type="button" id="btnDeleteDetail" class="btn btn-danger">
+									Xóa
+								</button>
+							</div>
+							<table id="myTable" class="table table-condensed nomargin">
+								<thead>
+									<tr>
+										<th>STT</th>
+										<th>Thông tin chi tiết hóa đơn</th>
+										<th>SL</th>
+										<th>Giá</th>
+										<th>Khuyến mãi</th>
+										<th>Tổng giá</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+
+						<hr class="nomargin-top">
+						<div class="row">
+							<div class="row">
+								<div class="col-sm-6 text-left">
+									<div class="mb-3">
+										<label class="form-label text-capitalize" style="font-size: 15px">Ghi chú</label>
+										<textarea id="txtOther" class="form-control"
+												  placeholder="nhập ghi chú"></textarea>
+									</div>
+								</div>
+								<div class="col-sm-6 text-right">
+									<div class="mb-3">
+										<label class="form-label text-capitalize" style="font-size: 15px">Hình thức thanh toán</label>
+										<select id="cbbHinhThucThanhToan" class="form-control ">
+											<option>Tiền mặt</option>
+											<option>Chuyển khoản</option>
+											<option>Ghi nợ</option>
+											<option>Khác</option>
+										</select>
+									</div>
+									<ul class="list-unstyled">
+										<input id="TotalAmount" type="hidden" />
+										<li><strong style="font-size: 20px">Tổng tiền:</strong> <p id="TotalAmountview" style="font-size: 20px"></p></li>
+									</ul>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div>
+						<button form="" id="btnCreateInvoice" class="btn btn-success text-white">TẠO MỚI HÓA ĐƠN</button>
+						<button form="" id="btnPrintInvoice" class="btn btn-primary text-white">PRINT</button>
+					</div>
+				</div>
+		    </div>
+		</form>
+		</div>
+</div>
+
+@section Scripts{
+    <script>
+		// Hàm sẽ được gọi sau 0.5 giây
+		function stopCompilation() {
+			let idInvoidFinal;
+			$.ajax({
+				url: '/Admin/Invoice/GetInvoidFinal', // Đường dẫn tới action Detail
+				type: 'POST', // Phương thức GET hoặc POST tùy vào cách bạn đã thiết lập action
+				async: false,
+				success: function (result) {
+					idInvoidFinal = result;
+				},
+				error: function (error) {
+					alert('Lỗi GetInvoidFinal');
+				}
+			});
+			window.location.href = '/Admin/Invoice/Detail?id=' + idInvoidFinal;
+		}
+		function stopCustomer(invoiceDetailsArray) {
+			let idCustomer;
+			$.ajax({
+				type: "POST",
+				url: "/Admin/Invoice/GetCustomerBySDT",
+				dataType: "json",
+				data: { sdt: $('#txtSDTCustomer').val() },
+				async: false,
+				success: function (dataa) {
+					idCustomer = dataa.Id;
+				}
+			});
+			if (invoiceDetailsArray.length > 0) {
+				let selectedOption = $('#cbbHinhThucThanhToan').find('option:selected');
+				let totalPrice = 0;
+				$.each(invoiceDetailsArray, function (index, item) {
+					totalPrice += item.TotalPrice;
+				});
+				let invoiceTypeId = $('#cbbInvoiceTypeId').val();
+				let invoiceDate = $('#currentDateTime').text();
+				let createdByUserId = $('#txtIdUser').val();
+				let customerId = idCustomer;
+				let paymentMethod = selectedOption.text();
+				let other = $('#txtOther').val();
+				let statusCreateInvoice;
+				let invoice = {
+					Id: 0,
+					InvoiceTypeId: invoiceTypeId,
+					InvoiceDate: invoiceDate,
+					CreatedByUserId: createdByUserId,
+					CustomerId: customerId,
+					PaymentMethod: paymentMethod,
+					TotalAmount: totalPrice,
+					BranchId: null,
+					Other: other
+				};
+				invoiceJSON = JSON.stringify(invoice);
+				invoiceDetailsArrayJSON = JSON.stringify(invoiceDetailsArray);
+
+				$.ajax({
+					url: "/Admin/Invoice/CreateInvoiceDetail",
+					type: 'POST',
+					data: { invoiceDetailsArray: invoiceDetailsArrayJSON, invoice: invoiceJSON },
+					async: false,
+					success: function (result) {
+						statusCreateInvoice = result;
+						// Xử lý kết quả từ Action ở đây (nếu cần)
+					},
+				});
+				if (statusCreateInvoice) {
+					setTimeout(stopCompilation, 500);
+					displayToastrMessages(1, "Tạo hóa đơn thành công");
+
+				}
+				else {
+					displayToastrMessages(2, "Tạo hóa đơn thất bại");
+				}
+			}
+			else {
+				displayToastrMessages(2, "Không thể tạo hóa đơn rỗng");
+			}
+		}
+		
+		$('#btnCreateDetail').click(function () {
+			$("#CreateModal").modal("show");
+			loadCbbServiceType();
+			loadCbbProductType();
+		});
+		function displayToastrMessages(status, mesg) {
+			let successData = '';
+			let errorData = '';
+			let warningData = '';
+			if (status == 1) {
+				successData = mesg;
+			}
+			else if (status == 2) {
+				warningData = mesg;
+			}
+			else {
+				errorData = mesg;
+			}
+
+
+			if (successData !== '') {
+				toastr.success(successData);
+			}
+			if (errorData !== '') {
+				toastr.error(errorData);
+			}
+			if (warningData !== '') {
+				toastr.warning(warningData);
+			}
+		}
+		function updateDateTime() {
+			let currentDate = new Date();
+			let formattedDate = currentDate.toLocaleTimeString() + " " + currentDate.toLocaleDateString();
+			$("#currentDateTime").text(formattedDate);
+		}
+		function formatToVND(number) {
+			// Sử dụng hàm replace để chèn dấu chấm vào số tiền
+			let formattedNumber = number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+			// Thêm dấu đồng
+			formattedNumber += ' đ';
+
+			return formattedNumber;
+		}
+		function loadCbbService() {
+			let selectedValue = $('#cbbservice').val();
+			$.ajax({
+				type: "POST",
+				url: "/Admin/Invoice/GetService",
+				datatype: "json",
+				data: { id: selectedValue },
+				async: false,
+				success: function (service1) {
+					$('#cbbprice').val(service1.Price);
+					$('#cbbpromotion').val(service1.AppliedPromotionId);
+				}
+			});
+		}
+		function loadCbbServiceType() {
+			$('#cbbservice').empty();
+			let selectedValue = $('#serviceType').val();
+			$.ajax({
+				type: "POST",
+				url: "/Admin/Invoice/GetALLServiceByType",
+				datatype: "json",
+				data: { id: selectedValue },
+				async: false, // Đặt thành true nếu bạn muốn sử dụng callback hoặc Promise
+				success: function (service) {
+					$.each(service, function (index, item) {
+						$('#cbbservice').append($('<option>', {
+							value: item.Id, // Sử dụng giá trị và nội dung giống nhau
+							text: item.ServiceName
+						}));
+					});
+				}
+			});
+			loadCbbService();
+		}
+		function loadCbbProduct() {
+			let selectedValue = $('#cbbproduct').val();
+			$.ajax({
+				type: "POST",
+				url: "/Admin/Invoice/GetProduct",
+				datatype: "json",
+				data: { id: selectedValue },
+				async: false,
+				success: function (service1) {
+					$('#cbbPriceProduct').val(service1.SellingPrice);
+					$('#cbbPromotionProduct').val(service1.AppliedPromotionId);
+				}
+			});
+		}
+		function loadCbbProductType() {
+			// Lấy giá trị đã chọn
+			$('#cbbproduct').empty();
+			let selectedValue = $('#productType').val();
+			$.ajax({
+				type: "POST",
+				url: "/Admin/Invoice/GetALLProductByType",
+				datatype: "json",
+				data: { id: selectedValue },
+				async: false, // Đặt thành true nếu bạn muốn sử dụng callback hoặc Promise
+				success: function (service) {
+					$.each(service, function (index, item) {
+						$('#cbbproduct').append($('<option>', {
+							value: item.Id, // Sử dụng giá trị và nội dung giống nhau
+							text: item.ProductName
+						}));
+					});
+				}
+			});
+			loadCbbProduct();
+		}
+		function loadTotalPrice(invoiceDetailsArray) {
+			let totalPrice = 0;
+			$.each(invoiceDetailsArray, function (index, item) {
+				totalPrice += item.TotalPrice;
+			});
+			$("#TotalAmount").val(totalPrice);
+			$("#TotalAmountview").text(formatToVND(totalPrice));
+		}
+
+		
+
+		// Sử dụng setTimeout để gọi hàm stopCompilation sau 0.5 giây
+	
+		// Gọi hàm updateDateTime khi trang web được tải hoặc bất kỳ sự kiện nào khác
+		$(document).ready(function () {
+			// Lưu trữ chi tiết hóa đơn
+			let invoiceDetailsArray = [];
+
+			updateDateTime();
+
+			// Bắt sự kiện khi người dùng thay đổi giá trị trong Dịch vụ
+			$('#serviceType').on('change', function () {
+				// Lấy giá trị đã chọn
+				$('#cbbservice').empty();
+				let selectedValue = $(this).val();
+				$.ajax({
+					type: "POST",
+					url: "/Admin/Invoice/GetALLServiceByType",
+					datatype: "json",
+					data: { id: selectedValue },
+					async: false, // Đặt thành true nếu bạn muốn sử dụng callback hoặc Promise
+					success: function (service) {
+						$.each(service, function (index, item) {
+							$('#cbbservice').append($('<option>', {
+								value: item.Id, // Sử dụng giá trị và nội dung giống nhau
+								text: item.ServiceName
+							}));
+						});
+					}
+				});
+				loadCbbService();
+
+			});
+			$('#cbbservice').on('change', function () {
+				// Lấy giá trị đã chọn GetALLService
+				let selectedValue = $(this).val();
+				$.ajax({
+					type: "POST",
+					url: "/Admin/Invoice/GetService",
+					datatype: "json",
+					data: { id: selectedValue },
+					async: false,
+					success: function (service1) {
+						$('#cbbprice').val(service1.Price);
+						$('#cbbpromotion').val(service1.AppliedPromotionId);
+					}
+				});
+				
+			});
+			$('#txtSDTCustomer').on('input', function () {
+				// Lấy giá trị đã chọn
+				let selectedValue = $(this).val();
+				if (selectedValue.length >= 10) {
+					$.ajax({
+						type: "POST",
+						url: "/Admin/Invoice/GetCustomerBySDT",
+						dataType: "json",
+						data: { sdt: selectedValue },
+						success: function (dataa) {
+							$('#txtIdCustomer').val(dataa.Id);
+							$('#txtFullNameCustomer').val(dataa.FullName);
+						}
+					});
+				}
+			});
+			$('#btnCreateService').on('click', function () {
+
+				// Lấy mục đang được chọn
+				let selectedOption = $('#cbbservice').find('option:selected');
+				let content = selectedOption.text();
+				let price = $('#cbbprice').val();
+				let quantity = $('#txtQuantity').val();
+				let discount = $('#cbbpromotion').val();
+
+				let giamgia;
+				$.ajax({
+					type: "POST",
+					url: "/Admin/Invoice/GetPromotion",
+					dataType: "json",
+					async: false,
+					data: { id: discount },
+					success: function (dataa) {
+						giamgia = dataa.PromotionValue;
+					}
+				});
+				let priceInt = parseInt(price, 10); // Giá trị đã chuyển đổi thành kiểu int
+				let quantityInt = parseInt(quantity, 10); //
+				let tiensaugiamgia = priceInt - ((priceInt * giamgia) / 100);
+
+				let totalPrice = (tiensaugiamgia * quantityInt);
+				let seqNumber = invoiceDetailsArray.length + 1;
+				let invoiceDetail = {
+					Id: 0,
+					SeqNumber: seqNumber,
+					InvoiceId: 0,
+					Content: content,
+					Price: price,
+					Quantity: quantity,
+					Discount: discount,
+					TotalPrice: totalPrice
+				};
+				invoiceDetailsArray.push(invoiceDetail);
+				let table = $('#myTable').DataTable();
+				let newRowData = [
+					seqNumber,
+					content,
+					quantity,
+					price,
+					giamgia + "%",
+					totalPrice
+				];
+				table.row.add(newRowData).draw();
+				loadTotalPrice(invoiceDetailsArray);
+				$("#CreateModal").modal("hide");
+			});
+
+
+			// Bắt sự kiện khi người dùng thay đổi giá trị trong Sản phẩm
+			$('#productType').on('change', function () {
+				// Lấy giá trị đã chọn
+				$('#cbbproduct').empty();
+				let selectedValue = $(this).val();
+				$.ajax({
+					type: "POST",
+					url: "/Admin/Invoice/GetALLProductByType",
+					datatype: "json",
+					data: { id: selectedValue },
+					async: false, // Đặt thành true nếu bạn muốn sử dụng callback hoặc Promise
+					success: function (service) {
+						$.each(service, function (index, item) {
+							$('#cbbproduct').append($('<option>', {
+								value: item.Id, // Sử dụng giá trị và nội dung giống nhau
+								text: item.ProductName
+							}));
+						});
+					}
+				});
+				loadCbbProduct();
+
+			});
+			$('#cbbproduct').on('change', function () {
+				// Lấy giá trị đã chọn GetALLService
+				let selectedValue = $('#cbbproduct').val();
+				$.ajax({
+					type: "POST",
+					url: "/Admin/Invoice/GetProduct",
+					datatype: "json",
+					data: { id: selectedValue },
+					async: false,
+					success: function (service1) {
+						$('#cbbPriceProduct').val(service1.SellingPrice);
+						$('#cbbPromotionProduct').val(service1.AppliedPromotionId);
+					}
+				});
+
+			});
+			$('#btnCreateProduct').on('click', function () {
+
+				// Lấy mục đang được chọn
+				let selectedOption = $('#cbbproduct').find('option:selected');
+				let content = selectedOption.text();
+				let price = $('#cbbPriceProduct').val();
+				let quantity = $('#txtQuantityProduct').val();
+				let discount = $('#cbbPromotionProduct').val();
+
+				let giamgia;
+				$.ajax({
+					type: "POST",
+					url: "/Admin/Invoice/GetPromotion",
+					dataType: "json",
+					async: false,
+					data: { id: discount },
+					success: function (dataa) {
+						giamgia = dataa.PromotionValue;
+					}
+				});
+				let priceInt = parseInt(price, 10); // Giá trị đã chuyển đổi thành kiểu int
+				let quantityInt = parseInt(quantity, 10); //
+				let tiensaugiamgia = priceInt - ((priceInt * giamgia) / 100);
+
+				let totalPrice = (tiensaugiamgia * quantityInt);
+				let seqNumber = invoiceDetailsArray.length + 1;
+				let invoiceDetail = {
+					Id: 0,
+					SeqNumber: seqNumber,
+					InvoiceId: 0,
+					Content: content,
+					Price: price,
+					Quantity: quantity,
+					Discount: discount,
+					TotalPrice: totalPrice
+				};
+				invoiceDetailsArray.push(invoiceDetail);
+				let table = $('#myTable').DataTable();
+				let newRowData = [
+					seqNumber,
+					content,
+					quantity,
+					price,
+					giamgia + "%",
+					totalPrice
+				];
+				table.row.add(newRowData).draw();
+				loadTotalPrice(invoiceDetailsArray);
+				$("#CreateModal").modal("hide");
+			});
+			$('#btnCreateKhac').on('click', function () {
+
+				// Lấy mục đang được chọn
+				let content = $('#txtKhac').val();
+				let price = $('#txtPriceKhac').val();
+				let quantity = $('#txtQuantityKhac').val();
+				let discount = $('#cbbPromotionKhac').val();
+
+				let giamgia;
+				$.ajax({
+					type: "POST",
+					url: "/Admin/Invoice/GetPromotion",
+					dataType: "json",
+					async: false,
+					data: { id: discount },
+					success: function (dataa) {
+						giamgia = dataa.PromotionValue;
+					}
+				});
+				let priceInt = parseInt(price, 10); // Giá trị đã chuyển đổi thành kiểu int
+				let quantityInt = parseInt(quantity, 10); //
+				let tiensaugiamgia = priceInt - ((priceInt * giamgia) / 100);
+
+				let totalPrice = (tiensaugiamgia * quantityInt);
+				let seqNumber = invoiceDetailsArray.length + 1;
+				let invoiceDetail = {
+					Id: 0,
+					SeqNumber: seqNumber,
+					InvoiceId: 0,
+					Content: content,
+					Price: price,
+					Quantity: quantity,
+					Discount: discount,
+					TotalPrice: totalPrice
+				};
+				invoiceDetailsArray.push(invoiceDetail);
+				let table = $('#myTable').DataTable();
+				let newRowData = [
+					seqNumber,
+					content,
+					quantity,
+					price,
+					giamgia + "%",
+					totalPrice
+				];
+				table.row.add(newRowData).draw();
+				loadTotalPrice(invoiceDetailsArray);
+				$("#CreateModal").modal("hide");
+			});
+
+			$('#btnCreateInvoice').on('click', function () {
+				let status = false; 
+				if (invoiceDetailsArray.length > 0) {
+					let selectedOption = $('#cbbHinhThucThanhToan').find('option:selected');
+					let totalPrice = 0;
+					$.each(invoiceDetailsArray, function (index, item) {
+						totalPrice += item.TotalPrice;
+					});
+					let invoiceTypeId = $('#cbbInvoiceTypeId').val();
+					let invoiceDate = $('#currentDateTime').text();
+					let createdByUserId = $('#txtIdUser').val();
+					let customerId = $('#txtIdCustomer').val();
+					let paymentMethod = selectedOption.text();
+					let other = $('#txtOther').val();
+					if (createdByUserId.length == 0) {
+						displayToastrMessages(2, "Vui lòng nhập thông tin người tạo hóa đơn");
+						return;
+					}
+					else if (customerId.length == 0) {
+						$("#CreateCustomerModal").modal("show");
+						return;
+					}
+					else{
+						let invoice = {
+							Id: 0,
+							InvoiceTypeId: invoiceTypeId,
+							InvoiceDate: invoiceDate,
+							CreatedByUserId: createdByUserId,
+							CustomerId: customerId,
+							PaymentMethod: paymentMethod,
+							TotalAmount: totalPrice,
+							BranchId: null,
+							Other: other
+						};
+						invoiceJSON = JSON.stringify(invoice);
+						invoiceDetailsArrayJSON = JSON.stringify(invoiceDetailsArray);
+						$.ajax({
+							url: "/Admin/Invoice/CreateInvoiceDetail",
+							type: 'POST',
+							data: { invoiceDetailsArray: invoiceDetailsArrayJSON, invoice: invoiceJSON },
+							success: function (result) {
+							     
+								// Xử lý kết quả từ Action ở đây (nếu cần)
+							},
+							error: function (error) {
+								// Xử lý lỗi ở đây (nếu có)
+							}
+						});
+						status = true;
+						
+
+					}
+					
+				}
+				else {
+					displayToastrMessages(2, "Không thể tạo hóa đơn rỗng");
+				}
+				if(status == true){
+					setTimeout(stopCompilation, 500);
+				}
+			});
+
+			$('#btnCreateCustomer').click(function () {
+				$("#CreateCustomerModal").modal("hide");
+				var customer = {
+					Id: 0, // Giá trị của Id
+					FullName: $('#txtFullNameCustomer').val(), // Giá trị của FullName
+					Birthdate: "00/00/0000", // Giá trị của Birthdate
+					PhoneNumber: $('#txtSDTCustomer').val(), // Giá trị của PhoneNumber
+					Idcard: "0123456789", // Giá trị của Idcard
+					FacebookLink: "chưa cập nhật", // Giá trị của FacebookLink
+					ZaloLink: "chưa cập nhật", // Giá trị của ZaloLink
+					Email: "chưa cập nhật", // Giá trị của Email
+					Gender: "0", // Giá trị của Gender
+					Address: "chưa cập nhật", // Giá trị của Address
+					InterestedServices: "chưa cập nhật", // Giá trị của InterestedServices
+					CustomerStatusId: 1, // Giá trị của CustomerStatusId
+					CustomerTypeId: 1, // Giá trị của CustomerTypeId
+					Other: "chưa cập nhật" // Giá trị của Other
+				};
+				customerJSON = JSON.stringify(customer);
+				let statusCreateCustomer = false;
+				$.ajax({
+					url: "/Admin/Invoice/CreateCustomer",
+					type: 'POST',
+					async: false,
+					data: { customer: customerJSON },
+					success: function (result) {
+						statusCreateCustomer = result;
+					},
+				});
+				if (statusCreateCustomer) {
+					setTimeout(stopCustomer(invoiceDetailsArray), 400);
+				}
+				else {
+					displayToastrMessages(2, "Không thể tự động tạo khách hàng");
+				}
+
+
+			});
+		});
+    </script>
+}
+<!-- / Content -->

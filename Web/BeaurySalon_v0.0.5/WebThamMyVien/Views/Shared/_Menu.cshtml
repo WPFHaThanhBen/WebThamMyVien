@@ -1,0 +1,153 @@
+﻿    <!-- Navbar Start -->
+@if (TempData["menuDefault"] != null){
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top py-lg-0 px-lg-5 wow fadeIn" style="background: purple" data-wow-delay="0.1s">
+    <a href="#" class="navbar-brand ms-3 d-lg-none">MENU</a>
+    <button type="button" class="navbar-toggler me-3" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav me-auto p-3 p-lg-0">
+                @if (TempData["menuDefault"] == "TrangChu")
+                {
+                    <a href="contact.html" class="nav-item nav-link active">Trang chủ</a>
+                }
+                else
+                {
+                    <a href="contact.html" class="nav-item nav-link">Trang chủ</a>
+                }
+
+                @if (TempData["menuDefault"] == "DichVu")
+                {
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Dịch vụ</a>
+                        <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
+                            <a href="feature.html" class="dropdown-item">Features</a>
+                            <a href="team.html" class="dropdown-item">Our Team</a>
+                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                            <a href="404.html" class="dropdown-item">404 Page</a>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Dịch vụ</a>
+                        <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
+                            <a href="feature.html" class="dropdown-item">Features</a>
+                            <a href="team.html" class="dropdown-item">Our Team</a>
+                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                            <a href="404.html" class="dropdown-item">404 Page</a>
+                        </div>
+                    </div>
+                }
+
+                @if (TempData["menuDefault"] == "MyPham")
+                {
+
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Mỹ phẩm</a>
+                        <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
+                            <a href="feature.html" class="dropdown-item">Features</a>
+                            <a href="team.html" class="dropdown-item">Our Team</a>
+                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                            <a href="404.html" class="dropdown-item">404 Page</a>
+                        </div>
+                    </div>
+                }
+                else
+                {
+
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Mỹ phẩm</a>
+                        <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
+                            <a href="feature.html" class="dropdown-item">Features</a>
+                            <a href="team.html" class="dropdown-item">Our Team</a>
+                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                            <a href="404.html" class="dropdown-item">404 Page</a>
+                        </div>
+                    </div>
+                }
+
+                @if (TempData["menuDefault"] == "BaiViet")
+                {
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Bài viết</a>
+                        <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
+                            <a href="feature.html" class="dropdown-item">Features</a>
+                            <a href="team.html" class="dropdown-item">Our Team</a>
+                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                            <a href="404.html" class="dropdown-item">404 Page</a>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Bài viết</a>
+                        <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
+                            <a href="feature.html" class="dropdown-item">Features</a>
+                            <a href="team.html" class="dropdown-item">Our Team</a>
+                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                            <a href="404.html" class="dropdown-item">404 Page</a>
+                        </div>
+                    </div>
+                }
+
+                @if (TempData["menuDefault"] == "HoiDap")
+                {
+                    <div class="nav-item dropdown ">
+                        <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Hỏi đáp</a>
+                        <div bg-danger class="dropdown-menu border-0 rounded-0 rounded-bottom m-0" style="width:auto">
+                            <table class="table">
+                                <tr>
+                                    <td><a href="feature.html" class="dropdown-item">Featur esqưeqwqư eqweqweeq</a></td>
+                                    <td><a href="team.html" class="dropdown-item">Our Team</a></td>
+                                    <td><a href="testimonial.html" class="dropdown-item">Testimonial</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="404.html" class="dropdown-item">404 Page</a></td>
+                                    <td><a href="404.html" class="dropdown-item">404 Page</a></td>
+                                    <td><a href="404.html" class="dropdown-item">404 Page</a></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="nav-item dropdown ">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Hỏi đáp</a>
+                        <div bg-danger class="dropdown-menu border-0 rounded-0 rounded-bottom m-0" style="width:auto">
+                            <table class="table">
+                                <tr>
+                                    <td><a href="feature.html" class="dropdown-item">Featur esqưeqwqư eqweqweeq</a></td>
+                                    <td><a href="team.html" class="dropdown-item">Our Team</a></td>
+                                    <td><a href="testimonial.html" class="dropdown-item">Testimonial</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="404.html" class="dropdown-item">404 Page</a></td>
+                                    <td><a href="404.html" class="dropdown-item">404 Page</a></td>
+                                    <td><a href="404.html" class="dropdown-item">404 Page</a></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                }
+
+                @if (TempData["menuDefault"] == "Khac")
+                {
+                    <a href="contact.html" class="nav-item nav-link active">Khác</a>
+                }
+                else
+                {
+                    <a href="contact.html" class="nav-item nav-link">Khác</a>
+                }
+            
+
+        </div>
+        <a href="#" class="btn btn-sm btn-light rounded-pill py-2 px-4 d-none d-lg-block">Liên hệ</a>
+    </div>
+</nav>
+}
+
+<!-- Navbar End -->

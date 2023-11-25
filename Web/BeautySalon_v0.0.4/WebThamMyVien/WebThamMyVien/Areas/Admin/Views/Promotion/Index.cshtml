@@ -1,0 +1,126 @@
+﻿@model IEnumerable<PromotionDto>
+@{
+    Layout = "_LayoutAdmin";
+    List<int> deletes = new List<int>();
+}
+
+<!-- Content -->
+<div class="container-xxl flex-grow-1 container-p-y">
+
+    <h4 class="align-self-center">LOẠI SẢN PHẨM</h4>
+    <!-- Button Create / Delete -->
+    <div class="pb-2">
+        <a asp-area="Admin" asp-controller="Promotion" asp-action="Create" class="btn btn-success text-white">
+            Tạo mới
+        </a>
+        <span class="p-1"></span>
+        <button type="button" id="btnXoa" class="btn btn-danger">
+            Xóa
+        </button>
+    </div>
+    <!-- /Button Create / Delete -->
+    <!-- Table Promotion-->
+    <div class="card">
+        <div class="table-responsive p-3">
+            <table id="myTable" class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Tên khuyến mãi</th>
+                        <th>Giảm(%)</th>
+                        <th>Hết hạn</th>
+                        <th>Ghi chú Khuyến mãi</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--/Table Promotion -->
+
+</div>
+<!-- / Content -->
+@section Scripts {
+    <script>
+
+        function LoadListing() {
+            $.ajax({
+                type: "POST",
+                url: "/Admin/Promotion/GetALL",
+                datatype: "json",
+                success: function (data) {
+                    // Xóa dữ liệu cũ (nếu có)
+                    $('#myTable').DataTable().clear().destroy();
+                    // Thêm dữ liệu mới
+                    $('#myTable').DataTable({
+                        data: data,
+                        columns: [
+                            {
+                                data: 'Id',
+                                render: function (data, type, row) {
+                                    return '<input data-checkbox-id="' + data + '" type="checkbox" />';
+                                }
+                            },
+                            {
+                                data: 'PromotionName',
+                                render: function (data, type, row) {
+                                    // Sử dụng `id` để gán giá link to Detail id
+                                    return '<a href="/Admin/Promotion/Detail/' + row.Id + '">' + data + '</a>';
+                                }
+                            },
+                            { data: 'PromotionValue' },
+                            { data: 'PromotionTime' },
+                            { data: 'Other' }
+                        ],
+                    });
+                }
+            });
+        }
+
+        $(document).ready(function () {
+
+            LoadListing();
+
+            //"Xóa" hàng loạt
+            $('#btnDelete').click(function () {
+                // Tạo một mảng để lưu trữ ID của các đối tượng được chọn
+                var selectedIds = [];
+                // Lặp qua các checkbox để xác định đối tượng nào được chọn
+                $('input[type="checkbox"]:checked').each(function () {
+                    var checkboxId = $(this).data("checkbox-id");
+                    selectedIds.push(parseInt(checkboxId));
+                });
+                if (selectedIds.length >= 1 && $('#accountActivation').is(':checked')) {
+                    // Gửi danh sách ID được chọn đến action bằng Ajax
+                    $.ajax({
+                        type: "POST",
+                        url: "/Admin/Promotion/Delete",
+                        data: { ids: selectedIds }, // Truyền danh sách ID đến action
+                        success: function (data) {
+                            // Xử lý kết quả nếu cần
+                            // Sau khi xử lý xong, chuyển hướng đến view khác
+                            window.location.href = '/Admin/Promotion/Index';
+                        }
+                    });
+                }
+            });
+
+            // Check xóa
+            $('#btnXoa').click(function () {
+                var selectedIds = [];
+                // Lặp qua các checkbox để xác định đối tượng nào được chọn
+                $('input[type="checkbox"]:checked').each(function () {
+                    var checkboxId = $(this).data("checkbox-id");
+                    selectedIds.push(parseInt(checkboxId));
+                });
+                if (selectedIds.length >= 1) {
+                    $("#DeleteModal").modal("show");
+                }
+            });
+        });
+
+
+    </script>
+}
+

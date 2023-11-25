@@ -64,5 +64,15 @@ namespace APICosmeticClinic.Repository
             _context.Update(customer);
             return Save();
         }
+
+        public ICollection<Customer> GetAllCustomerSkip(int start, int skip)
+        {
+            return _context.Customers.Where(c => c.IsDelete != true).OrderByDescending(x => x.Id)
+    .Skip(start)
+    .Take(skip)
+    .ToList(); ;
+
+            
+        }
     }
 }
