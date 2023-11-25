@@ -5,6 +5,7 @@ namespace WebThamMyVien.Interfaces
     public interface ICustomerRepository
     {
         Task<ICollection<CustomerDto>> GetAllCustomer();
+        Task<ICollection<CustomerDto>> GetAllCustomerSkip(int start, int skip);
         Task<CustomerDto> GetCustomer(int id);
 		Task<CustomerDto> GetCustomerFinal();
 		Task<CustomerDto> GetCustomerBySDT(string sdt);

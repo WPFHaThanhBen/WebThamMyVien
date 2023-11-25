@@ -126,6 +126,7 @@ namespace WebThamMyVien.Repository
             }
         }
 
+
         public async Task<CustomerDto> GetCustomerBySDT(string sdt)
         {
             var apiUrl = $"{_apiUrl}/api/Customer/CustomerBySDT/{sdt}"; // Điền đường dẫn API tại đây
@@ -160,5 +161,23 @@ namespace WebThamMyVien.Repository
 				return null; // Trả về null nếu yêu cầu không thành công
 			}
 		}
-	}
+
+        public async Task<ICollection<CustomerDto>> GetAllCustomerSkip(int start, int skip)
+        {
+            var apiUrl = $"{_apiUrl}/api/Customer/Skip/{start}/{skip}"; // Điền đường dẫn API tại đây
+
+            var response = await _httpClient.GetAsync(apiUrl);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<ICollection<CustomerDto>>(content);
+                return values; // Trả về danh sách
+            }
+            else
+            {
+                return null; // Trả về null nếu yêu cầu không thành công
+            }
+        }
+    }
 }

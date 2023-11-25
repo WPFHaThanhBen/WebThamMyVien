@@ -5,6 +5,7 @@ namespace WebThamMyVien.Interfaces
     public interface IProductRepository
     {
         Task<ICollection<ProductDto>> GetAllProduct();
+        Task<ICollection<ProductDto>> GetAllProductSkip(int start, int skip);
         Task<ICollection<ProductDto>> GetAllProductByType(int id);
         Task<ProductDto> GetProduct(int id);
         Task<ProductDto> GetProductFinal();
