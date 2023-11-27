@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "YAWi5gvbNDOg+X7zEJDTPjzfvhYqRWkcj+zadqikbbM=",
+  "Hash": "zslU975p9AUBoTxfMytDGw39EKpE7WK4MhXiQe9SuzM=",
   "Source": "WebThamMyVien",
   "BasePath": "_content/WebThamMyVien",
   "Mode": "Default",
@@ -6137,6 +6137,23 @@
       "OriginalItemSpec": "wwwroot\\DefaultAssets\\img\\feature.jpg"
     },
     {
+      "Identity": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\Web\\WebThamMyVien\\WebThamMyVien\\wwwroot\\DefaultAssets\\img\\imagedemo03.jpg",
+      "SourceId": "WebThamMyVien",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\Web\\WebThamMyVien\\WebThamMyVien\\wwwroot\\",
+      "BasePath": "_content/WebThamMyVien",
+      "RelativePath": "DefaultAssets/img/imagedemo03.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\DefaultAssets\\img\\imagedemo03.jpg"
+    },
+    {
       "Identity": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\Web\\WebThamMyVien\\WebThamMyVien\\wwwroot\\DefaultAssets\\img\\project-1.jpg",
       "SourceId": "WebThamMyVien",
       "SourceType": "Discovered",
@@ -6968,6 +6985,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\DefaultAssets\\lib\\owlcarousel\\owl.carousel.min.js"
+    },
+    {
+      "Identity": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\Web\\WebThamMyVien\\WebThamMyVien\\wwwroot\\DefaultAssets\\lib\\productstyle\\product.css",
+      "SourceId": "WebThamMyVien",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\Web\\WebThamMyVien\\WebThamMyVien\\wwwroot\\",
+      "BasePath": "_content/WebThamMyVien",
+      "RelativePath": "DefaultAssets/lib/productstyle/product.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\DefaultAssets\\lib\\productstyle\\product.css"
+    },
+    {
+      "Identity": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\Web\\WebThamMyVien\\WebThamMyVien\\wwwroot\\DefaultAssets\\lib\\productstyle\\product.min.css",
+      "SourceId": "WebThamMyVien",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\Web\\WebThamMyVien\\WebThamMyVien\\wwwroot\\",
+      "BasePath": "_content/WebThamMyVien",
+      "RelativePath": "DefaultAssets/lib/productstyle/product.min.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\DefaultAssets\\lib\\productstyle\\product.min.css"
     },
     {
       "Identity": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\Web\\WebThamMyVien\\WebThamMyVien\\wwwroot\\DefaultAssets\\lib\\waypoints\\links.php",

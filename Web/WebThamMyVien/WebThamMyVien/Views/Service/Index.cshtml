@@ -15,38 +15,18 @@
         <div class="row g-4">
             @foreach (var item in Model.ListPost1)
             {
-                if (chanle % 2 == 0)
-                {
                     var delay = timeDelay + 's';
                     timeDelay += 0.1;
                     <div class="wow fadeInUp row mt-3" data-wow-delay="@delay">
                         <div class="col-lg-3 col-md-4 mb-4">
                             <img class="img-fluid rounded w-100" src="@item.Image" alt="">
                         </div>
-                        <a class="col-lg-9 col-md-9 service-item d-flex flex-column rounded text-center h-100 p-4 pb-0" asp-controller="Post" asp-action="Index" asp-route-id="@item.Id" asp-route-menu="DichVu">
+                        <a class="col-lg-9 col-md-9 service-item d-flex flex-column rounded text-center  p-4 pb-0" asp-controller="Post" asp-action="Index" asp-route-id="@item.Id" asp-route-menu="DichVu">
                             <h4 class="mb-0 text-start pb-3">@item.Title</h4>
                             <p class="text-start text-dark">@item.Introduce</p>
                             <p class="mt-auto text-end text-secondary">Cập nhật: @item.PostingDateUpdate</p>
                         </a>
                     </div>
-                }
-                else
-                {
-                    var delay = timeDelay + 's';
-                    timeDelay += 0.1;
-                    <div class="wow fadeInUp row mt-3" data-wow-delay="@delay">
-                        <a class="col-lg-9 col-md-9 service-item d-flex flex-column rounded text-center h-100 p-4 pb-0" asp-controller="Post" asp-action="Index" asp-route-id="@item.Id" asp-route-menu="DichVu">
-                            <h4 class="mb-0 text-end pb-3">@item.Title</h4>
-                            <p class="text-start text-dark">@item.Introduce</p>
-                            <p class="mt-auto text-start text-secondary">Cập nhật: @item.PostingDateUpdate</p>
-                        </a>
-                        <div class="col-lg-3 col-md-4 mb-4">
-                            <img class="img-fluid rounded w-100" src="@item.Image" alt="">
-                        </div>
-
-                    </div>
-                }
-                chanle += 1;
             }
         </div>
     </div>

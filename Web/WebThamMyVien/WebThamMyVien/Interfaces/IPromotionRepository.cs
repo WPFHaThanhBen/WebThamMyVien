@@ -9,5 +9,5 @@ namespace WebThamMyVien.Interfaces
         Task<bool> CreatePromotion(PromotionDto promotion);
         Task<bool> UpdatePromotion(PromotionDto promotion);
         Task<bool> DeletePromotion(PromotionDto promotion);
-	}
+    }
 }

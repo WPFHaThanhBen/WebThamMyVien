@@ -1433,6 +1433,10 @@
       "PackagePath": "staticwebassets\\DefaultAssets\\img\\feature.jpg"
     },
     {
+      "Id": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\Web\\WebThamMyVien\\WebThamMyVien\\wwwroot\\DefaultAssets\\img\\imagedemo03.jpg",
+      "PackagePath": "staticwebassets\\DefaultAssets\\img\\imagedemo03.jpg"
+    },
+    {
       "Id": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\Web\\WebThamMyVien\\WebThamMyVien\\wwwroot\\DefaultAssets\\img\\project-1.jpg",
       "PackagePath": "staticwebassets\\DefaultAssets\\img\\project-1.jpg"
     },
@@ -1627,6 +1631,14 @@
     {
       "Id": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\Web\\WebThamMyVien\\WebThamMyVien\\wwwroot\\DefaultAssets\\lib\\owlcarousel\\owl.carousel.min.js",
       "PackagePath": "staticwebassets\\DefaultAssets\\lib\\owlcarousel\\owl.carousel.min.js"
+    },
+    {
+      "Id": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\Web\\WebThamMyVien\\WebThamMyVien\\wwwroot\\DefaultAssets\\lib\\productstyle\\product.css",
+      "PackagePath": "staticwebassets\\DefaultAssets\\lib\\productstyle\\product.css"
+    },
+    {
+      "Id": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\Web\\WebThamMyVien\\WebThamMyVien\\wwwroot\\DefaultAssets\\lib\\productstyle\\product.min.css",
+      "PackagePath": "staticwebassets\\DefaultAssets\\lib\\productstyle\\product.min.css"
     },
     {
       "Id": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\Web\\WebThamMyVien\\WebThamMyVien\\wwwroot\\DefaultAssets\\lib\\waypoints\\links.php",

@@ -1,0 +1,184 @@
+﻿@using System.Globalization;
+
+@{
+    int TinhTienKhuyenMai(int gia, int khuyenmai)
+    {
+        double a = (double)khuyenmai;
+        double b = (double)gia;
+        // Tính tiền sau khuyến mãi
+        double tienSauKhuyenMai = b * (1 - a / 100);
+        return (int)tienSauKhuyenMai;
+    }
+    string ConvertToCurrencyFormat(int amount)
+    {
+        // Sử dụng CultureInfo để định dạng số theo quy tắc của ngôn ngữ hiện tại
+        CultureInfo culture = CultureInfo.CurrentCulture;
+
+        // Chuyển đổi số thành chuỗi định dạng tiền tệ
+        string formattedAmount = string.Format(culture, "{0:N0}", amount);
+
+        // Thêm ký tự "đ" hoặc "₫" (đồng) vào cuối chuỗi
+        formattedAmount += "đ";
+
+        return formattedAmount;
+    }
+}
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h6 class="section-title bg-white text-center px-3 " style="color:purple">Mỹ Phẩm</h6>
+        </div>
+        <div class="container-fluid mt-5 mb-5">
+            <div class="row g-2">
+                <!-- Sidebar -->
+                <div class="col-md-3">
+                    <div class="t-products p-2">
+                        <h6 class="text-uppercase text-white pt-1">Lọc Mỹ Phẩm</h6>
+                        <div class="p-lists">
+                            <!-- Danh sách các sản phẩm -->
+                        </div>
+                    </div>
+
+                    <!-- Danh sách Processor -->
+                    <div class="processor p-2">
+                        <!-- Tiêu đề Processor -->
+                        <div class="heading d-flex justify-content-between align-items-center">
+                            <h6 class="text-uppercase">Phân Loại</h6>
+                            <span>--</span>
+                        </div>
+
+                        <!-- Danh sách các Processor -->
+                        @foreach (var item in Model.ListProductType)
+                        {
+                            <div class="d-flex justify-content-between mt-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox"
+                                           id="checkbox_@item.ProductType.Id"
+                                           name="selectedProductTypes"
+                                           value="@item.ProductType.Id"
+                                    >
+                                         
+                                    <label class="form-check-label" for="checkbox_@item.ProductType.Id">@item.ProductType.ProductTypeName</label>
+                                </div>
+                                <span>@item.Quantity</span>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <!-- Main Content -->
+                <div class="col-md-9">
+                    <div class="row g-2">
+                        <!-- Danh sách sản phẩm -->
+                        @foreach (var item in Model.ListProductView)
+                        {
+                            <div class="col-md-4 " >
+                                <div class="product py-4">
+                                <!-- Mức giảm giá hoặc SALE -->
+                                    <span class="off bg-success">@item.Promotion%</span>
+                                    <a asp-action="Detail" asp-route-id="@item.Product.Id">
+                                        <div class="text-center">
+                                            <!-- Hình ảnh sản phẩm -->
+                                            <img class="rounded-1" src="@item.Images[0].Image" width="90%" height="220px">
+                                        </div>
+                                        <div class="about text-center">
+                                            <!-- Thông tin sản phẩm -->
+                                            <h6>@item.Product.ProductName</h6>
+                                            <span class="" style="font-size:18px; font-weight:bold; color:red">@ConvertToCurrencyFormat(TinhTienKhuyenMai((int)item.Product.SellingPrice,item.Promotion))</span>
+                                            <span class="ms-1 text-secondary text-decoration-line-through" style="font-size:14px">@ConvertToCurrencyFormat((int)item.Product.SellingPrice)</span>
+                                        </div>
+                                    </a>
+                                        
+                                <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">
+                                    <!-- Nút thêm vào giỏ hàng -->
+                                    <button class="btn btn-primary text-uppercase" style="border: 0">Add to cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- / Content -->
+@section Scripts {
+    <link href="~/DefaultAssets/lib/productstyle/product.min.css" rel="stylesheet" />
+    <link href="~/DefaultAssets/lib/productstyle/product.css" rel="stylesheet" />
+    <script>
+        function LoadListing() {
+            $.ajax({
+                type: "POST",
+                url: "/Admin/Post/GetALL",
+                datatype: "json",
+                success: function (data) {
+                    // Xóa dữ liệu cũ (nếu có)
+                    $('#myTable').DataTable().clear().destroy();
+                    // Thêm dữ liệu mới
+                    $('#myTable').DataTable({
+                        data: data,
+                        columns: [
+                            {
+                                data: 'Id',
+                                render: function (data, type, row) {
+                                    return '<input data-checkbox-id="' + data + '" type="checkbox" />';
+                                }
+                            },
+                            {
+                                data: 'Title',
+                                render: function (data, type, row) {
+                                    // Sử dụng `id` để gán giá link to Detail id
+                                    return '<a href="/Admin/Post/Detail/' + row.Id + '">' + data + '</a>';
+                                }
+                            },
+                            { data: 'ViewsCount' },
+                            {
+                                data: 'PostTypeId',
+                                render: function (data, type, row) {
+                                    var n = ''; // Khởi tạo n với giá trị rỗng
+                                    var other = ''; // Khởi tạo n với giá trị rỗng
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/Admin/Post/GetPostType",
+                                        datatype: "json",
+                                        data: { id: data },
+                                        async: false, // Đặt thành true nếu bạn muốn sử dụng callback hoặc Promise
+                                        success: function (data1) {
+                                            n = data1.TypeName;
+                                            other = data1.Other;
+                                        }
+                                    });
+                                    return '<p class="d-flex my-auto" title="' + other + '">' + n + '</p>';
+                                }
+                            },
+                        ],
+                    });
+                }
+            });
+        }
+        $(document).ready(function () {
+            // Mảng để lưu trữ giá trị của các checkbox đã được chọn
+            var selectedValues = [];
+
+            // Lắng nghe sự kiện thay đổi của checkbox
+            $('input[name="selectedProductTypes"]').change(function () {
+                // Xóa tất cả các phần tử khỏi mảng
+                selectedValues = [];
+
+                // Lặp qua tất cả các checkbox đã được chọn và thêm giá trị vào mảng
+                $('input[name="selectedProductTypes"]:checked').each(function () {
+                    selectedValues.push(parseInt($(this).val()));
+                });
+
+                // Sử dụng ajax để load lại mỹ phẩm
+                alert(selectedValues);
+            });
+
+        });
+
+
+    </script>
+}
