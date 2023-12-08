@@ -38,6 +38,11 @@ namespace APICosmeticClinic.Repository
             return _context.ShoppingCarts.Where(e => e.Id == id && e.IsDelete != true).FirstOrDefault();
         }
 
+        public ShoppingCart GetShoppingCartByAccountId(int id)
+        {
+            return _context.ShoppingCarts.Where(e => e.UserAccountId == id && e.IsDelete != true).FirstOrDefault();
+        }
+
         public bool Save()
         {
             var saved = _context.SaveChanges();

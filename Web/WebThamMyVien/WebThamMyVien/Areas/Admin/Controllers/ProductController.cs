@@ -60,7 +60,7 @@ namespace WebThamMyVien.Areas.Admin.Controllers
                     }
                     await _unitOfWork.Action.CreateAction(IdUser, 1, "Thêm mới dữ liệu Sản Phẩm {" + _productDto.ProductName + "}");
                     TempData["success"] = "Thêm mới thông tin thành công";
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", new { area = "Admin", controller = "Product" });
                 }
                 // Add status is error
                 else
@@ -123,7 +123,7 @@ namespace WebThamMyVien.Areas.Admin.Controllers
                     await _unitOfWork.Action.CreateAction(IdUser, 2, "Thay đổi dữ liệu Sản Phẩm {" + _productDto.ProductName + "}");
                     //Trở về Index và thông báo thành công
                     TempData["success"] = "Cập nhật thông tin thành công";
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", new { area = "Admin", controller = "Product" });
                 }
                 // Update status is error
                 else
@@ -168,7 +168,7 @@ namespace WebThamMyVien.Areas.Admin.Controllers
             {
                 TempData["success"] = "Xóa thông tin thành công";
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { area = "Admin", controller = "Product" });
         }
 
         [Area("Admin")]
@@ -267,6 +267,61 @@ namespace WebThamMyVien.Areas.Admin.Controllers
         {
             var product = await _unitOfWork.ProductImage.GetAllProductImageByProduct(id);
             string json = JsonConvert.SerializeObject(product);
+            // Sử dụng biến json như bạn muốn, ví d ụ:
+            return Content(json, "application/json");
+        }
+
+
+
+        [Area("Admin")]
+        [HttpPost]
+        public async Task<IActionResult> CreateProduct(string product, string images)
+        {
+            string json;
+            // Create Productproduct
+            if (product != null)
+            {
+                try
+                {
+                    ProductDto ProductCreate = JsonConvert.DeserializeObject<ProductDto>(product);
+                    bool statusCreateProduct = await _unitOfWork.Product.CreateProduct(ProductCreate);
+                }
+                catch
+                {
+                    json = JsonConvert.SerializeObject(false);
+                    // Sử dụng biến json như bạn muốn, ví d ụ:
+                    return Content(json, "application/json");
+                }
+
+            }
+            else
+            {
+                json = JsonConvert.SerializeObject(false);
+                // Sử dụng biến json như bạn muốn, ví d ụ:
+                return Content(json, "application/json");
+            }
+            // Create ProductImages
+            if (images != null)
+            {
+                try
+                {
+                    List<ProductImageDto> ProductImageCreate = JsonConvert.DeserializeObject<List<ProductImageDto>>(images);
+                    ProductDto ProductFinal = await _unitOfWork.Product.GetProductFinal();
+                    foreach (var item in ProductImageCreate)
+                    {
+                        item.ProductId = ProductFinal.Id;
+                        bool statusCreateProductImage = await _unitOfWork.ProductImage.CreateProductImage(item);
+                    }
+                }
+                catch
+                {
+                    json = JsonConvert.SerializeObject(false);
+                    // Sử dụng biến json như bạn muốn, ví d ụ:
+                    return Content(json, "application/json");
+                }
+
+            }
+            json = JsonConvert.SerializeObject(true);
             // Sử dụng biến json như bạn muốn, ví d ụ:
             return Content(json, "application/json");
         }

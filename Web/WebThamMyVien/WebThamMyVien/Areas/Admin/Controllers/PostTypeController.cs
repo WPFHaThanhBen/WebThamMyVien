@@ -45,7 +45,7 @@ namespace WebThamMyVien.Areas.Admin.Controllers
                     }
                     await _unitOfWork.Action.CreateAction(IdUser, 1, "Thêm mới dữ liệu Loại Người Dùng {" + value.TypeName + "}");
                     TempData["success"] = "Thêm mới thông tin thành công";
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", new { area = "Admin", controller = "PostType" });
                 }
                 // Add status is error
                 else
@@ -98,7 +98,7 @@ namespace WebThamMyVien.Areas.Admin.Controllers
                     await _unitOfWork.Action.CreateAction(IdUser, 2, "Thay đổi dữ liệu Loại Người Dùng {" + value.TypeName + "}");
                     //Trở về Index và thông báo thành công
                     TempData["success"] = "Cập nhật thông tin thành công";
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", new { area = "Admin", controller = "PostType" });
                 }
                 // Update status is error
                 else

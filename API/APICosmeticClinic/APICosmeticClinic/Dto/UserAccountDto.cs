@@ -9,5 +9,6 @@
         public int? UserStatusId { get; set; }
         public int? UserId { get; set; }
         public int? AccountTypeId { get; set; }
+        public int? CustomerId { get; set; }
     }
 }

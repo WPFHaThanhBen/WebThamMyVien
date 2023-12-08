@@ -21,8 +21,10 @@ namespace APICosmeticClinic.Models
         public int? AccountTypeId { get; set; }
         public bool? IsDelete { get; set; }
         public string? DateDelete { get; set; }
+        public int? CustomerId { get; set; }
 
         public virtual AccountType? AccountType { get; set; }
+        public virtual Customer? Customer { get; set; }
         public virtual User? User { get; set; }
         public virtual UserStatus? UserStatus { get; set; }
         public virtual ICollection<Action> Actions { get; set; }

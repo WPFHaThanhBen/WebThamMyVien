@@ -69,9 +69,16 @@
                         <div class="mb-3">
                             <label class="form-label text-capitalize">Tên Người Dùng: </label>
                              <input type="hidden" asp-for="UserId" />
-                    @if(Model.UserId != null)
+                    @if(Model.UserId != null || Model.CustomerId != null)
                     {
-                        <a asp-area="Admin" asp-controller="User" asp-action="Detail" asp-route-id="@userId"><p>@ViewData["UserName"]</p></a>
+                        if (Model.UserId != null)
+                        {
+                            <a asp-area="Admin" asp-controller="User" asp-action="Detail" asp-route-id="@userId"><p>@ViewData["UserName"]</p></a>
+                        }
+                        if (Model.CustomerId != null)
+                        {
+                            <a asp-area="Admin" asp-controller="Customer" asp-action="Detail" asp-route-id="@Model.CustomerId"><p>@ViewData["UserName"]</p></a>
+                        }
                     }
                         </div>
                     </div>

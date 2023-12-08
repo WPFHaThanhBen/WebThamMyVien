@@ -1,0 +1,317 @@
+﻿@using System.Globalization;
+
+@{
+    int TinhTienKhuyenMai(int gia, int khuyenmai)
+    {
+        double a = (double)khuyenmai;
+        double b = (double)gia;
+        // Tính tiền sau khuyến mãi
+        double tienSauKhuyenMai = b * (1 - a / 100);
+        return (int)tienSauKhuyenMai;
+    }
+    string ConvertToCurrencyFormat(int amount)
+    {
+        // Sử dụng CultureInfo để định dạng số theo quy tắc của ngôn ngữ hiện tại
+        CultureInfo culture = CultureInfo.CurrentCulture;
+
+        // Chuyển đổi số thành chuỗi định dạng tiền tệ
+        string formattedAmount = string.Format(culture, "{0:N0}", amount);
+
+        // Thêm ký tự "đ" hoặc "₫" (đồng) vào cuối chuỗi
+        formattedAmount += "đ";
+
+        return formattedAmount;
+    }
+    int n = 0;
+}
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h6 class="section-title bg-white text-center px-3 " style="color:purple">Giỏ Hàng</h6>
+        </div>
+        <div class="container-fluid mt-5 mb-5">
+            <section class="h-100" style="background-color: #eee;">
+                <div class="container h-100 py-5">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col-10">
+                            @if(Model.Count == 0)
+                            {
+                                <h5 class="text-secondary text-center">Giỏ hàng rỗng</h5>
+                            }
+                            else
+                            {
+                                @foreach (var item in Model)
+                                {
+                                        <div id="ShowItemID_@item.Id" class="card rounded-3 mb-4">
+                                            <div class="card-body p-4">
+                                                <div class="row d-flex justify-content-between align-items-center">
+                                                    <div style="width:20px">
+                                                        <input class="form-check-input" type="checkbox"
+                                                               id="checkbox_@item.Id"
+                                                               name="selectedProductItem"
+                                                               value="@item.Id">
+                                                    </div>
+                                                    <div class="col-md-2 col-lg-2 col-xl-2">
+                                                        <img src="@item.ProductView.Images[0].Image"
+                                                             class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                                    </div>
+                                                    <div class="col-md-3 col-lg-3 col-xl-3">
+                                                        <p class="lead fw-normal mb-2">@item.ProductView.Product.ProductName</p>
+                                                        @* <p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p> *@
+                                                    </div>
+                                                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                                        <button class="btn btn-link px-2 decrease-quantity" data-target="quantity-@item.Id">
+                                                            <i class="fas fa-minus"></i>
+                                                        </button>
+                                                        <input type="hidden" class="product-id" value="@item.ProductView.Product.Id" />
+                                                        <input min="2" name="quantity" style="width:50px" disabled value="@item.Quantity" id="quantity-@item.Id" type="number" class="form-control form-control-sm quantity-input" />
+                                                        <button class="btn btn-link px-2 increase-quantity" data-target="quantity-@item.Id">
+                                                            <i class="fas fa-plus"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                                        <h5 id="productID_@item.ProductView.Product.Id" class="mb-0">@ConvertToCurrencyFormat(item.Price)</h5>
+                                                    </div>
+                                                    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                                        <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                }
+                                <h5 class="text-center">Thông Tin Người Nhận Hàng</h5>
+                                <div class="row">
+                                    <div class="mb-3 col-sm">
+                                        <label class="form-label text-capitalize">Tên người đặt hàng</label>
+                                        <input type="text" class="form-control " placeholder="Nhập họ và tên" />
+                                    </div>
+                                    <div class="mb-3 col-sm">
+                                        <label class="form-label text-none">Số điện thoại</label>
+                                        <input  type="number" class="form-control " placeholder="Nhập số điện thoại" />
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label text-capitalize">Địa chỉ nhận hàng</label>
+                                    <textarea class="form-control"
+                                              placeholder="Nhập chi tiết địa chỉ"></textarea>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-body row">
+                                        <div class="col-sm-6">
+                                            <div class="row">
+                                                <button type="button" class=" ms-2 btn btn-warning btn-block btn-lg col">Thanh Toán</button>
+@*                                                 <div class="ms-3 mb-3 col">
+                                                    <label class="form-label text-capitalize" style="font-size: 15px">Hình thức thanh toán</label>
+                                                    <select id="cbbHinhThucThanhToan" class="form-control ">
+                                                        <option>Tiền mặt</option>
+                                                        <option>Chuyển khoản</option>
+                                                        <option>Ghi nợ</option>
+                                                        <option>Khác</option>
+                                                    </select>
+                                                </div> *@
+                                            </div>
+                                       </div>
+                                        <div class="col-sm-6  text-end">
+                                            <h4 id="tongTien" class="mt-2">Tổng: 0đ</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </div>
+</div>
+
+<!-- / Content -->
+@section Scripts {
+    <script>
+
+        function TinhTienKhuyenMai(gia, khuyenmai) {
+            var a = khuyenmai;
+            var b = gia;
+
+            // Tính tiền sau khuyến mãi
+            var tienSauKhuyenMai = b * (1 - a / 100);
+
+            return Math.floor(tienSauKhuyenMai);
+        }
+        function ConvertToCurrencyFormat(amount) {
+            // Sử dụng Intl.NumberFormat để định dạng số theo quy tắc của ngôn ngữ hiện tại
+            var formattedAmount = new Intl.NumberFormat().format(amount);
+
+            // Thêm ký tự "đ" hoặc "₫" (đồng) vào cuối chuỗi
+            formattedAmount += 'đ';
+
+            return formattedAmount;
+        }
+        function UpdataPriceItem(idProduct,quantity) {
+            if (quantity == 0) {
+                $("#productID_" + idProduct).text("0đ");
+            }
+            else {
+                $.ajax({
+                    type: "POST",
+                    url: "/Product/UpdatePriceShoppingCartItem",
+                    data: { idProduct: parseInt(idProduct, 10), quantity: parseInt(quantity, 10) },
+                    success: function (data) {
+                        if (data != false) {
+                            $("#productID_" + idProduct).text(ConvertToCurrencyFormat(data));
+                        }
+                    },
+                    error: function (error) {
+                        console.error("Error:", error);
+                    }
+                });
+            }
+
+        }
+        function convertCurrencyStringToInt(currencyString) {
+            // Bước 1: Loại bỏ ký tự "đ" ở cuối chuỗi
+            currencyString = currencyString.replace('đ', '');
+
+            // Bước 2: Loại bỏ dấu "." ngăn cách giữa hàng nghìn (nếu có)
+            currencyString = currencyString.replace(/\,/g, '');
+
+            // Bước 3: Chuyển đổi chuỗi thành số nguyên
+            var integerValue = parseInt(currencyString);
+
+            return integerValue;
+        }
+        $(document).ready(function () {
+
+
+            $(".decrease-quantity").on("click", function () {
+                updateQuantity($(this), -1);
+            });
+
+            $(".increase-quantity").on("click", function () {
+                updateQuantity($(this), 1);
+            });
+
+            function updateQuantity(button, change) {
+                var container = button.closest('.d-flex');
+                var productId = container.find('.product-id').val();
+                var quantityInput = container.find('.quantity-input');
+                var currentQuantity = parseInt(quantityInput.val());
+
+                if (currentQuantity + change >= 0) {
+                    quantityInput.val(currentQuantity + change);
+                    // Thực hiện các công việc khác khi tăng/giảm giá trị
+
+                    UpdataPriceItem(productId, (currentQuantity + change))
+
+                }
+            }
+
+            // Đăng ký sự kiện click cho nút xóa
+            $(".text-danger i.fa-trash").on("click", function () {
+                var confirmation = confirm("Bạn có chắc chắn muốn xóa?");
+                if (confirmation) {
+                    // Lấy ID của sản phẩm cần xóa từ id của thẻ div chứa sản phẩm
+                    var itemId = $(this).closest('.card').attr('id').replace('ShowItemID_', '');
+                    $.ajax({
+                        type: "POST",
+                        url: "/Product/DeleteShoppingCartItem", // Thay đổi đường dẫn và tên hành động cần thiết
+                        data: { id: itemId },
+                        success: function (data) {
+                            // Xử lý phản hồi từ server nếu cần
+                            if (data == true) {
+                                $("#ShowItemID_" + itemId).remove();
+                            }
+                            else {
+                                alert("Xóa không thành công");
+                            }
+
+                            // Xóa phần tử khỏi DOM
+                        },
+                        error: function (error) {
+                            console.error("Error:", error);
+                        }
+                    });
+                }
+            });
+
+            // Mảng để lưu trữ giá trị của các checkbox đã được chọn
+            var selectedValues = [];
+            // Lắng nghe sự kiện thay đổi của checkbox
+            $('input[name="selectedProductItem"]').change(function () {
+
+                // Xóa tất cả các phần tử khỏi mảng
+                selectedValues = [];
+                let priceValues = 0;
+                // Lặp qua tất cả các checkbox đã được chọn và thêm giá trị vào mảng
+                $('input[name="selectedProductItem"]:checked').each(function () {
+                    priceValues = 0;
+                    // selectedValues.push(parseInt($(this).val()));
+                    let aaaa = parseInt($(this).val());
+                    $.ajax({
+                        type: "POST",
+                        url: "/Product/GetProductIdByShoppingCartId",
+                        data: { id: parseInt($(this).val()) },
+                        success: function (data) {
+                            if (data != false) {
+                                let price = $('#productID_' + data).text();
+                                let quantity1 = $("#quantity-" + aaaa).val();
+                                priceValues += convertCurrencyStringToInt(price);
+
+                                let objectItem = {
+                                    id: aaaa,
+                                    quantity: quantity1
+                                };
+                                selectedValues.push(objectItem);
+                                $('#tongTien').text("Tổng: " + ConvertToCurrencyFormat(priceValues));
+
+                            }
+                        },
+                        error: function (error) {
+                            console.error("error:", error);
+                        }
+                    });
+                });
+                // Lấy giá trị của item.Id từ id của checkbox
+                var itemId = $(this).attr("id").split("_")[1];
+
+
+                // Lấy giá trị của <h5> dựa trên itemId
+                
+                // selectedValuesJSON = JSON.stringify(selectedValues);
+                // $.ajax({
+                //     type: "POST",
+                //     url: "/Product/GetListProductByType",
+                //     data: { listId: selectedValuesJSON },
+                //     success: function (data) {
+                //     },
+                //     error: function (error) {
+                //         console.error("Error:", error);
+                //     }
+                // });
+
+            });
+
+
+            // function CreateOrder() {
+            //     selectedValuesJSON = JSON.stringify(selectedValues);
+            //     $.ajax({
+            //         type: "POST",
+            //         url: "/Product/GetListProductByType",
+            //         data: { listId: selectedValuesJSON },
+            //         success: function (data) {
+            //             // Xóa nội dung hiện tại của #showProduct
+            //             $("#showProduct").empty();
+            //         },
+            //         error: function (error) {
+            //             console.error("Error:", error);
+            //         }
+            //     });
+            // }
+        });
+
+
+    </script>
+}

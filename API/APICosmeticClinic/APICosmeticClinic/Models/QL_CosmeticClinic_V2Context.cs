@@ -959,6 +959,11 @@ namespace APICosmeticClinic.Models
                     .HasForeignKey(d => d.AccountTypeId)
                     .HasConstraintName("FK__UserAccou__Accou__45F365D3");
 
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.UserAccounts)
+                    .HasForeignKey(d => d.CustomerId)
+                    .HasConstraintName("FK_UserAccount_Customer");
+
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.UserAccounts)
                     .HasForeignKey(d => d.UserId)

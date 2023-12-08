@@ -6,6 +6,7 @@ namespace WebThamMyVien.Interfaces
     {
         Task<ICollection<ShoppingCartDto>> GetAllShoppingCart();
         Task<ShoppingCartDto> GetShoppingCart(int id);
+        Task<ShoppingCartDto> GetShoppingCartByAccountId(int id);
         Task<bool> CreateShoppingCart(ShoppingCartDto ShoppingCart);
         Task<bool> UpdateShoppingCart(ShoppingCartDto ShoppingCart);
         Task<bool> DeleteShoppingCart(ShoppingCartDto ShoppingCart);

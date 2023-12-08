@@ -12,6 +12,7 @@ namespace APICosmeticClinic.Models
             CustomerImages = new HashSet<CustomerImage>();
             Invoices = new HashSet<Invoice>();
             Orders = new HashSet<Order>();
+            UserAccounts = new HashSet<UserAccount>();
             WarrantyReceipts = new HashSet<WarrantyReceipt>();
         }
 
@@ -39,6 +40,7 @@ namespace APICosmeticClinic.Models
         public virtual ICollection<CustomerImage> CustomerImages { get; set; }
         public virtual ICollection<Invoice> Invoices { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<UserAccount> UserAccounts { get; set; }
         public virtual ICollection<WarrantyReceipt> WarrantyReceipts { get; set; }
     }
 }

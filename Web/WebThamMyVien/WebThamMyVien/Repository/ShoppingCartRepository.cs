@@ -124,5 +124,23 @@ namespace WebThamMyVien.Repository
                 return null; // Trả về null nếu yêu cầu không thành công
             }
         }
+
+        public async Task<ShoppingCartDto> GetShoppingCartByAccountId(int id)
+        {
+            var apiUrl = $"{_apiUrl}/api/ShoppingCart/ByAccountId/{id}"; // Điền đường dẫn API tại đây
+
+            var response = await _httpClient.GetAsync(apiUrl);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<ShoppingCartDto>(content);
+                return values; // Trả về đối tượng nếu yêu cầu thành công
+            }
+            else
+            {
+                return null; // Trả về null nếu yêu cầu không thành công
+            }
+        }
     }
 }

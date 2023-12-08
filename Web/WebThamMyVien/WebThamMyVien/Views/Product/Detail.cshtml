@@ -93,11 +93,12 @@
                         <span class="ms-1 text-secondary text-decoration-line-through" style="font-size:14px">@ConvertToCurrencyFormat((int)Model.Product.SellingPrice)</span>
                     </div>
                     <div class="about text-start text-black mt-3">
+                        <input id="idProduct" value="@Model.Product.Id"  type="hidden"/>
                         <span class="h6" style=" color:black">Xuất xứ:</span>
                         <span class="ms-1 text-black">@Model.Product.Origin</span>
                     </div>
                     <div class="row mt-2 mx-2">
-                        <button class="btn btn-primary">Thêm vào giỏ hàng</button>
+                        <a onclick="changeButtonText(this)" class="btn btn-primary">Thêm vào giỏ hàng</a>
                     </div>
                     <h6 class="mt-3">Giới thiệu</h6>
                     <p class="start-0">@Model.Product.Introduction</p>
@@ -183,6 +184,40 @@
                 }
             });
         }
+
+        function changeButtonText(element) {
+            let productId = $('#idProduct').val();
+            // selectedValuesJSON = JSON.stringify(productId);
+            // alert(selectedValuesJSON);
+            let newButtonText;
+            $.ajax({
+                type: "POST",
+                url: "/Product/CreateShoppingCartItem",
+                async: false,
+                data: { id: productId },
+                success: function (data) {
+                    if (data == "1") {
+                        newButtonText = "Đã thêm vào giỏ hàng";
+                        element.setAttribute("disabled", true);
+                    }
+                    else if (data == "2") {
+                        newButtonText = "Thêm vào giỏ hàng thất bại";
+                        element.setAttribute("disabled", true);
+                    }
+                    else if (data == "3") {
+                        newButtonText = "Sản phẩm đã có trong giỏ hàng";
+                        element.setAttribute("disabled", true);
+                    }
+                    else {
+                        newButtonText = "Lỗi";
+                    }
+                    element.innerText = newButtonText;
+                },
+                error: function (error) {
+                    console.error("Error:", error);
+                }
+            });
+        }
         $(document).ready(function () {
             // Mảng để lưu trữ giá trị của các checkbox đã được chọn
             var selectedValues = [];
@@ -212,6 +247,9 @@
                     $("#xemthem").text("Xem thêm");
                 }
             });
+
+
+
         });
 
 

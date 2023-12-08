@@ -21,10 +21,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
+
     <link href="/DefaultAssets/lib/animate/animate.min.css" rel="stylesheet">
     <link href="/DefaultAssets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="/DefaultAssets/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
+    <!-- Core CSS -->
     <!-- Customized Bootstrap Stylesheet -->
     <link href="/DefaultAssets/css/bootstrap.min.css" rel="stylesheet">
 
@@ -161,6 +162,31 @@
 
     <!-- Template Javascript -->
     <script src="/DefaultAssets/js/main.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var selectedValues = [];
+            selectedValues.push(1);
+            selectedValues.push(2);
+            selectedValuesJSON = JSON.stringify(selectedValues);
+            $('#btnShowViewCarts').click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/Product/GetListProductByType",
+                    data: { listId: selectedValuesJSON },
+                    success: function (data) {
+                        window.location.href = '/Product/Carts';
+                    },
+                    error: function (error) {
+                        console.error("Error:", error);
+                    }
+                });
+            });
+          
+
+
+        });
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

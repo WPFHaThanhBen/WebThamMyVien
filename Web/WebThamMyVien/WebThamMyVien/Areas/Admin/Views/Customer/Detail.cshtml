@@ -195,23 +195,28 @@
                     var imageData = e.target.result;
 
                     // Tạo đối tượng ảnh mới và thêm vào mảng
-                    var newImage = new ImageObject(0, null, imageData);
+                    let newImage = new ImageObject(0, null, imageData);
                     imageArray.push(newImage);
                     let idCustomer1 = $("#idCustomer").val();
                     let newImageJSON = JSON.stringify(newImage);
                     $.ajax({
                         url: "/Admin/Customer/CreateImage",
                         type: 'POST',
-                        data: { id: idCustomer1, objectImage: newImageJSON },
                         async: false,
+                        data: { id: idCustomer1, objectImage: newImageJSON },
                         success: function (result) {
+                            if (result == false) {
+                                alert("Lỗi C#");
+                            }
                             updateCarousel();
+
                             // Xử lý kết quả từ Action ở đây (nếu cần)
                         },
                         error: function (error) {
-                            alert("Lõiio");
+                            alert("Lỗi");
                         }
                     });
+
                 };
                 reader.readAsDataURL(file);
             }
@@ -334,22 +339,6 @@
                 }
                 else {
                     $("#formCreate").submit();
-
-                    imageArrayJSON = JSON.stringify(imageArray);
-                    alert(imageArray[0].Image);
-                    let idCustomer = $("#idCustomer").val();
-                    $.ajax({
-                        url: "/Admin/Customer/UpdateImage",
-                        type: 'POST',
-                        data: { id: idCustomer, listImage: imageArrayJSON, },
-                        success: function (result) {
-
-                            // Xử lý kết quả từ Action ở đây (nếu cần)
-                        },
-                        error: function (error) {
-                            // Xử lý lỗi ở đây (nếu có)
-                        }
-                    });
                 }
 
             });

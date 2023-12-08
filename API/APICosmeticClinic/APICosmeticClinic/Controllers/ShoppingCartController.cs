@@ -50,6 +50,20 @@ namespace APICosmeticClinic.Controllers
             return Ok(map);
         }
 
+        // Get By ID
+        [HttpGet("ByAccountId/{shoppingCartId}")]
+        [ProducesResponseType(200, Type = typeof(ShoppingCart))]
+        //[ProducesResponseType(400)]
+        public IActionResult GetShoppingCartByAccountId(int shoppingCartId)
+        {
+            var map = _mapper.Map<ShoppingCartDto>(_shoppingCartRepository.GetShoppingCartByAccountId(shoppingCartId));
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(map);
+        }
+
         //Create
         [HttpPost]
         //[ProducesResponseType(204)]

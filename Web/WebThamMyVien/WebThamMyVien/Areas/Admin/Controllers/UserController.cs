@@ -81,6 +81,7 @@ namespace WebThamMyVien.Areas.Admin.Controllers
                     us.UserStatusId = lastUser.UserStatusId;
                     us.UserId = lastUser.Id;
                     us.AccountTypeId = 2;
+                    us.CustomerId = null;
                     var st = await _unitOfWork.UserAccount.CreateUserAccount(us);
                     //Tự động Thêm Hitory action
                     await _unitOfWork.Action.CreateAction(IdUser, 1, "Thêm dữ liệu Tài Khoản {" + us.Username + "}");

@@ -32,6 +32,19 @@ namespace APICosmeticClinic.Controllers
 
             return Ok(shoppingCartItems);
         }
+        // 
+        //Scaffold-DbContext “Data Source=DESKTOP-125DL48\SQLEXPRESS;Initial Catalog=QL_CosmeticClinic_V2;Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
+        [HttpGet("ByShoppingCartId/{id}")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<ShoppingCartItem>))]
+        public IActionResult GetAllShoppingCartItemByShoppingCartId(int id)
+        {
+            var shoppingCartItems = _mapper.Map<List<ShoppingCartItemDto>>(_shoppingCartItemRepository.GetAllShoppingCartItemByShoppingCartId(id));
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(shoppingCartItems);
+        }
 
         // Get By ID
         [HttpGet("{shoppingCartItemId}")]

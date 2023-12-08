@@ -33,6 +33,11 @@ namespace APICosmeticClinic.Repository
             return _context.ShoppingCartItems.Where(c => c.IsDelete != true).ToList();
         }
 
+        public ICollection<ShoppingCartItem> GetAllShoppingCartItemByShoppingCartId(int id)
+        {
+            return _context.ShoppingCartItems.Where(c => c.IsDelete != true && c.ShoppingCartId == id).ToList();
+        }
+
         public ShoppingCartItem GetShoppingCartItem(int id)
         {
             return _context.ShoppingCartItems.Where(e => e.Id == id && e.IsDelete != true).FirstOrDefault();

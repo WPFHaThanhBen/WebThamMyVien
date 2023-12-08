@@ -34,99 +34,96 @@
             <hr class="my-0" />
             <div class="card-body">
                 <div class="row">
-                    <form class="col-md-7" id="formCreate" sp-area="Admin" asp-controller="Customer" asp-action="Create">
+                    <div class="col-sm-7">
+                        <div class="row ">
+                            <input type="hidden" id="idCustomer" asp-for="Id" />
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Họ và Tên</label>
+                                <input class="form-control" id="fullName" asp-for="FullName"
+                                       type="text"
+                                       placeholder="Nguyễn Văn A"
+                                       autofocus />
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Số CCCD</label>
+                                <input class="form-control" id="idcard" asp-for="Idcard"
+                                       placeholder="0912123456"
+                                       type="number" />
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Ngày sinh</label>
+                                <input class="form-control" id="birthdate" asp-for="Birthdate"
+                                       placeholder="30/03/2002"
+                                       type="text" />
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Giới tính(1:Nam/0:Nữ)</label>
+                                <input class="form-control" id="gender" asp-for="Gender"
+                                       placeholder="1"
+                                       type="number" />
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Số điện thoại</label>
+                                <input class="form-control" id="phoneNumber" asp-for="PhoneNumber"
+                                       placeholder="0123456789"
+                                       type="number" />
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Facebook</label>
+                                <input class="form-control" id="facebookLink" asp-for="FacebookLink"
+                                       placeholder="https://??"
+                                       type="text" />
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Zalo</label>
+                                <input class="form-control" id="zaloLink" asp-for="ZaloLink"
+                                       placeholder="https://??"
+                                       type="tel" />
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Email</label>
+                                <input class="form-control" id="email" asp-for="Email"
+                                       placeholder="nguyenvana2002@gmail.com"
+                                       type="email" />
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Địa chỉ</label>
+                                <input class="form-control" id="address" asp-for="Address"
+                                       placeholder="Vĩnh Phong-Vĩnh Thuận-Kiên Giang"
+                                       type="text" />
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Phân loại người dùng</label>
+                                <select name="CustomerStatusId" id="customerStatusId" class="form-control" asp-items="ViewBag.CustomerStatus"></select>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Trạng thái người dùng</label>
+                                <select name="CustomerTypeId" id="customerTypeId" class="form-control" asp-items="ViewBag.CustomerType"></select>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Dịch vụ quan tâm</label>
+                                <textarea asp-for="InterestedServices" id="interestedServices" class="form-control"
+                                          placeholder="Nhập dịch vụ khách hàng quan tâm"></textarea>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Ghi chú</label>
+                                <textarea asp-for="Other" id="other" class="form-control"
+                                          placeholder="Nhập ghi chú"></textarea>
+                            </div>
 
-                    
-                    <div class="row">
-                        <input type="hidden"  asp-for="Id"/>
-                        <div class="mb-3 col-md-6">
-                            <label class="form-label">Họ và Tên</label>
-                            <input class="form-control" id="nameCustomer" asp-for="FullName"
-                                   type="text"
-                                   placeholder="Nguyễn Văn A"
-                                   autofocus />
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label class="form-label">Số CCCD</label>
-                            <input class="form-control" asp-for="Idcard"
-                                   placeholder="0912123456"
-                                   type="number" />
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label class="form-label">Ngày sinh</label>
-                            <input class="form-control" asp-for="Birthdate"
-                                   placeholder="30/03/2002"
-                                   type="text" />
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label class="form-label">Giới tính(1:Nam/0:Nữ)</label>
-                            <input class="form-control" asp-for="Gender"
-                                   placeholder="1"
-                                   type="number" />
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label class="form-label">Số điện thoại</label>
-                            <input class="form-control" id="sdt" asp-for="PhoneNumber"
-                                   placeholder="0123456789"
-                                   type="number" />
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label class="form-label">Facebook</label>
-                            <input class="form-control" asp-for="FacebookLink"
-                                   placeholder="https://??"
-                                   type="text" />
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label class="form-label">Zalo</label>
-                            <input class="form-control" asp-for="ZaloLink"
-                                   placeholder="https://??"
-                                   type="tel" />
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label class="form-label">Email</label>
-                            <input class="form-control" asp-for="Email"
-                                   placeholder="nguyenvana2002@gmail.com"
-                                   type="email" />
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label class="form-label">Địa chỉ</label>
-                            <input class="form-control" asp-for="Address"
-                                   placeholder="Vĩnh Phong-Vĩnh Thuận-Kiên Giang"
-                                   type="text" />
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label class="form-label">Phân loại người dùng</label>
-                            <select name="CustomerStatusId" class="form-control" asp-items="ViewBag.CustomerStatus"></select>
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label class="form-label">Trạng thái người dùng</label>
-                            <select name="CustomerTypeId" class="form-control" asp-items="ViewBag.CustomerType"></select>
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label class="form-label">Dịch vụ quan tâm</label>
-                            <textarea asp-for="InterestedServices" class="form-control"
-                                      placeholder="Nhập dịch vụ khách hàng quan tâm"></textarea>
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label class="form-label">Ghi chú</label>
-                            <textarea asp-for="Other" class="form-control"
-                                      placeholder="Nhập ghi chú"></textarea>
-                        </div>
-                       
-                    </div>
  
-                    <div class="mt-2">
-                        <button type="reset" class="btn btn-secondary">Nhập lại</button>
-                        <button id="btnCreate" class="btn btn-success me-2">Tạo mới</button>
+
+                        </div>
                     </div>
-                </form>
+
+
                     @* Show Image *@
                     <div class="col-md-5">
                         <h5 class="my-4">Hình Ảnh Khách Hàng</h5>
 
                         <div class="pb-3">
                             <!-- Thêm ảnh -->
-                            <button class="btn btn-success" onclick="openFileInput()">Thêm ảnh</button>
+                            <button class="btn btn-success" id="addImage">Thêm ảnh</button>
 
                             <!-- Thẻ input ẩn để chọn file -->
                             <input type="file" id="fileInput" style="display:none" accept="image/*" onchange="handleFileSelect(this)">
@@ -139,7 +136,7 @@
                             </ol>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img class="d-block w-100" src="\adminassets\assets\img\backgrounds\18.jpg" />
+                                    <img class="d-block w-100" src="/AdminAssets/assets/img/avatars/1.png" />
                                     <div class="carousel-caption d-none d-md-block">
                                         <h3>Thêm ảnh</h3>
                                         <p>Vui lòng thêm ảnh để hệ thống phục vụ bạn tốt hơn</p>
@@ -157,7 +154,10 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="mt-2">
+                    <button id="btnReset" class="btn btn-secondary">Nhập lại</button>
+                    <button id="btnCreate" class="btn btn-success me-2">Tạo mới</button>
+                </div>
             </div>
             <!-- /Account -->
         </div>
@@ -196,7 +196,6 @@
                     // Tạo đối tượng ảnh mới và thêm vào mảng
                     var newImage = new ImageObject(0, null, imageData);
                     imageArray.push(newImage);
-
                     // Cập nhật carouselExample
                     updateCarousel();
                 };
@@ -281,32 +280,90 @@
         }
          
         $(document).ready(function () {
-            $("#btnCreate").click(function () {
-                if ($("#nameCustomer").val().trim().length <= 0) {
-                    displayToastrMessages(2, 'Bạn đang để rỗng tên khách hàng');
+
+            $("#addImage").click(function () {
+                openFileInput();
+            });
+            $("#btnReset").click(function () {
+                $('#fullName').val("");
+                $('#birthdate').val("");
+                $('#phoneNumber').val("");
+                $('#idcard').val("");
+                $('#facebookLink').val("");
+                $('#zaloLink').val("");
+                $('#email').val("");
+                $('#gender').val("");
+                $('#address').val("");
+                $('#interestedServices').val("");
+                $('#customerStatusId').val(1);
+                $('#customerTypeId').val(1);
+                $('#other').val("");
+            });
+            
+            $("#phoneNumber").on("input", function () {
+                if ($("#phoneNumber").val().length > 10) {
+                    displayToastrMessages(2, "Số điện thoại chỉ có 10 số");
+                    var maxLength = 10;
+                    var currentValue = $(this).val();
+                    // Xóa các ký tự không phải số và giới hạn độ dài
+                    var sanitizedValue = currentValue.replace(/\D/g, '').substring(0, maxLength);
+                    // Cập nhật giá trị của trường input
+                    $(this).val(sanitizedValue);
                 }
-                else if ($("#sdt").val().trim().length <= 0) {
-                    displayToastrMessages(2, 'Bạn đang để rỗng số điện thoại khách hàng');
+            });
+
+            $("#btnCreate").click(function () {
+                // Tạo customerObject
+                let customerObject = {
+                    Id: 0,
+                    FullName: $('#fullName').val(),
+                    Birthdate: $('#birthdate').val(),
+                    PhoneNumber: $('#phoneNumber').val(),
+                    Idcard: $('#idcard').val(),
+                    FacebookLink: $('#facebookLink').val(),
+                    ZaloLink: $('#zaloLink').val(),
+                    Email: $('#email').val(),
+                    Gender: $('#gender').val(),
+                    Address: $('#address').val(),
+                    InterestedServices: $('#interestedServices').val(),
+                    CustomerStatusId: $('#customerStatusId').val(),
+                    CustomerTypeId: $('#customerTypeId').val(),
+                    Other: $('#other').val()
+                };
+                // Check properties
+                if (customerObject.FullName.length <= 0 || customerObject.FullName.length > 255) {
+                    displayToastrMessages(2, "Tên khách hàng không hợp lệ");
+                }
+                else if (customerObject.PhoneNumber.length <= 0 || customerObject.PhoneNumber.length > 12) {
+
+                    displayToastrMessages(2, "Số điện thoại không hợp lệ");
                 }
                 else {
-                    $('#formCreate').submit();
-
+                    // Chuyển đổi thành JSON
+                    customerObjectJSON = JSON.stringify(customerObject);
                     imageArrayJSON = JSON.stringify(imageArray);
+                    // using Ajax
                     $.ajax({
-                        url: "/Admin/Customer/AddImage",
+                        url: "/Admin/Customer/CreateCustomer",
                         type: 'POST',
-                        data: { listImage: imageArrayJSON },
+                        async: false,
+                        data: { customer: customerObjectJSON, images: imageArrayJSON },
                         success: function (result) {
-
-                            // Xử lý kết quả từ Action ở đây (nếu cần)
+                            if (result == true) {
+                                displayToastrMessages(1, "Tạo khách hàng thành công");
+                                window.location.href = '/Admin/Customer/Index';
+                            }
+                            else {
+                                displayToastrMessages(2, "Tạo khách hàng thất bại");
+                            }
+                            // window.location.href = '/Admin/Customer/Index';
                         },
                         error: function (error) {
-                            // Xử lý lỗi ở đây (nếu có)
+                            alert("Lỗi AJAX");
                         }
                     });
                 }
             });
-
         });
 
     </script>

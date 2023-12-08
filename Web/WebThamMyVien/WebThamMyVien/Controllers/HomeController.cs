@@ -16,6 +16,13 @@ namespace WebThamMyVien.Controllers
         }
         public async Task<IActionResult> Index()
         {
+
+            // Đặt giá trị int vào cookie
+            Response.Cookies.Append("IdAccount", "2", new CookieOptions
+            {
+                Expires = DateTime.Now.AddDays(30) // Thời hạn 30 ngày
+            });
+
             WebHome webHome = new WebHome();
             ViewData["menuDefault"] = "TrangChu";
 

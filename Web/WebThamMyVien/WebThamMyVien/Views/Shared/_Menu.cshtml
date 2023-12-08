@@ -5,7 +5,7 @@
     <button type="button" class="navbar-toggler me-3" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
+    <div class="collapse navbar-collapse " id="navbarCollapse">
         <div class="navbar-nav me-auto p-3 p-lg-0">
                 @if (ViewData["menuDefault"] == "TrangChu")
                 {
@@ -150,6 +150,70 @@
 
         </div>
         <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="btn btn-sm btn-light rounded-pill py-2 px-4 d-none d-lg-block">Liên hệ</a>
+
+            <ul class="list-unstyled mt-3 ms-2">
+                    <!-- User -->
+                    <li class="">
+                        <a data-bs-toggle="dropdown">
+                            <div class="">
+                                <img src="/AdminAssets/assets/img/avatars/1.png" class="h-auto rounded-circle"  style="width:40px"/>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 me-3">
+                                            <div class="avatar avatar-online">
+                                                <img src="../assets/img/avatars/1.png" class="w-px-40 h-auto rounded-circle" />
+                                            </div>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <span class="fw-semibold d-block">Hà Thanh Bền</span>
+                                            <small class="text-muted ">Admin</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li>
+                                <div class="dropdown-divider"></div>
+                            </li>
+                        <li>
+                            <button id="btnShowViewCarts" class="dropdown-item">
+                                <span class="d-flex align-items-center align-middle">
+                                    <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
+                                    <span class="flex-grow-1 align-middle">Giỏ hàng</span>
+                                    <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
+                                </span>
+                            </button>
+                        </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="bx bx-user me-2"></i>
+                                    <span class="align-middle">Thông tin</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="bx bx-cog me-2"></i>
+                                    <span class="align-middle">Đổi mật khẩu</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <div class="dropdown-divider"></div>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="auth-login-basic.html">
+                                    <i class="bx bx-power-off me-2"></i>
+                                    <span class="align-middle">Đăng xuất</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--/ User -->
+                </ul>
     </div>
 </nav>
 }

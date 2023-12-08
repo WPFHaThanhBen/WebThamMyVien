@@ -71,6 +71,16 @@ CREATE TABLE UserAccount (
     FOREIGN KEY (UserID) REFERENCES "User"(ID),
     FOREIGN KEY (AccountTypeID) REFERENCES AccountType(ID)
 );
+
+-- Thêm cột CustomerId vào bảng UserAccount
+ALTER TABLE UserAccount
+ADD CustomerId INT;
+
+-- Thêm ràng buộc khóa ngoại cho cột CustomerId
+ALTER TABLE UserAccount
+ADD CONSTRAINT FK_UserAccount_Customer
+FOREIGN KEY (CustomerId) REFERENCES Customer(ID);
+
 CREATE TABLE ActionType (
     ID INT IDENTITY(1,1) PRIMARY KEY,
     TypeName NVARCHAR(255),

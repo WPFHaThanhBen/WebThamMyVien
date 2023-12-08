@@ -22,6 +22,7 @@
 
         return formattedAmount;
     }
+    int n = 0;
 }
 <div class="container-xxl py-5">
     <div class="container">
@@ -50,24 +51,43 @@
                         <!-- Danh sách các Processor -->
                         @foreach (var item in Model.ListProductType)
                         {
-                            <div class="d-flex justify-content-between mt-2">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox"
-                                           id="checkbox_@item.ProductType.Id"
-                                           name="selectedProductTypes"
-                                           value="@item.ProductType.Id"
-                                    >
-                                         
-                                    <label class="form-check-label" for="checkbox_@item.ProductType.Id">@item.ProductType.ProductTypeName</label>
+                            if (n == 0)
+                            {
+                                <div class="d-flex justify-content-between mt-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               id="checkbox_@item.ProductType.Id"
+                                               name="selectedProductTypes"
+                                               value="@item.ProductType.Id"
+                                               checked="true">
+
+                                        <label class="form-check-label" for="checkbox_@item.ProductType.Id">@item.ProductType.ProductTypeName</label>
+                                    </div>
+                                    <span>@item.Quantity</span>
                                 </div>
-                                <span>@item.Quantity</span>
-                            </div>
+                            }
+                            else
+                            {
+                                <div class="d-flex justify-content-between mt-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               id="checkbox_@item.ProductType.Id"
+                                               name="selectedProductTypes"
+                                               value="@item.ProductType.Id">
+
+                                        <label class="form-check-label" for="checkbox_@item.ProductType.Id">@item.ProductType.ProductTypeName</label>
+                                    </div>
+                                    <span>@item.Quantity</span>
+                                </div>
+                            }
+                            n = 1;
+
                         }
                     </div>
                 </div>
                 <!-- Main Content -->
                 <div class="col-md-9">
-                    <div class="row g-2">
+                    <div id="showProduct" class="row g-2">
                         <!-- Danh sách sản phẩm -->
                         @foreach (var item in Model.ListProductView)
                         {
@@ -78,11 +98,22 @@
                                     <a asp-action="Detail" asp-route-id="@item.Product.Id">
                                         <div class="text-center">
                                             <!-- Hình ảnh sản phẩm -->
-                                            <img class="rounded-1" src="@item.Images[0].Image" width="90%" height="220px">
+                                            @if (item.Images != null && item.Images.Count >= 1)
+                                            {
+                                                <img class="rounded-1" src="@item.Images[0].Image" width="90%" height="220px">
+
+                                            }
+                                            else
+                                            {
+                                                <img class="rounded-1" src="\AdminAssets\assets\img\backgrounds\ImageAdd.png" width="90%" height="220px">
+                                            }
+
+                                            
+
                                         </div>
                                         <div class="about text-center">
                                             <!-- Thông tin sản phẩm -->
-                                            <h6>@item.Product.ProductName</h6>
+                                            <h6 style="height:70px">@item.Product.ProductName</h6>
                                             <span class="" style="font-size:18px; font-weight:bold; color:red">@ConvertToCurrencyFormat(TinhTienKhuyenMai((int)item.Product.SellingPrice,item.Promotion))</span>
                                             <span class="ms-1 text-secondary text-decoration-line-through" style="font-size:14px">@ConvertToCurrencyFormat((int)item.Product.SellingPrice)</span>
                                         </div>
@@ -90,7 +121,7 @@
                                         
                                 <div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">
                                     <!-- Nút thêm vào giỏ hàng -->
-                                    <button class="btn btn-primary text-uppercase" style="border: 0">Add to cart</button>
+                                        <a class="btn btn-primary text-uppercase" data-product-id="@item.Product.Id" onclick="changeButtonText(this)" style="border: 0">Thêm vào giỏ hàng</a>
                                 </div>
                             </div>
                         </div>
@@ -109,6 +140,59 @@
     <link href="~/DefaultAssets/lib/productstyle/product.min.css" rel="stylesheet" />
     <link href="~/DefaultAssets/lib/productstyle/product.css" rel="stylesheet" />
     <script>
+
+        function TinhTienKhuyenMai(gia, khuyenmai) {
+            var a = khuyenmai;
+            var b = gia;
+
+            // Tính tiền sau khuyến mãi
+            var tienSauKhuyenMai = b * (1 - a / 100);
+
+            return Math.floor(tienSauKhuyenMai);
+        }
+        function ConvertToCurrencyFormat(amount) {
+            // Sử dụng Intl.NumberFormat để định dạng số theo quy tắc của ngôn ngữ hiện tại
+            var formattedAmount = new Intl.NumberFormat().format(amount);
+
+            // Thêm ký tự "đ" hoặc "₫" (đồng) vào cuối chuỗi
+            formattedAmount += 'đ';
+
+            return formattedAmount;
+        }
+        function changeButtonText(element) {
+            let productId = element.getAttribute("data-product-id");
+            // selectedValuesJSON = JSON.stringify(productId);
+            // alert(selectedValuesJSON);
+            let newButtonText;
+            $.ajax({
+                type: "POST",
+                url: "/Product/CreateShoppingCartItem",
+                async: false,
+                data: { id: productId },
+                success: function (data) {
+                    if (data == "1") {
+                         newButtonText = "Đã thêm vào giỏ hàng";
+                        element.setAttribute("disabled", true);
+                    }
+                    else if (data == "2") {
+                         newButtonText = "Thêm vào giỏ hàng thất bại";
+                        element.setAttribute("disabled", true);
+                    }
+                    else if (data == "3") {
+                         newButtonText = "Sản phẩm đã có trong giỏ hàng";
+                        element.setAttribute("disabled", true);
+                    }
+                    else {
+                         newButtonText = "Lỗi";
+                    }
+                    element.innerText = newButtonText;
+                },
+                error: function (error) {
+                    console.error("Error:", error);
+                }
+            });
+        }
+
         function LoadListing() {
             $.ajax({
                 type: "POST",
@@ -172,10 +256,47 @@
                 $('input[name="selectedProductTypes"]:checked').each(function () {
                     selectedValues.push(parseInt($(this).val()));
                 });
+                selectedValuesJSON = JSON.stringify(selectedValues);
+                $.ajax({
+                    type: "POST",
+                    url: "/Product/GetListProductByType",
+                    data: { listId: selectedValuesJSON },
+                    success: function (data) {
+                        // Xóa nội dung hiện tại của #showProduct
+                        $("#showProduct").empty();
 
-                // Sử dụng ajax để load lại mỹ phẩm
-                alert(selectedValues);
+                        // Duyệt qua mảng dữ liệu và tạo HTML cho mỗi đối tượng
+                        $.each(data, function (index, item) {
+                            var productHtml = '<div class="col-md-4">' +
+                                '<div class="product py-4">' +
+                                '<span class="off bg-success">' + item.Promotion + '%</span>' +
+                                '<a href="/Product/Detail/?id=' + item.Product.Id + '">' +
+                                '<div class="text-center">' +
+                                '<img class="rounded-1" src="' + item.Images[0].Image + '" width="90%" height="220px">' +
+                                '</div>' +
+                                '<div class="about text-center">' +
+                                '<h6 style="height:60px">' + item.Product.ProductName + '</h6>' +
+                                '<span style="font-size:18px; font-weight:bold; color:red">' + ConvertToCurrencyFormat(TinhTienKhuyenMai(item.Product.SellingPrice, item.Promotion)) + '</span>' +
+                                '<span class="ms-1 text-secondary text-decoration-line-through" style="font-size:14px">' + ConvertToCurrencyFormat(item.Product.SellingPrice) + '</span>' +
+                                '</div>' +
+                                '</a>' +
+                                '<div class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">' +
+                                '<button class="btn btn-primary text-uppercase" style="border: 0">Add to cart</button>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>';
+
+                            // Thêm HTML vào #showProduct
+                            $("#showProduct").append(productHtml);
+                        });
+                    },
+                    error: function (error) {
+                        console.error("Error:", error);
+                    }
+                });
+
             });
+
 
         });
 

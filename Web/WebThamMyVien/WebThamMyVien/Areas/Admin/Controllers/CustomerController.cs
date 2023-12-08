@@ -35,42 +35,6 @@ namespace WebThamMyVien.Areas.Admin.Controllers
             CustomerStatuss = CustomerStatuss.ToList();
             ViewData["CustomerStatus"] = new SelectList(CustomerStatuss, "Id", "StatusName");
 
-            // CustomerDto hợp lệ
-            if (ModelState.IsValid)
-            {
-                // Add data in DB
-                var n = await _unitOfWork.Customer.CreateCustomer(_CustomerDto);
-                // Add status is success
-                if (n)
-                {
-                    //Tự động Thêm Hitory action
-                    int IdUser = 0;
-                    if (Request.Cookies.TryGetValue("IdUser", out string intString))
-                    {
-                        if (int.TryParse(intString, out int myIntValue))
-                        {
-                            IdUser = myIntValue;
-                        }
-                    }
-                    await _unitOfWork.Action.CreateAction(IdUser, 1, "Thêm mới dữ liệu Khách Hàng {" + _CustomerDto.FullName + "}");
-                    TempData["success"] = "Thêm mới thông tin thành công";
-                    return RedirectToAction("Index");
-                }
-                // Add status is error
-                else
-                {
-                    TempData["error"] = "Thêm mới thông tin thất bại";
-                }
-            }
-            // CustomerDto không hợp lệ
-            else
-            {
-                if (_CustomerDto.FullName == "" || _CustomerDto.FullName == null)
-                {
-                    return View(_CustomerDto);
-                }
-                TempData["warning"] = "Thông tin không hợp lệ";
-            }
             return View(_CustomerDto);
         }
 
@@ -198,20 +162,32 @@ namespace WebThamMyVien.Areas.Admin.Controllers
 
         [Area("Admin")]
         [HttpPost]
-        public async Task<IActionResult> AddImage(string listImage)
+        public async Task<IActionResult> AddImage(int id,string listImage)
         {
-            var final = await _unitOfWork.Customer.GetCustomerFinal();
 
             bool n = false;
-            List<CustomerImageDto> ImagesProduct = JsonConvert.DeserializeObject<List<CustomerImageDto>>(listImage);
-            foreach (var item in ImagesProduct)
+            if (listImage != null)
             {
-                if (item != null)
+                if (listImage.Count() == 1)
                 {
-                    item.CustomerId = final.Id;
-                    n = await _unitOfWork.CustomerImage.CreateCustomerImage(item);
+                    CustomerImageDto ImagesProduct = JsonConvert.DeserializeObject<CustomerImageDto>(listImage);
+                    ImagesProduct.CustomerId = (int)id;
+                    n = await _unitOfWork.CustomerImage.CreateCustomerImage(ImagesProduct);
+                }
+                else
+                {
+                    List<CustomerImageDto> ImagesProduct = JsonConvert.DeserializeObject<List<CustomerImageDto>>(listImage);
+                    foreach (var item in ImagesProduct)
+                    {
+                        if (item != null)
+                        {
+                            item.CustomerId = (int)id;
+                            n = await _unitOfWork.CustomerImage.CreateCustomerImage(item);
+                        }
+                    }
                 }
             }
+
             string json = JsonConvert.SerializeObject(n);
             // Sử dụng biến json như bạn muốn, ví d ụ:
             return Content(json, "application/json");
@@ -221,17 +197,26 @@ namespace WebThamMyVien.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateImage(int id, string objectImage)
         {
-            bool n = false;
-            CustomerImageDto ImagesProduct = JsonConvert.DeserializeObject<CustomerImageDto>(objectImage);
-
-            if (ImagesProduct != null)
+            try
             {
-                ImagesProduct.CustomerId = id;
-                n = await _unitOfWork.CustomerImage.CreateCustomerImage(ImagesProduct);
+                bool n = false;
+                CustomerImageDto ImagesProduct = JsonConvert.DeserializeObject<CustomerImageDto>(objectImage);
+
+                if (ImagesProduct != null)
+                {
+                    ImagesProduct.CustomerId = (int)id;
+                    n = await _unitOfWork.CustomerImage.CreateCustomerImage(ImagesProduct);
+                }
+                string json = JsonConvert.SerializeObject(n);
+                // Sử dụng biến json như bạn muốn, ví d ụ:
+                return Content(json, "application/json");
             }
-            string json = JsonConvert.SerializeObject(n);
-            // Sử dụng biến json như bạn muốn, ví d ụ:
-            return Content(json, "application/json");
+            catch
+            {
+                string json = JsonConvert.SerializeObject(false);
+                // Sử dụng biến json như bạn muốn, ví d ụ:
+                return Content(json, "application/json");
+            }
         }
 
         [Area("Admin")]
@@ -255,6 +240,59 @@ namespace WebThamMyVien.Areas.Admin.Controllers
         {
             var load = await _unitOfWork.CustomerImage.GetAllCustomerImageByCustomer(id);
             string json = JsonConvert.SerializeObject(load);
+            // Sử dụng biến json như bạn muốn, ví d ụ:
+            return Content(json, "application/json");
+        }
+
+        [Area("Admin")]
+        [HttpPost]
+        public async Task<IActionResult> CreateCustomer(string customer, string images)
+        {
+            string json;
+            // Create Customer
+            if (customer != null)
+            {
+                try
+                {
+                    CustomerDto customerCreate = JsonConvert.DeserializeObject<CustomerDto>(customer);
+                    bool statusCreateCustomer = await _unitOfWork.Customer.CreateCustomer(customerCreate);
+                }
+                catch
+                {
+                     json = JsonConvert.SerializeObject(false);
+                    // Sử dụng biến json như bạn muốn, ví d ụ:
+                    return Content(json, "application/json");
+                }
+
+            }
+            else
+            {
+                json = JsonConvert.SerializeObject(false);
+                // Sử dụng biến json như bạn muốn, ví d ụ:
+                return Content(json, "application/json");
+            }
+            // Create CustomerImages
+            if (images != null)
+            {
+                try
+                {
+                    List<CustomerImageDto> customerImageCreate = JsonConvert.DeserializeObject<List<CustomerImageDto>>(images);
+                    CustomerDto customerFinal = await _unitOfWork.Customer.GetCustomerFinal();
+                    foreach (var item in customerImageCreate)
+                    {
+                        item.CustomerId = customerFinal.Id;
+                        bool statusCreateCustomerImage = await _unitOfWork.CustomerImage.CreateCustomerImage(item);
+                    }
+                }
+                catch
+                {
+                     json = JsonConvert.SerializeObject(false);
+                    // Sử dụng biến json như bạn muốn, ví d ụ:
+                    return Content(json, "application/json");
+                }
+
+            }
+            json = JsonConvert.SerializeObject(true);
             // Sử dụng biến json như bạn muốn, ví d ụ:
             return Content(json, "application/json");
         }

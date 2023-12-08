@@ -39,8 +39,17 @@ namespace WebThamMyVien.Areas.Admin.Controllers
             }
             else
             {
-                UserDto us = await _unitOfWork.User.GetUser((int)n.UserId);
-                ViewData["UserName"] = us.FullName;
+                if(n.UserId != null)
+                {
+                    UserDto us = await _unitOfWork.User.GetUser((int)n.UserId);
+                    ViewData["UserName"] = us.FullName;
+                }
+                else
+                {
+                    CustomerDto us = await _unitOfWork.Customer.GetCustomer((int)n.CustomerId);
+                    ViewData["UserName"] = us.FullName;
+                }
+
             }
 
             TempData["menu"] = "UserAccount";
@@ -102,6 +111,7 @@ namespace WebThamMyVien.Areas.Admin.Controllers
                 {
                     var n = await _unitOfWork.UserAccount.GetUserAccount(id);
                     dl = await _unitOfWork.UserAccount.DeleteUserAccount(n);
+ 
                     //Tự động Thêm Hitory action
                     int IdUser = 0;
                     if (Request.Cookies.TryGetValue("IdUser", out string intString))
