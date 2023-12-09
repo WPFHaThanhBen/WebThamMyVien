@@ -164,6 +164,9 @@
     <script src="/DefaultAssets/js/main.js"></script>
 
     <script>
+        function deleteCookie(cookieName) {
+            document.cookie = cookieName + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        }
         $(document).ready(function () {
             var selectedValues = [];
             selectedValues.push(1);
@@ -182,9 +185,7 @@
                     }
                 });
             });
-          
-
-
+            // Sử dụng hàm để xóa cookie có tên "IdAccount"
         });
     </script>
     @await RenderSectionAsync("Scripts", required: false)

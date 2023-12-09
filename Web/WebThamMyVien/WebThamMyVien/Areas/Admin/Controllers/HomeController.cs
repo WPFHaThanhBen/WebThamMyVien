@@ -24,6 +24,9 @@ namespace WebThamMyVien.Areas.Admin.Controllers
             }
 
             TempData["menu"] = "Home";
+
+
+
             return View();
         }
     }

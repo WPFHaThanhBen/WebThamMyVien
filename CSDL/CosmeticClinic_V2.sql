@@ -506,7 +506,8 @@ VALUES
     (N'Admin', N'123', N'user1@email.com', 1, 1 , 1, 0, '');
 
 INSERT INTO PostType (TypeName, Other, IsDelete, DateDelete)
-VALUES (N'Dịch Vụ Nổi Bật', N'Được tạo bởi hệ thống, Không khuyến khích bạn thay đổi nội dung này để tránh ảnh hưởng đến hệ thống', 0, NULL);
+VALUES (N'Dịch Vụ Nổi Bật', N'Được tạo bởi hệ thống, Không khuyến khích bạn thay đổi nội dung này để tránh ảnh hưởng đến hệ thống', 0, NULL),
+(N'Bài viết', N'Được tạo bởi hệ thống, Không khuyến khích bạn thay đổi nội dung này để tránh ảnh hưởng đến hệ thống', 0, NULL);
 
 INSERT INTO Post (Title, Introduce, PostingDateCreate, PostingDateUpdate, Content, "Image", ViewsCount, PostTypeID, PostedByUserID, IsDelete, DateDelete)
 VALUES (N'#1 Hà Tiểu Vy 10 Năm Trong Ngành Thẩm Mỹ', N'Một chuyên gia SEO tài năng và có uy tín, đang tỏa sáng trong ngành thẩm mỹ với 10 năm kinh nghiệm đầy đủ. Với khả năng hiểu biết sâu rộng về cả lĩnh vực thẩm mỹ và chiến lược tối ưu hóa công cụ tìm kiếm, cô ấy đã đóng góp đáng kể vào sự thành công của chuỗi thẩm mỹ viện. Không chỉ giỏi về kỹ thuật, Hà Tiểu Vi còn được biết đến với khả năng sáng tạo và linh hoạt trong việc áp dụng các chiến lược SEO tiên tiến nhất. Với niềm đam mê và cam kết cao, cô ấy luôn nỗ lực không ngừng để đảm bảo rằng thương hiệu mà mình đại diện luôn xuất hiện ở vị trí cao nhất trên các trang kết quả tìm kiếm.',

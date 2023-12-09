@@ -59,135 +59,71 @@
                 @if (ViewData["menuDefault"] == "BaiViet")
                 {
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Bài viết</a>
-                        <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0" style="width:auto">
-                            <div class="container" style="width:auto">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <a href="feature.html" class="dropdown-item">Features</a>
-                                        <a href="team.html" class="dropdown-item">Our Team</a>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                        <a href="404.html" class="dropdown-item">404 Page</a>
-                                    </div>
-                                </div>
-                            </div>a>
-                        </div>
+                        <a href="#" class="nav-link  active" data-bs-toggle="dropdown">Bài viết</a>
                     </div>
                 }
                 else
                 {
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Bài viết</a>
-                        <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0" style="width:auto">
-                            <div class="container" style="width:auto">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <a href="feature.html" class="dropdown-item">Features</a>
-                                        <a href="team.html" class="dropdown-item">Our Team</a>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                        <a href="404.html" class="dropdown-item">404 Page</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <a href="#" class="nav-link " data-bs-toggle="dropdown">Bài viết</a>
                     </div>
                 }
 
                 @if (ViewData["menuDefault"] == "HoiDap")
                 {
                     <div class="nav-item dropdown ">
-                        <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Hỏi đáp</a>
-                        <div bg-danger class="dropdown-menu border-0 rounded-0 rounded-bottom m-0" style="width:auto">
-                            <table class="table">
-                                <tr>
-                                    <td><a href="feature.html" class="dropdown-item">Featur esqưeqwqư eqweqweeq</a></td>
-                                    <td><a href="team.html" class="dropdown-item">Our Team</a></td>
-                                    <td><a href="testimonial.html" class="dropdown-item">Testimonial</a></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="404.html" class="dropdown-item">404 Page</a></td>
-                                    <td><a href="404.html" class="dropdown-item">404 Page</a></td>
-                                    <td><a href="404.html" class="dropdown-item">404 Page</a></td>
-                                </tr>
-                            </table>
-                        </div>
+                        <a href="#" class="nav-link active">Hỏi đáp</a>
                     </div>
                 }
                 else
                 {
                     <div class="nav-item dropdown ">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Hỏi đáp</a>
-                        <div bg-danger class="dropdown-menu border-0 rounded-0 rounded-bottom m-0" style="width:auto">
-                            <table class="table">
-                                <tr>
-                                    <td><a href="feature.html" class="dropdown-item">Featur esqưeqwqư eqweqweeq</a></td>
-                                    <td><a href="team.html" class="dropdown-item">Our Team</a></td>
-                                    <td><a href="testimonial.html" class="dropdown-item">Testimonial</a></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="404.html" class="dropdown-item">404 Page</a></td>
-                                    <td><a href="404.html" class="dropdown-item">404 Page</a></td>
-                                    <td><a href="404.html" class="dropdown-item">404 Page</a></td>
-                                </tr>
-                            </table>
-                        </div>
+                        <a href="#" class="nav-link">Hỏi đáp</a>
                     </div>
                 }
 
-                @if (ViewData["menuDefault"] == "Khac")
+                @if (ViewData["menuDefault"] == "Liên hệ")
                 {
-                    <a href="contact.html" class="nav-item nav-link active">Khác</a>
+                    <a href="https://www.facebook.com/profile.php?id=100085020003835" class="nav-item nav-link active">Liên hệ</a>
                 }
                 else
                 {
-                    <a href="contact.html" class="nav-item nav-link">Khác</a>
+                    <a href="https://www.facebook.com/profile.php?id=100085020003835" class="nav-item nav-link">Liên hệ</a>
                 }
             
 
         </div>
-        <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="btn btn-sm btn-light rounded-pill py-2 px-4 d-none d-lg-block">Liên hệ</a>
-
-            <ul class="list-unstyled mt-3 ms-2">
+            @if (ViewData["IdAccount"] != null)
+            {
+                <ul id="ViewUserAccount" class="list-unstyled mt-3 ms-2">
                     <!-- User -->
                     <li class="">
                         <a data-bs-toggle="dropdown">
                             <div class="">
-                                <img src="/AdminAssets/assets/img/avatars/1.png" class="h-auto rounded-circle"  style="width:40px"/>
+                                <img src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png" class="h-auto rounded-circle" style="width:40px" />
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    <div class="d-flex">
-                                        <div class="flex-shrink-0 me-3">
-                                            <div class="avatar avatar-online">
-                                                <img src="../assets/img/avatars/1.png" class="w-px-40 h-auto rounded-circle" />
-                                            </div>
-                                        </div>
-                                        <div class="flex-grow-1">
-                                            <span class="fw-semibold d-block">Hà Thanh Bền</span>
-                                            <small class="text-muted ">Admin</small>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
 
                             <li>
                                 <div class="dropdown-divider"></div>
                             </li>
-                        <li>
-                            <button id="btnShowViewCarts" class="dropdown-item">
-                                <span class="d-flex align-items-center align-middle">
-                                    <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                                    <span class="flex-grow-1 align-middle">Giỏ hàng</span>
-                                    <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                                </span>
-                            </button>
-                        </li>
+                            <li>
+                                <button id="btnShowViewCarts" class="dropdown-item">
+                                    <span class="d-flex align-items-center align-middle">
+                                        <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
+                                        <span class="flex-grow-1 align-middle">Giỏ hàng</span>
+                                    </span>
+                                </button>
+                            </li>
+                            <li>
+                                <button  class="dropdown-item">
+                                    <span class="d-flex align-items-center align-middle">
+                                        <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
+                                        <span class="flex-grow-1 align-middle">Đơn hàng</span>
+                                    </span>
+                                </button>
+                            </li>
                             <li>
                                 <a class="dropdown-item" href="#">
                                     <i class="bx bx-user me-2"></i>
@@ -205,7 +141,7 @@
                                 <div class="dropdown-divider"></div>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="auth-login-basic.html">
+                                <a class="dropdown-item" onclick="deleteCookie('IdAccount')" asp-area="Admin" asp-controller="Login" asp-action="Index">
                                     <i class="bx bx-power-off me-2"></i>
                                     <span class="align-middle">Đăng xuất</span>
                                 </a>
@@ -214,9 +150,15 @@
                     </li>
                     <!--/ User -->
                 </ul>
+            }
+            else
+            {
+                <a asp-area="Admin" asp-controller="Login" asp-action="Index" id="statusLogin" class="btn btn-sm btn-light rounded-pill py-2 px-4 d-none d-lg-block">Đăng nhập</a>
+            }
+
+           
     </div>
 </nav>
 }
-
 
 <!-- Navbar End -->

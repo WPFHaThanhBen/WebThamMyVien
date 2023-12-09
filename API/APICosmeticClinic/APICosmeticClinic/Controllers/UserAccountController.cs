@@ -50,6 +50,35 @@ namespace APICosmeticClinic.Controllers
             return Ok(map);
         }
 
+
+        // Get By ID
+        [HttpGet("GetUserAccountByUserName/{userName}")]
+        [ProducesResponseType(200, Type = typeof(UserAccount))]
+        //[ProducesResponseType(400)]
+        public IActionResult GetUserAccount1(string userName)
+        {
+            var map = _mapper.Map<UserAccountDto>(_userAccountRepository.GetUserAccountByUserName(userName));
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(map);
+        }
+
+
+        [HttpGet("Login/{userName}/{passWord}")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<UserAccount>))]
+        public IActionResult GetAllUserAccount1(string userName, string passWord)
+        {
+            var userAccounts = _userAccountRepository.LoginAccount(userName, passWord);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(userAccounts);
+        }
+
+
         //Create
         [HttpPost]
         //[ProducesResponseType(204)]
@@ -129,5 +158,6 @@ namespace APICosmeticClinic.Controllers
 
             return Ok("Successfully Deleted");
         }
+
     }
 }

@@ -20,6 +20,20 @@ namespace WebThamMyVien.Controllers
         [Route("Index")]
         public async Task<IActionResult> Index()
         {
+            // Đọc giá trị của cookie "IdAccount" từ request
+            string idAccountValue = Request.Cookies["IdAccount"];
+
+            // Kiểm tra xem cookie có tồn tại không
+            if (idAccountValue != null)
+            {
+                int idAccount = Convert.ToInt32(idAccountValue);
+                ViewData["IdAccount"] = idAccount;
+            }
+            else
+            {
+                ViewData["IdAccount"] = null;
+            }
+
             WebProduct webProduct = new WebProduct();
             List<ProductView> listProductView = new List<ProductView>();
             List<ServiceTypeDto> list = await _unitOfWork.ServiceType.GetAllServiceType() as List<ServiceTypeDto>;
@@ -62,6 +76,20 @@ namespace WebThamMyVien.Controllers
         [Route("Detail")]
         public async Task<IActionResult> Detail(int id)
         {
+            // Đọc giá trị của cookie "IdAccount" từ request
+            string idAccountValue = Request.Cookies["IdAccount"];
+
+            // Kiểm tra xem cookie có tồn tại không
+            if (idAccountValue != null)
+            {
+                int idAccount = Convert.ToInt32(idAccountValue);
+                ViewData["IdAccount"] = idAccount;
+            }
+            else
+            {
+                ViewData["IdAccount"] = null;
+            }
+
             ProductView productView = new ProductView();
             List<ServiceTypeDto> list = await _unitOfWork.ServiceType.GetAllServiceType() as List<ServiceTypeDto>;
             ViewData["menuDefault"] = "MyPham";
@@ -114,6 +142,19 @@ namespace WebThamMyVien.Controllers
         [Route("Carts")]
         public async Task<IActionResult> Carts()
         {
+            // Đọc giá trị của cookie "IdAccount" từ request
+            string idAccountValue = Request.Cookies["IdAccount"];
+
+            // Kiểm tra xem cookie có tồn tại không
+            if (idAccountValue != null)
+            {
+                int idAccount = Convert.ToInt32(idAccountValue);
+                ViewData["IdAccount"] = idAccount;
+            }
+            else
+            {
+                ViewData["IdAccount"] = null;
+            }
 
             WebProduct webProduct = new WebProduct();
             List<ProductView> listProductView = new List<ProductView>();
@@ -224,13 +265,12 @@ namespace WebThamMyVien.Controllers
                 ShoppingCartItemDto shoppingCartItemDto = new ShoppingCartItemDto();
                 var product = await _unitOfWork.Product.GetProduct(int.Parse(id));
                 // Lấy giá trị int từ cookie (nếu tồn tại)
+                string idAccountValue = Request.Cookies["IdAccount"];
                 int IdAccount = 0;
-                if (Request.Cookies.TryGetValue("IdAccount", out string intString))
+                // Kiểm tra xem cookie có tồn tại không
+                if (idAccountValue != null)
                 {
-                    if (int.TryParse(intString, out int myIntValue))
-                    {
-                        IdAccount = myIntValue;
-                    }
+                    IdAccount = Convert.ToInt32(idAccountValue);
                 }
                 if (IdAccount > 0)
                 {

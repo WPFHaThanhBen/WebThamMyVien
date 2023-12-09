@@ -123,5 +123,60 @@ namespace WebThamMyVien.Repository
                 return null; // Trả về null nếu yêu cầu không thành công
             }
         }
+
+        public async Task<UserAccountDto> GetUserAccountByUserName(string userName)
+        {
+            var apiUrl = $"{_apiUrl}/api/UserAccount/GetUserAccountByUserName/{userName}"; // Điền đường dẫn API tại đây
+
+            var response = await _httpClient.GetAsync(apiUrl);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<UserAccountDto>(content);
+                return values; // Trả về đối tượng nếu yêu cầu thành công
+            }
+            else
+            {
+                return null; // Trả về null nếu yêu cầu không thành công
+            }
+        }
+
+        public async Task<bool> Login(string userName, string passWord)
+        {
+            var apiUrl = $"{_apiUrl}/api/UserAccount/Login/{userName}/{passWord}";
+
+            try
+            {
+                var response = await _httpClient.GetAsync(apiUrl);
+
+                // Đảm bảo request thành công (200 OK)
+                if (response.IsSuccessStatusCode)
+                {
+                    // Đọc nội dung phản hồi
+                    var responseData = await response.Content.ReadAsStringAsync();
+
+                    // Chuyển đổi chuỗi thành giá trị boolean
+                    if (bool.TryParse(responseData, out var result))
+                    {
+                        return result;
+                    }
+                }
+                else
+                {
+                    // Xử lý trường hợp không thành công (ví dụ: 404 Not Found, 500 Internal Server Error, etc.)
+                    // Nếu bạn muốn xử lý các mã trạng thái cụ thể, thêm các trường hợp ở đây.
+                }
+            }
+            catch (Exception ex)
+            {
+                // Xử lý lỗi khi gửi yêu cầu
+                // Điều này có thể bao gồm các trường hợp như timeout, không thể kết nối, v.v.
+            }
+
+            // Mặc định trả về false nếu có lỗi hoặc không thể chuyển đổi kết quả thành boolean
+            return false;
+        }
+
     }
 }

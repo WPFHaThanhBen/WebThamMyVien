@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "zslU975p9AUBoTxfMytDGw39EKpE7WK4MhXiQe9SuzM=",
+  "Hash": "eI/gvqGxKky3o21wUuO+58IqiSh7fbrlEJtnMKWWA60=",
   "Source": "WebThamMyVien",
   "BasePath": "_content/WebThamMyVien",
   "Mode": "Default",
@@ -168,6 +168,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\AdminAssets\\assets\\img\\backgrounds\\18.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\Web\\WebThamMyVien\\WebThamMyVien\\wwwroot\\AdminAssets\\assets\\img\\backgrounds\\bieudo78.jpg",
+      "SourceId": "WebThamMyVien",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\Web\\WebThamMyVien\\WebThamMyVien\\wwwroot\\",
+      "BasePath": "_content/WebThamMyVien",
+      "RelativePath": "AdminAssets/assets/img/backgrounds/bieudo78.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\AdminAssets\\assets\\img\\backgrounds\\bieudo78.jpg"
     },
     {
       "Identity": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\Web\\WebThamMyVien\\WebThamMyVien\\wwwroot\\AdminAssets\\assets\\img\\backgrounds\\ImageAdd.png",

@@ -1,0 +1,268 @@
+﻿@model IEnumerable<InvoiceDto>
+@{
+    Layout = "";
+}
+<!DOCTYPE html>
+
+
+<!-- beautify ignore:start -->
+<html lang="en"
+      class="light-style layout-menu-fixed"
+      dir="ltr"
+      data-theme="theme-default"
+      data-assets-path="/AdminAssets/assets/"
+      data-template="vertical-menu-template-free">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>Admin HD Beauty Luxury</title>
+
+    <meta name="description" content="" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/AdminAssets/assets/img/favicon/logoHD.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+          rel="stylesheet" />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="/AdminAssets/assets/vendor/fonts/boxicons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="/AdminAssets/assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="/AdminAssets/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="/AdminAssets/assets/css/demo.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="/AdminAssets/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <!-- Page CSS -->
+    <!-- Helpers -->
+    <script src="/AdminAssets/assets/vendor/js/helpers.js"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="/AdminAssets/assets/js/config.js"></script>
+</head>
+<body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+
+        <div class="layout-container">
+            <div class="container-xxl flex-grow-1 container-p-y">
+                <!--/Table Invoice -->
+                <div class="container-sm" style="max-width:600px">
+                    <div class="authentication-wrapper authentication-basic container-p-y">
+                        <div class="authentication-inner">
+                            <!-- Register Card -->
+                            <div class="card">
+                                <div class="card-body">
+                                    <!-- Logo -->
+                                    <div class="app-brand justify-content-center">
+                                        <a href="index.html" class="app-brand-link gap-2">
+                                            <span class="app-brand-logo demo">
+                                                <img style="width:50px; height:50px" src="/AdminAssets/assets/img/trademark/logoHD.png" />
+                                            </span>
+                                            <span class="demo text-body fw-bolder" style="font-size:30px">HD Beauty Luxury</span>
+                                        </a>
+                                    </div>
+                                    <!-- /Logo -->
+                                    <h4 class="mb-2 mt-3">Chào mừng bạn đến với Thẩm mỹ viện HD 👋</h4>
+                                    <p id="txtThongBao" class="mb-4">Vui lòng đăng ký tài khoản để sử dụng dịch vụ của chúng tôi</p>
+
+                                    <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+                                        <div class="mb-3">
+                                            <label for="username" class="form-label">Tài khoản</label>
+                                            <input type="text"
+                                                   class="form-control"
+                                                   id="username"
+                                                   name="username"
+                                                   placeholder="Vui lòng nhập tên tài khoản"
+                                                   autofocus />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="phonenumber" class="form-label">Số điện thoại</label>
+                                            <input type="text"
+                                                   class="form-control"
+                                                   id="phonenumber"
+                                                   name="phonenumber"
+                                                   placeholder="Nhập số điện thoại" />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="email" name="email" placeholder="Nhập tài khoản email" />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="fullname" class="form-label">Họ và Tên</label>
+                                            <input type="text"
+                                                   class="form-control"
+                                                   id="fullname"
+                                                   name="fullname"
+                                                   placeholder="Nhập tên của bạn" />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="address" class="form-label">Địa chỉ</label>
+                                            <input type="text"
+                                                   class="form-control"
+                                                   id="address"
+                                                   name="address"
+                                                   placeholder="Nhập địa chỉ hiện tại" />
+                                        </div>
+                                        <div class="mb-3 form-password-toggle">
+                                            <label class="form-label" for="password">Mật khẩu</label>
+                                            <div class="input-group input-group-merge">
+                                                <input type="password"
+                                                       id="password"
+                                                       class="form-control"
+                                                       name="password"
+                                                       placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                                       aria-describedby="password" />
+                                                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 form-password-toggle">
+                                            <label class="form-label" for="password">Nhập lại mật khẩu</label>
+                                            <div class="input-group input-group-merge">
+                                                <input type="password"
+                                                       id="password1"
+                                                       class="form-control"
+                                                       name="password1"
+                                                       placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                                       aria-describedby="password" />
+                                                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
+                                                <label class="form-check-label" for="terms-conditions">
+                                                    Tôi đồng ý với các 
+                                                    <a href="javascript:void(0);">điều kiện</a>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
+                                    </form>
+                                    <button id="userRegister" class="btn btn-primary d-grid w-100">Đăng ký</button>
+                                    <p class="text-center mt-2">
+                                        <span>Bạn đã có tài khoản?</span>
+                                        <a asp-area="Admin" asp-controller="Login" asp-action="Index">
+                                            <span>Đăng nhập</span>
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Register Card -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>       
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="/AdminAssets/assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="/AdminAssets/assets/vendor/libs/popper/popper.js"></script>
+    <script src="/AdminAssets/assets/vendor/js/bootstrap.js"></script>
+    <script src="/AdminAssets/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+
+    <script src="/AdminAssets/assets/vendor/js/menu.js"></script>
+    <!-- endbuild -->
+    <!-- Vendors JS -->
+    <!-- Main JS -->
+    <script src="/AdminAssets/assets/js/main.js"></script>
+    <!-- Page JS -->
+    <script src="/AdminAssets/assets/js/ui-toasts.js"></script>
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#userRegister').click(function () {
+                if ($('#terms-conditions').prop('checked') == true) {
+                    let registerObject = {
+                        UserName: $('#username').val(),
+                        PassWord: $('#password').val(),
+                        PassWordRepeat: $('#password1').val(),
+                        FullName: $('#fullname').val(),
+                        PhoneNumber: $('#phonenumber').val(),
+                        Email: $('#email').val(),
+                        Address: $('#address').val()
+                    };
+                    if (registerObject.UserName.length < 1) {
+                        $('#txtThongBao').text("Tài đang được để rỗng");
+                        $("#txtThongBao").css("color", "red");
+                    }
+                    else if (registerObject.UserName == "Admin" || registerObject.UserName == "admin") {
+                        $('#txtThongBao').text("Bạn không được sử dụng tài khoản này");
+                        $("#txtThongBao").css("color", "red");
+                    }
+                    else if (registerObject.PassWord.length < 6) {
+                        $('#txtThongBao').text("Mật khẩu phải có ích nhất 6 ký tự");
+                        $("#txtThongBao").css("color", "red");
+                    }
+                    else if (registerObject.PassWordRepeat != registerObject.PassWord) {
+                        $('#txtThongBao').text("Mật khẩu không trùng khớp");
+                        $("#txtThongBao").css("color", "red");
+                    }
+                    else if (registerObject.FullName.length < 1) {
+                        $('#txtThongBao').text("Tên đang được để rỗng");
+                        $("#txtThongBao").css("color", "red");
+                    }
+                    else if (registerObject.PhoneNumber.length < 10) {
+                        $('#txtThongBao').text("Số điện thoại không hợp lệ");
+                        $("#txtThongBao").css("color", "red");
+                    }
+                    else if (registerObject.Address.length < 10) {
+                        $('#txtThongBao').text("Vui lòng cung cấp địa chính thực tế để chúng tôi hỗ trợ giao hàng nhanh nhất");
+                        $("#txtThongBao").css("color", "red");
+                    }
+                    else {
+                        sJSON = JSON.stringify(registerObject);
+                        $.ajax({
+                            url: "/Admin/Login/UserRegister",
+                            type: 'POST',
+                            async: false,
+                            data: { register: sJSON },
+                            success: function (result) {
+                                // Trả về kết quả các số tương ứng với các trạng thái
+                                //1 Create account true
+                                //2 Create Accout false
+                                if (result == 2) {
+                                    $('#txtThongBao').text("Tạo tài khoản thất bại");
+                                    $("#txtThongBao").css("color", "red");
+                                }
+                                else if (result == 1) {
+                                    window.location.href = '/Admin/Login/Index';
+                                }
+                                else {
+                                    $('#txtThongBao').text("Lỗi không xác định");
+                                    $("#txtThongBao").css("color", "red");
+                                }
+                            },
+                            error: function (error) {
+                                alert("Lỗi AJAX");
+                            }
+                        });
+                    }
+                }
+                else {
+                    $('#txtThongBao').text("Bạn không thể sử dụng dịch vụ này nếu không đồng ý điều kiện của chúng tôi");
+                    $("#txtThongBao").css("color", "red");
+                }
+
+            });
+        });
+    </script>
+</body>
+<!-- Content -->
+</html>

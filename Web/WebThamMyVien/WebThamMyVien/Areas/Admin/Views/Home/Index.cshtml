@@ -1,10 +1,387 @@
-﻿
-@{
+﻿@{
     Layout = "_LayoutAdmin";
 }
+<!-- Content -->
 
-            <!-- Layout Demo -->
-            <div class= "container-fluid bg-info">
-                <h1> Trang chủ </h1>
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row">
+        <div class="col-lg-8 mb-4 order-0">
+            <div class="card">
+                <div class="d-flex align-items-end row">
+                    <div class="col-sm-7">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">Chào mừng bạn đến với Trang Quản Trị Admin! 🎉</h5>
+                            <p class="mb-4">
+                                Bạn đang có <span class="fw-bold">0</span> lịch hẹn hôm nay
+                            </p>
+                            <a asp-area="Admin" asp-controller="Appointment" asp-action="Index" class="btn btn-sm btn-outline-primary">Hiển thị thêm</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 text-center text-sm-left">
+                        <div class="card-body pb-0 px-0 px-md-4">
+                            <img src="https://abms.co/wp-content/uploads/2021/04/contact-us-vector.png"
+                                 height="140"
+                                 alt="View Badge User"
+                                 data-app-dark-img="illustrations/man-with-laptop-dark.png"
+                                 data-app-light-img="illustrations/man-with-laptop-light.png" />
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!--/ Layout Demo -->
+        </div>
+        <div class="col-lg-4 col-md-4 order-1">
+            <div class="row">
+                @* người dùng *@
+                <div class="col-lg-6 col-md-12 col-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <i class="menu-icon tf-icons bx bxs-user" style="font-size:40px" ></i>
+                                </div>
+                                <div class="dropdown">
+                                    <button class="btn p-0"
+                                            type="button"
+                                            id="cardOpt3"
+                                            data-bs-toggle="dropdown"
+                                            aria-haspopup="true"
+                                            aria-expanded="false">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="Index">Xem thêm</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="fw-semibold d-block mb-1">Người dùng</span>
+                            <h3 class="card-title mb-2">12</h3>
+                            <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +12 người</small>
+                        </div>
+                    </div>
+                </div>
+                @* khách hàng *@
+                <div class="col-lg-6 col-md-12 col-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <i class="menu-icon tf-icons bx bx-user-pin" style="font-size:40px"></i>
+                                </div>
+                                <div class="dropdown">
+                                    <button class="btn p-0"
+                                            type="button"
+                                            id="cardOpt6"
+                                            data-bs-toggle="dropdown"
+                                            aria-haspopup="true"
+                                            aria-expanded="false">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="Customer" asp-action="Index">Xem thêm</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="fw-semibold d-block mb-1">Khách hàng</span>
+                            <h3 class="card-title text-nowrap mb-1">24</h3>
+                            <small class="text-success fw-semibold pt-1"><i class="bx bx-up-arrow-alt"></i> +24 người</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Total Revenue -->
+        <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
+            <div class="card">
+                <div class="row row-bordered g-0">
+                    <div class="col-md-8">
+                        <div class="col-12">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between flex-sm-row flex-column gap-3">
+                                        <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
+                                            <div class="card-title">
+                                                <h5 class="text-nowrap mb-2">Nguồn vốn hiện tại</h5>
+                                                <span class="badge bg-label-warning rounded-pill pt-2">Đến năm 2023</span>
+                                            </div>
+                                            <div class="mt-sm-auto pt-3">
+                                                <small class="text-success text-nowrap fw-semibold"><i class="bx bx-chevron-up"></i> 68.2%</small>
+                                                <h3 class="mb-0">84,686tr</h3>
+                                            </div>
+                                        </div>
+                                        <div id="profileReportChart"></div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <div class="dropdown">
+                                    <button class="btn btn-sm btn-outline-primary dropdown-toggle"
+                                            type="button"
+                                            id="growthReportId"
+                                            data-bs-toggle="dropdown"
+                                            aria-haspopup="true"
+                                            aria-expanded="false">
+                                        2023
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="growthReportId">
+                                        <a class="dropdown-item" href="javascript:void(0);">2022</a>
+                                        <a class="dropdown-item" href="javascript:void(0);">2021</a>
+                                        <a class="dropdown-item" href="javascript:void(0);">2020</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="growthChart">
+                        </div>
+                        <div class="text-center fw-semibold pt-3 mb-2">62% Tăng trưởng</div>
+
+                        <div class="d-flex px-xxl-4 px-lg-2 p-4 gap-xxl-3 gap-lg-1 gap-3 justify-content-between">
+                            <div class="d-flex">
+                                <div class="me-2">
+                                    <span class="badge bg-label-primary p-2"><i class="bx bx-dollar text-primary"></i></span>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <small>2023</small>
+                                    <h6 class="mb-0">65,9tr</h6>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <div class="me-2">
+                                    <span class="badge bg-label-info p-2"><i class="bx bx-wallet text-info"></i></span>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <small>2022</small>
+                                    <h6 class="mb-0">41.2tr</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ Total Revenue -->
+        <div class="col-12 col-md-8 col-lg-4 order-3 order-md-2">
+            <div class="row">
+                @* hóa đơn *@
+                <div class="col-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <i class="menu-icon tf-icons bx bx-edit" style="font-size:40px"></i>
+                                </div>
+                                <div class="dropdown">
+                                    <button class="btn p-0"
+                                            type="button"
+                                            id="cardOpt4"
+                                            data-bs-toggle="dropdown"
+                                            aria-haspopup="true"
+                                            aria-expanded="false">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt4">
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="Invoice" asp-action="Index">Xem thêm</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="d-block mb-1">Hóa đơn</span>
+                            <h3 class="card-title text-nowrap mb-2">20</h3>
+                            <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +20 đơn</small>
+                        </div>
+                    </div>
+                </div>
+                @* bài đăng  *@
+                <div class="col-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <i class="menu-icon tf-icons bx  bx-devices" style="font-size:40px"></i>
+                                </div>
+                                <div class="dropdown">
+                                    <button class="btn p-0"
+                                            type="button"
+                                            id="cardOpt1"
+                                            data-bs-toggle="dropdown"
+                                            aria-haspopup="true"
+                                            aria-expanded="false">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="cardOpt1">
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="Post" asp-action="Index">Xem thêm</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="fw-semibold d-block mb-1">Bài đăng</span>
+                            <h3 class="card-title mb-2">15</h3>
+                            <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +15 bài</small>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="row"> 
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        @* sản phẩm *@
+        <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
+            <div class="card h-auto">
+                <div class="card-header d-flex align-items-center justify-content-between pb-0">
+                    <div class="card-title mb-0">
+                        <h5 class="m-0 me-2">Sản phẩm</h5>
+                        <small class="text-muted">Tính theo mặt hàng</small>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn p-0"
+                                type="button"
+                                id="orederStatistics"
+                                data-bs-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false">
+                            <i class="bx bx-dots-vertical-rounded"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="orederStatistics">
+                            <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <div class="d-flex flex-column align-items-center gap-1">
+                            <h2 class="mb-0 mt-4">12</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @* dịch vụ *@
+        <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
+            <div class="card h-auto">
+                <div class="card-header d-flex align-items-center justify-content-between pb-0">
+                    <div class="card-title mb-0">
+                        <h5 class="m-0 me-2">Dịch vụ</h5>
+                        <small class="text-muted">Tính theo từng loại</small>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn p-0"
+                                type="button"
+                                id="orederStatistics"
+                                data-bs-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false">
+                            <i class="bx bx-dots-vertical-rounded"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="orederStatistics">
+                            <a class="dropdown-item" asp-area="Admin" asp-controller="Service" asp-action="Index">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <div class="d-flex flex-column align-items-center gap-1">
+                            <h2 class="mb-0 mt-4">12</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @* khuyến mãi *@
+        <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
+            <div class="card h-auto">
+                <div class="card-header d-flex align-items-center justify-content-between pb-0">
+                    <div class="card-title mb-0">
+                        <h5 class="m-0 me-2">Khuyến mãi</h5>
+                        <small class="text-muted">Tính theo từng loại</small>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn p-0"
+                                type="button"
+                                id="orederStatistics"
+                                data-bs-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false">
+                            <i class="bx bx-dots-vertical-rounded"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="orederStatistics">
+                            <a class="dropdown-item" asp-area="Admin" asp-controller="Promotion" asp-action="Index">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <div class="d-flex flex-column align-items-center gap-1">
+                            <h2 class="mb-0 mt-4">12</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- / Content -->
+@section Scripts {
+    <script>
+        function displayToastrMessages(status, mesg) {
+            var successData = '';
+            var errorData = '';
+            var warningData = '';
+            if (status == 1) {
+                successData = mesg;
+            }
+            else if (status == 2) {
+                warningData = mesg;
+            }
+            else {
+                errorData = mesg;
+            }
+
+
+            if (successData !== '') {
+                toastr.success(successData);
+            }
+            if (errorData !== '') {
+                toastr.error(errorData);
+            }
+            if (warningData !== '') {
+                toastr.warning(warningData);
+            }
+        }
+
+        function LoadListing() {
+            $.ajax({
+                type: "POST",
+                url: "/Admin/CustomerType/GetALL",
+                datatype: "json",
+                success: function (data) {
+                    // Xóa dữ liệu cũ (nếu có)
+                    $('#myTable').DataTable().clear().destroy();
+                    // Thêm dữ liệu mới
+                    $('#myTable').DataTable({
+                        data: data,
+                        columns: [
+                            {
+                                data: 'Id',
+                                render: function (data, type, row) {
+                                    return '<input data-checkbox-id="' + data + '" type="checkbox" />';
+                                }
+                            },
+                            {
+                                data: 'TypeName',
+                                render: function (data, type, row) {
+                                    // Sử dụng `id` để gán giá link to Detail id
+                                    return '<a href="/Admin/CustomerType/Detail/' + row.Id + '">' + data + '</a>';
+                                }
+                            },
+                            { data: 'Other' }
+                        ],
+                    });
+                }
+            });
+        }
+        $(document).ready(function () {
+        });
+    </script>
+}
+

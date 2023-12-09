@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Security.Principal;
 using WebThamMyVien.Interfaces;
 using WebThamMyVien.Models;
 
@@ -16,12 +18,30 @@ namespace WebThamMyVien.Controllers
         }
         public async Task<IActionResult> Index()
         {
+            // Đọc giá trị của cookie "IdAccount" từ request
+            string idAccountValue = Request.Cookies["IdAccount"];
 
-            // Đặt giá trị int vào cookie
-            Response.Cookies.Append("IdAccount", "2", new CookieOptions
+            // Kiểm tra xem cookie có tồn tại không
+            if (idAccountValue != null)
             {
-                Expires = DateTime.Now.AddDays(30) // Thời hạn 30 ngày
-            });
+                if(idAccountValue == "1")
+                {
+                    Response.Cookies.Append("IdAccount", "", new CookieOptions
+                    {
+                        Expires = DateTime.Now.AddDays(30) // Thời hạn 30 ngày
+                    });
+                    ViewData["IdAccount"] = null;
+                }
+                else
+                {
+                    int idAccount = Convert.ToInt32(idAccountValue);
+                    ViewData["IdAccount"] = idAccount;
+                }
+            }
+            else
+            {
+                ViewData["IdAccount"] = null;
+            }
 
             WebHome webHome = new WebHome();
             ViewData["menuDefault"] = "TrangChu";

@@ -52,5 +52,24 @@ namespace APICosmeticClinic.Repository
             _context.Update(userAccount);
             return Save();
         }
+
+        public UserAccount GetUserAccountByUserName(string userName)
+        {
+            return _context.UserAccounts.Where(e => e.Username == userName && e.IsDelete != true).FirstOrDefault();
+        }
+
+        public bool LoginAccount(string userName, string passWord)
+        {
+            bool result = false;
+            var n =  _context.UserAccounts.Where(e => e.Username == userName && e.Password == passWord && e.IsDelete != true).ToList();
+            if(n != null)
+            {
+                if(n.Count() >= 1)
+                {
+                    result = true;
+                }
+            }
+            return result;
+        }
     }
 }
