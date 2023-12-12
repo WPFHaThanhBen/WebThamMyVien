@@ -24,7 +24,7 @@ namespace WebThamMyVien.Controllers
             string idAccountValue = Request.Cookies["IdAccount"];
 
             // Kiểm tra xem cookie có tồn tại không
-            if (idAccountValue != null)
+            if (idAccountValue != null && idAccountValue != "")
             {
                 int idAccount = Convert.ToInt32(idAccountValue);
                 ViewData["IdAccount"] = idAccount;
@@ -80,7 +80,7 @@ namespace WebThamMyVien.Controllers
             string idAccountValue = Request.Cookies["IdAccount"];
 
             // Kiểm tra xem cookie có tồn tại không
-            if (idAccountValue != null)
+            if (idAccountValue != null && idAccountValue != "")
             {
                 int idAccount = Convert.ToInt32(idAccountValue);
                 ViewData["IdAccount"] = idAccount;

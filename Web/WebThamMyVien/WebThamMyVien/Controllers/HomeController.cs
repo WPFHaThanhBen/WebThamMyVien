@@ -22,7 +22,7 @@ namespace WebThamMyVien.Controllers
             string idAccountValue = Request.Cookies["IdAccount"];
 
             // Kiểm tra xem cookie có tồn tại không
-            if (idAccountValue != null)
+            if (idAccountValue != null && idAccountValue != "")
             {
                 if(idAccountValue == "1")
                 {

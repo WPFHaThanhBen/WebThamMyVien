@@ -50,7 +50,7 @@ namespace APICosmeticClinic.Controllers
         //[ProducesResponseType(400)]
         public IActionResult GetInvoice()
         {
-            var map = _mapper.Map<PostDto>(_invoiceRepository.GetInvoiceFinal());
+            var map = _mapper.Map<InvoiceDto>(_invoiceRepository.GetInvoiceFinal());
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

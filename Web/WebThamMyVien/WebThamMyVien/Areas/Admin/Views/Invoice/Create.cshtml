@@ -842,16 +842,13 @@
 							type: 'POST',
 							data: { invoiceDetailsArray: invoiceDetailsArrayJSON, invoice: invoiceJSON },
 							success: function (result) {
-							     
-								// Xử lý kết quả từ Action ở đây (nếu cần)
 							},
 							error: function (error) {
 								// Xử lý lỗi ở đây (nếu có)
+								alert("Lỗi dòng 850");
 							}
 						});
 						status = true;
-						
-
 					}
 					
 				}

@@ -28,7 +28,7 @@ namespace WebThamMyVien.Areas.Admin.Controllers
             // Khởi tạo Menu (bắt buộc)
             TempData["menu"] = "Invoice";
 			int IdUser = 0;
-			if (Request.Cookies.TryGetValue("IdUser", out string intString))
+			if (Request.Cookies.TryGetValue("IdAccount", out string intString))
 			{
 				if (int.TryParse(intString, out int myIntValue))
 				{
@@ -302,6 +302,7 @@ namespace WebThamMyVien.Areas.Admin.Controllers
 		[HttpPost]
 		public async Task<ActionResult> GetInvoidFinal()
 		{
+
 			var n = await _unitOfWork.Invoice.GetInvoiceFinal();
 			string json = "";
 			if (n != null)

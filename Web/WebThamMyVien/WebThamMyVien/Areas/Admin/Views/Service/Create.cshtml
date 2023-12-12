@@ -62,20 +62,6 @@
 
                 </form>
             </div>
-            <div class="col-sm">
-                <!-- Bootstrap crossfade carousel -->
-                <div class="col-md pt-1 mt-4">
-                    <div class="pb-3">
-                        <button type="button" id="chooseImage" class="btn btn-success">Thêm ảnh</button>
-                        <input type="file" id="fileInput" style="display: none;" accept="image/*">
-                        <button id="deleteImage" class="btn btn-secondary text-white">Xóa ảnh</button>
-                    </div>
-                    <div>
-                        <img id="showImage" class="d-block w-100 rounded" src="" alt="New Slide" />
-                    </div>
-                </div>
-
-            </div>
         </div>
 
         <div>
@@ -90,32 +76,5 @@
 </div>
 
 @section Scripts{
-    <script>
-        $(document).ready(function () {
-            $("#chooseImage").click(function () {
-                // Khi nút "Thêm ảnh" được nhấn, kích hoạt hộp chọn tệp ẩn
-                $("#fileInput").trigger("click");
-            });
-
-            $("#fileInput").change(function () {
-                // Xử lý khi người dùng chọn tệp ảnh
-                var selectedFile = this.files[0];
-                if (selectedFile) {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        // Đặt đường dẫn của ảnh vào thuộc tính "src" của đối tượng img
-                        $("#showImage").attr("src", e.target.result);
-                    };
-                    reader.readAsDataURL(selectedFile);
-                }
-            });
-
-            $("#deleteImage").click(function () {
-                // Đặt đường dẫn của ảnh thành chuỗi rỗng để xóa ảnh
-                $("#showImage").attr("src", "");
-            });
-        });
-
-    </script>
 }
 <!-- / Content -->
