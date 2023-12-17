@@ -27,7 +27,7 @@
 <div class="container-xxl py-5">
     <div class="container">
         <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-            <h6 class="section-title bg-white text-center px-3 " style="color:purple">Giỏ Hàng</h6>
+            <h6 class="section-title bg-white text-center px-3 " style="color:purple">Thông tin đơn hàng</h6>
         </div>
         <div class="container-fluid mt-5 mb-5">
             <section class="h-100" style="background-color: #eee;">
@@ -83,37 +83,32 @@
                                 <div class="row">
                                     <div class="mb-3 col-sm">
                                         <label class="form-label text-capitalize">Tên người đặt hàng</label>
-                                        <input type="text" class="form-control " placeholder="Nhập họ và tên" />
+                                        <input type="text" class="form-control" value="@ViewData["CartFullName"]" placeholder="Nhập họ và tên" />
                                     </div>
                                     <div class="mb-3 col-sm">
                                         <label class="form-label text-none">Số điện thoại</label>
-                                        <input  type="number" class="form-control " placeholder="Nhập số điện thoại" />
+                                        <input type="number" class="form-control" value="@ViewData["CartPhone"]" placeholder="Nhập số điện thoại" />
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label text-capitalize">Địa chỉ nhận hàng</label>
                                     <textarea class="form-control"
-                                              placeholder="Nhập chi tiết địa chỉ"></textarea>
+                                              placeholder="Nhập chi tiết địa chỉ">@ViewData["CartAddress"]</textarea>
                                 </div>
-
+                                <div class="mb-3">
+                                    <label class="form-label text-capitalize">Ghi chú</label>
+                                    <textarea class="form-control" id="ghiChu"
+                                              placeholder="Nhập ghi chú cho đơn hàng"></textarea>
+                                </div>
                                 <div class="card">
                                     <div class="card-body row">
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-8">
                                             <div class="row">
-                                                <button type="button" class=" ms-2 btn btn-warning btn-block btn-lg col">Thanh Toán</button>
-@*                                                 <div class="ms-3 mb-3 col">
-                                                    <label class="form-label text-capitalize" style="font-size: 15px">Hình thức thanh toán</label>
-                                                    <select id="cbbHinhThucThanhToan" class="form-control ">
-                                                        <option>Tiền mặt</option>
-                                                        <option>Chuyển khoản</option>
-                                                        <option>Ghi nợ</option>
-                                                        <option>Khác</option>
-                                                    </select>
-                                                </div> *@
+                                                <button type="button" id="createOrder" class=" ms-2 btn btn-warning btn-block btn-lg col">Tạo đơn hàng</button>
                                             </div>
                                        </div>
-                                        <div class="col-sm-6  text-end">
-                                            <h4 id="tongTien" class="mt-2">Tổng: 0đ</h4>
+                                        <div class="col-sm-4  text-end">
+                                            <h4 id="tongTien" class="mt-4">Tổng: 0đ</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -158,7 +153,7 @@
                 $.ajax({
                     type: "POST",
                     url: "/Product/UpdatePriceShoppingCartItem",
-                    data: { idProduct: parseInt(idProduct, 10), quantity: parseInt(quantity, 10) },
+                    data: { idProduct: Math.round(parseInt(idProduct, 10)), quantity: Math.round(parseInt(quantity, 10)) },
                     success: function (data) {
                         if (data != false) {
                             $("#productID_" + idProduct).text(ConvertToCurrencyFormat(data));
@@ -177,7 +172,8 @@
 
             // Bước 2: Loại bỏ dấu "." ngăn cách giữa hàng nghìn (nếu có)
             currencyString = currencyString.replace(/\,/g, '');
-
+            // Bước 2: Loại bỏ dấu "." ngăn cách giữa hàng nghìn (nếu có)
+            currencyString = currencyString.replace(/\./g, '');
             // Bước 3: Chuyển đổi chuỗi thành số nguyên
             var integerValue = parseInt(currencyString);
 
@@ -237,18 +233,17 @@
                 }
             });
 
-            // Mảng để lưu trữ giá trị của các checkbox đã được chọn
+            // Mảng để lưu trữ giá trị của các checkbox đã được chọn chứa (giá trị id sản phẩm và số lượng)
             var selectedValues = [];
+            let priceValues = 0;
             // Lắng nghe sự kiện thay đổi của checkbox
             $('input[name="selectedProductItem"]').change(function () {
 
                 // Xóa tất cả các phần tử khỏi mảng
                 selectedValues = [];
-                let priceValues = 0;
                 // Lặp qua tất cả các checkbox đã được chọn và thêm giá trị vào mảng
                 $('input[name="selectedProductItem"]:checked').each(function () {
                     priceValues = 0;
-                    // selectedValues.push(parseInt($(this).val()));
                     let aaaa = parseInt($(this).val());
                     $.ajax({
                         type: "POST",
@@ -260,13 +255,12 @@
                                 let quantity1 = $("#quantity-" + aaaa).val();
                                 priceValues += convertCurrencyStringToInt(price);
 
-                                let objectItem = {
+                                let ObjectItem = {
                                     id: aaaa,
                                     quantity: quantity1
                                 };
-                                selectedValues.push(objectItem);
+                                selectedValues.push(ObjectItem);
                                 $('#tongTien').text("Tổng: " + ConvertToCurrencyFormat(priceValues));
-
                             }
                         },
                         error: function (error) {
@@ -294,22 +288,26 @@
 
             });
 
+            $("#createOrder").on("click", function () {
+                selectedValuesJSON = JSON.stringify(selectedValues);
+                $.ajax({
+                        type: "POST",
+                    url: "/Order/CreateOrder",
+                    data: { listProduct: selectedValuesJSON, ghichu: $('#ghiChu').val() },
+                        success: function (data1) {
+                            if (data1 != 0) {
+                            window.location.href = "/Order/Detail?id=" + data1;
+                            }
+                            else {
+                                alert("Lỗi không thể tạo đơn hàng")
+                            }
+                        },
+                        error: function (error) {
+                            alert("Lỗi");
+                        }
+                    });
+            });
 
-            // function CreateOrder() {
-            //     selectedValuesJSON = JSON.stringify(selectedValues);
-            //     $.ajax({
-            //         type: "POST",
-            //         url: "/Product/GetListProductByType",
-            //         data: { listId: selectedValuesJSON },
-            //         success: function (data) {
-            //             // Xóa nội dung hiện tại của #showProduct
-            //             $("#showProduct").empty();
-            //         },
-            //         error: function (error) {
-            //             console.error("Error:", error);
-            //         }
-            //     });
-            // }
         });
 
 

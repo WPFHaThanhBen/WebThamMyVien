@@ -33,6 +33,19 @@ namespace APICosmeticClinic.Controllers
             return Ok(orders);
         }
 
+        // Get ALL 
+        [HttpGet("ByPhone/{phone}")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Order>))]
+        public IActionResult GetAllOrderByPhone(string phone)
+        {
+            var orders = _mapper.Map<List<OrderDto>>(_orderRepository.GetAllOrderByPhone(phone));
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(orders);
+        }
+
         // Get By ID
         [HttpGet("{orderId}")]
         [ProducesResponseType(200, Type = typeof(Order))]
@@ -49,7 +62,20 @@ namespace APICosmeticClinic.Controllers
 
             return Ok(map);
         }
+        // Get By ID
+        [HttpGet("Final")]
+        [ProducesResponseType(200, Type = typeof(Order))]
+        //[ProducesResponseType(400)]
+        public IActionResult GetOrderFinal()
+        {
 
+            var map = _mapper.Map<OrderDto>(_orderRepository.GetOrderFinal());
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(map);
+        }
         //Create
         [HttpPost]
         //[ProducesResponseType(204)]

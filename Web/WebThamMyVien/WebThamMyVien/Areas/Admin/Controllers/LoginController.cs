@@ -27,7 +27,6 @@ namespace WebThamMyVien.Areas.Admin.Controllers
         public async Task<IActionResult> UserLogin(string login)
         {
             string json = JsonConvert.SerializeObject(4);
-            // Trong một action method hoặc Post
             LoginDto loginDto = JsonConvert.DeserializeObject<LoginDto>(login);
 
             if (loginDto != null)
@@ -89,13 +88,17 @@ namespace WebThamMyVien.Areas.Admin.Controllers
             return Content(json, "application/json");
         }
 
+        // Action đăng ký tài khoản
         [HttpPost]
         public async Task<IActionResult> UserRegister(string register)
         {
+            // Khởi tạo biến json return cho view
             string json = JsonConvert.SerializeObject(2);
+            // Khởi tạo object Register từ json Ajax gửi qua
             RegisterDto registerDto = JsonConvert.DeserializeObject<RegisterDto>(register);
             if (registerDto != null)
             {
+                // Khởi tạo object Tài khoản
                 UserAccountDto account = new UserAccountDto();
                 account.Id = 0;
                 account.Username = registerDto.UserName.ToLower();
@@ -106,6 +109,7 @@ namespace WebThamMyVien.Areas.Admin.Controllers
                 bool statusCreateAccount = await _unitOfWork.UserAccount.CreateUserAccount(account);
                 if (statusCreateAccount)
                 {
+                    // Create object Khách hàng
                     CustomerDto customer = new CustomerDto();
                     customer.Id = 0;
                     customer.Address = registerDto.Address;
@@ -115,6 +119,7 @@ namespace WebThamMyVien.Areas.Admin.Controllers
                     bool statusCreateCustomer = await _unitOfWork.Customer.CreateCustomer(customer);
                     if (statusCreateCustomer)
                     {
+                        // Create object Giỏ hàng
                         ShoppingCartDto shoppingCartDto = new ShoppingCartDto();
                         shoppingCartDto.Id = 0;
                         UserAccountDto ac = await _unitOfWork.UserAccount.GetUserAccountByUserName(registerDto.UserName);
@@ -123,6 +128,10 @@ namespace WebThamMyVien.Areas.Admin.Controllers
                         if(statusCreateShoppingCart)
                         {
                             json = JsonConvert.SerializeObject(1);
+                            // Update object Tài khoản
+                            var customerFinal = await _unitOfWork.Customer.GetCustomerFinal();
+                            ac.CustomerId = customerFinal.Id;
+                            await _unitOfWork.UserAccount.UpdateUserAccount(ac);
                         }
                         else
                         {
@@ -154,5 +163,34 @@ namespace WebThamMyVien.Areas.Admin.Controllers
             //2 Create Accout false
             return Content(json, "application/json");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> CheckAccount(string sdt,string username)
+        {
+            string json = JsonConvert.SerializeObject(1);
+            string phoneCustomer = JsonConvert.DeserializeObject<string>(sdt);
+            string usernameAccount = JsonConvert.DeserializeObject<string>(username);
+            // Get Customer by phone
+            var checkCustomer = await _unitOfWork.Customer.GetCustomerBySDT(phoneCustomer);
+            // Get Account by username
+            var checkAccount = await _unitOfWork.UserAccount.GetUserAccountByUserName(usernameAccount);
+            if (checkAccount != null)
+            {
+                // Phone đã đước sử dụng
+                json = JsonConvert.SerializeObject(3);
+                return Content(json, "application/json");
+            }
+            if (checkCustomer != null)
+            {
+                // Username đã được sử dụng
+                json = JsonConvert.SerializeObject(2);
+                return Content(json, "application/json");
+            }
+            // Có thể tạo Tài khoản
+            json = JsonConvert.SerializeObject(1);
+            return Content(json, "application/json");
+        }
+
+
     }
 }

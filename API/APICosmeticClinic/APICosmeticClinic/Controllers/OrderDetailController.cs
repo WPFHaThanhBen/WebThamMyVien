@@ -33,6 +33,20 @@ namespace APICosmeticClinic.Controllers
             return Ok(orderDetails);
         }
 
+
+        // Get ALL 
+        [HttpGet("ByOrderId/{id}")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<OrderDetail>))]
+        public IActionResult GetAllOrderDetailByOrderId(int id)
+        {
+            var orderDetails = _mapper.Map<List<OrderDetailDto>>(_orderDetailRepository.GetAllOrderDetailByOrderId(id));
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(orderDetails);
+        }
+
         // Get By ID
         [HttpGet("{orderDetailId}")]
         [ProducesResponseType(200, Type = typeof(OrderDetail))]

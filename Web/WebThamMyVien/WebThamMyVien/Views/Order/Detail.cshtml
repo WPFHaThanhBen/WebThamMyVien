@@ -1,0 +1,224 @@
+﻿@using System.Globalization;
+
+@{
+    int TinhTienKhuyenMai(int gia, int khuyenmai)
+    {
+        double a = (double)khuyenmai;
+        double b = (double)gia;
+        // Tính tiền sau khuyến mãi
+        double tienSauKhuyenMai = b * (1 - a / 100);
+        return (int)tienSauKhuyenMai;
+    }
+    string ConvertToCurrencyFormat(int amount)
+    {
+        // Sử dụng CultureInfo để định dạng số theo quy tắc của ngôn ngữ hiện tại
+        CultureInfo culture = CultureInfo.CurrentCulture;
+
+        // Chuyển đổi số thành chuỗi định dạng tiền tệ
+        string formattedAmount = string.Format(culture, "{0:N0}", amount);
+
+        // Thêm ký tự "đ" hoặc "₫" (đồng) vào cuối chuỗi
+        formattedAmount += "đ";
+
+        return formattedAmount;
+    }
+    int n = 0;
+}
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h6 class="section-title bg-white text-center px-3 " style="color:purple">Đơn Hàng</h6>
+        </div>
+        <div class="container-fluid mt-5 mb-5">
+            <section class="h-100" style="background-color: #eee;">
+                <div class="container h-100 py-5">
+                    <div class="ms-5 ps-5 row">
+                        <input id="orderId"  type="hidden" value="@Model.Id" />
+                        <input id="tongGia" type="hidden" value="@Model.TotalAmount" />
+                        <div class="col-sm-6">
+                            <h5>Mã đơn hàng: @Model.Id</h5>
+                            <h5>Ngày tạo: @Model.OrderDate</h5>
+                            <h5>Số điện thoại: @Model.RecipientPhoneNumber</h5>
+                        </div>
+                        <div class="col-sm-6">
+                            <h5>Trạng thái: @Model.orderStatusName</h5>
+                            <h5>Địa chỉ: @Model.DeliveryAddress</h5>
+                            <h5>Ghi chú: @Model.Other</h5>
+                        </div>
+
+
+                    </div>
+
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col-10">
+                            @foreach (var item in Model.OrderDetails)
+                                {
+                                    
+                                        <div id="ShowItemID_@item.Id" class="card rounded-3 mb-4">
+                                            <div class="card-body p-4">
+                                                <div class="row d-flex justify-content-between align-items-center">
+                                                    <div class="col-md-2 col-lg-2 col-xl-2">
+                                                        <img src="@item.Images[0].Image"
+                                                             class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                                    </div>
+                                                    <div class="col-md-3 col-lg-3 col-xl-3">
+                                                <p class="lead fw-normal mb-2">@item.productName</p>
+                                                        @* <p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p> *@
+                                                    </div>
+                                                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                                <input min="2" name="quantity" style="width:50px" disabled value="@item.Quantity" type="number" class="form-control form-control-sm quantity-input" />
+                                                    </div>
+                                                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                                <h5 class="mb-0">@ConvertToCurrencyFormat(item.TotalPrice)</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                }
+                            <div id="showThanhToanTruoc" class="card">
+                                <div class="card-body flex-sm-row">
+                                    <a id="linkMomo">
+                                        <img style="width:50px;height:50px" src="~/defaultassets/img/imagemomo.png" />
+                                    </a>
+                                    <a class="ms-2">
+                                        <img style="width:50px;height:50px" src="~/defaultassets/img/imagepaypal.png" />
+                                    </a>
+                                    <a class="ms-2">
+                                        <img style="width:50px;height:50px" src="~/defaultassets/img/imagevnpay.png" />
+                                    </a>
+                                </div>
+                            </div>
+                                <div class="card">
+                                    <div class="card-body row">
+                                        <div class="col-sm-6">
+                                            <div class="row">
+                                            @if (Model.dathanhtoan == true || Model.orderStatusName != "Chờ xác nhận")
+                                            {
+                                                <button id="datHang" type="button" class=" ms-2 btn btn-warning btn-block btn-lg col" disabled >Đã đặt hàng</button>
+                                                <div class="ms-3 mb-3 col ">
+                                                    <label class="form-label text-capitalize" style="font-size: 15px">Hình thức thanh toán</label>
+                                                    <select id="cbbHinhThucThanhToan" class="form-control " disabled >
+                                                        <option>Tiền mặt (thanh toán sau)</option>
+                                                        <option>Thanh toán trước (freeship)</option>
+                                                    </select>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <button id="datHang" type="button" class=" ms-2 btn btn-warning btn-block btn-lg col">Đặt hàng</button>
+                                                <div class="ms-3 mb-3 col">
+                                                    <label class="form-label text-capitalize" style="font-size: 15px">Hình thức thanh toán</label>
+                                                    <select id="cbbHinhThucThanhToan" class="form-control ">
+                                                        <option>Tiền mặt (thanh toán sau)</option>
+                                                        <option>Thanh toán trước (freeship)</option>
+                                                    </select>
+                                                </div>
+                                            }
+                                            
+                                            </div>
+                                       </div>
+                                        <div class="col-sm-6  text-end">
+                                        <h4 id="tongTien" class="mt-2">Tổng: @ConvertToCurrencyFormat(Model.TotalAmount)</h4>
+                                        </div>
+                                    </div>
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </div>
+</div>
+
+<!-- / Content -->
+<!-- / Content -->
+@section Scripts {
+    <script>
+
+        function TinhTienKhuyenMai(gia, khuyenmai) {
+            var a = khuyenmai;
+            var b = gia;
+
+            // Tính tiền sau khuyến mãi
+            var tienSauKhuyenMai = b * (1 - a / 100);
+
+            return Math.floor(tienSauKhuyenMai);
+        }
+        function ConvertToCurrencyFormat(amount) {
+            // Sử dụng Intl.NumberFormat để định dạng số theo quy tắc của ngôn ngữ hiện tại
+            var formattedAmount = new Intl.NumberFormat().format(amount);
+
+            // Thêm ký tự "đ" hoặc "₫" (đồng) vào cuối chuỗi
+            formattedAmount += 'đ';
+
+            return formattedAmount;
+        }
+        function UpdataPriceItem(idProduct, quantity) {
+            if (quantity == 0) {
+                $("#productID_" + idProduct).text("0đ");
+            }
+            else {
+                $.ajax({
+                    type: "POST",
+                    url: "/Product/UpdatePriceShoppingCartItem",
+                    data: { idProduct: Math.round(parseInt(idProduct, 10)), quantity: Math.round(parseInt(quantity, 10)) },
+                    success: function (data) {
+                        if (data != false) {
+                            $("#productID_" + idProduct).text(ConvertToCurrencyFormat(data));
+                        }
+                    },
+                    error: function (error) {
+                        console.error("Error:", error);
+                    }
+                });
+            }
+
+        }
+        function convertCurrencyStringToInt(currencyString) {
+            // Bước 1: Loại bỏ ký tự "đ" ở cuối chuỗi
+            currencyString = currencyString.replace('đ', '');
+
+            // Bước 2: Loại bỏ dấu "." ngăn cách giữa hàng nghìn (nếu có)
+            currencyString = currencyString.replace(/\,/g, '');
+            // Bước 2: Loại bỏ dấu "." ngăn cách giữa hàng nghìn (nếu có)
+            currencyString = currencyString.replace(/\./g, '');
+            // Bước 3: Chuyển đổi chuỗi thành số nguyên
+            var integerValue = parseInt(currencyString);
+
+            return integerValue;
+        }
+        $(document).ready(function () {
+
+            $('#showThanhToanTruoc').hide();
+
+            $('#cbbHinhThucThanhToan').change(function () {
+                var selectedOption = $(this).val();
+                var divToShowHide = $('#showThanhToanTruoc');
+                if (selectedOption === 'Thanh toán trước (freeship)') {
+                    divToShowHide.show(); // Hiển thị
+                    $('#btnThanhToan').hide();
+                } else if (selectedOption === 'Tiền mặt (thanh toán sau)') {
+                    divToShowHide.hide(); // Ẩn
+                    $('#btnThanhToan').show();
+                }
+            });
+
+            $("#linkMomo").on("click", function () {
+                //Tạo Order
+                var url = "/Order/Payment?tongtien=" + $('#tongGia').val() + "&idOrder=" + $('#orderId').val();
+                window.location.href = url;
+            });
+            $("#datHang").on("click", function () {
+                //Tạo Order
+                var url = "/Order/Detail?id=" + $('#orderId').val();
+                window.location.href = url;
+            });
+            
+
+        });
+
+
+    </script>
+}

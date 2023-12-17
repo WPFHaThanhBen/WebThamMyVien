@@ -72,14 +72,7 @@ CREATE TABLE UserAccount (
     FOREIGN KEY (AccountTypeID) REFERENCES AccountType(ID)
 );
 
--- Thêm cột CustomerId vào bảng UserAccount
-ALTER TABLE UserAccount
-ADD CustomerId INT;
 
--- Thêm ràng buộc khóa ngoại cho cột CustomerId
-ALTER TABLE UserAccount
-ADD CONSTRAINT FK_UserAccount_Customer
-FOREIGN KEY (CustomerId) REFERENCES Customer(ID);
 
 CREATE TABLE ActionType (
     ID INT IDENTITY(1,1) PRIMARY KEY,
@@ -132,6 +125,15 @@ CREATE TABLE Customer (
     FOREIGN KEY (CustomerStatusID) REFERENCES CustomerStatus(ID),
     FOREIGN KEY (CustomerTypeID) REFERENCES CustomerType(ID)
 );
+-- Thêm cột CustomerId vào bảng UserAccount
+ALTER TABLE UserAccount
+ADD CustomerId INT;
+
+-- Thêm ràng buộc khóa ngoại cho cột CustomerId
+ALTER TABLE UserAccount
+ADD CONSTRAINT FK_UserAccount_Customer
+FOREIGN KEY (CustomerId) REFERENCES Customer(ID);
+
 CREATE TABLE ServiceType (
     ID INT IDENTITY(1,1) PRIMARY KEY,
     TypeName NVARCHAR(255),
@@ -479,6 +481,10 @@ VALUES
     (N'Chờ xác nhận', N'Thông tin bổ sung cho trạng thái chờ xác nhận', 0, NULL),
     (N'Tạm dừng', N'Thông tin bổ sung cho trạng thái tạm dừng', 0, NULL);
 
+INSERT INTO InvoiceType (InvoiceTypeName, Other, IsDelete, DateDelete) VALUES
+    ('Hóa Đơn Dịch Vụ', 'cập nhật sau', NULL, NULL),
+    ('Hóa Đơn Bán Hàng', 'chờ cập nhật', NULL, NULL);
+
 INSERT INTO ActionType (TypeName, IsDelete, DateDelete)
 VALUES
     (N'Thêm', 0, NULL),
@@ -486,7 +492,12 @@ VALUES
     (N'Xóa', 0, NULL),
     (N'Khác', 0, NULL);
 
-
+	INSERT INTO OrderStatus (StatusName, IsDelete, DateDelete) VALUES
+    ('Chờ xác nhận', 0, NULL),
+    ('Chờ lấy hàng', 0, NULL),
+    ('Đang vẫn chuyển', 0, NULL),
+    ('Đã hủy', 0, NULL),
+    ('Hoàn thành', 0, NULL);
 
 
 INSERT INTO UserType ("Name", Other, IsDelete, DateDelete)
@@ -512,3 +523,13 @@ VALUES (N'Dịch Vụ Nổi Bật', N'Được tạo bởi hệ thống, Không 
 INSERT INTO Post (Title, Introduce, PostingDateCreate, PostingDateUpdate, Content, "Image", ViewsCount, PostTypeID, PostedByUserID, IsDelete, DateDelete)
 VALUES (N'#1 Hà Tiểu Vy 10 Năm Trong Ngành Thẩm Mỹ', N'Một chuyên gia SEO tài năng và có uy tín, đang tỏa sáng trong ngành thẩm mỹ với 10 năm kinh nghiệm đầy đủ. Với khả năng hiểu biết sâu rộng về cả lĩnh vực thẩm mỹ và chiến lược tối ưu hóa công cụ tìm kiếm, cô ấy đã đóng góp đáng kể vào sự thành công của chuỗi thẩm mỹ viện. Không chỉ giỏi về kỹ thuật, Hà Tiểu Vi còn được biết đến với khả năng sáng tạo và linh hoạt trong việc áp dụng các chiến lược SEO tiên tiến nhất. Với niềm đam mê và cam kết cao, cô ấy luôn nỗ lực không ngừng để đảm bảo rằng thương hiệu mà mình đại diện luôn xuất hiện ở vị trí cao nhất trên các trang kết quả tìm kiếm.',
 '2023-01-01', '2023-01-02', N'', N'image_url.jpg', 0, 1, NULL, NULL, NULL);
+
+-- Thêm dữ liệu mẫu vào bảng Customer
+INSERT INTO Customer (FullName, Birthdate, PhoneNumber, IDCard, FacebookLink, ZaloLink, Email, Gender, "Address", InterestedServices, CustomerStatusID, CustomerTypeID, Other, IsDelete, DateDelete) VALUES
+    ('Lý Tự Hào', '30/02/2002', '0342757202', '123456789', 'chờ cập nhật', 'chờ cập nhật', 'lytuhao2002@gmail.com', '1', 'Bình Thủy, Cần Thơ', 'Chờ cập nhật', 1, 1, 'Chờ cập nhật', 0, NULL),
+    ('Hà Thanh Bền', '30/02/2002', '0963462310', '234567890', 'chờ cập nhật', 'chờ cập nhật', 'hathanhben2002@gmail.com', '0', 'Bình Thủy, Cần Thơ', 'Chờ cập nhật', 1, 2, 'Chờ cập nhật', 0, NULL);
+
+
+INSERT INTO Invoice (InvoiceTypeID, InvoiceDate, CreatedByUserID, CustomerID, PaymentMethod, TotalAmount, BranchID, IsDelete, DateDelete, Other) VALUES
+    (1, '13:27:01 12/12/2023', 1, 2, N'Tiền mặt', 12345, NULL, 0, NULL, 'Đã hoàn thành'),
+    (1, '13:27:01 12/12/2023', 1, 2, N'Tiền mặt', 12345, NULL, 0, NULL, 'Đã hoàn thành');

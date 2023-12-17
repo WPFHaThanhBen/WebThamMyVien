@@ -33,6 +33,11 @@ namespace APICosmeticClinic.Repository
             return _context.OrderDetails.Where(c => c.IsDelete != true).ToList();
         }
 
+        public ICollection<OrderDetail> GetAllOrderDetailByOrderId(int id)
+        {
+            return _context.OrderDetails.Where(c => c.IsDelete != true && c.OrderId == id).ToList();
+        }
+
         public OrderDetail GetOrderDetail(int id)
         {
             return _context.OrderDetails.Where(e => e.Id == id && e.IsDelete != true).FirstOrDefault();

@@ -1437,6 +1437,18 @@
       "PackagePath": "staticwebassets\\DefaultAssets\\img\\feature.jpg"
     },
     {
+      "Id": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\Web\\WebThamMyVien\\WebThamMyVien\\wwwroot\\DefaultAssets\\img\\imageMomo.png",
+      "PackagePath": "staticwebassets\\DefaultAssets\\img\\imageMomo.png"
+    },
+    {
+      "Id": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\Web\\WebThamMyVien\\WebThamMyVien\\wwwroot\\DefaultAssets\\img\\imagePaypal.png",
+      "PackagePath": "staticwebassets\\DefaultAssets\\img\\imagePaypal.png"
+    },
+    {
+      "Id": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\Web\\WebThamMyVien\\WebThamMyVien\\wwwroot\\DefaultAssets\\img\\imageVnpay.png",
+      "PackagePath": "staticwebassets\\DefaultAssets\\img\\imageVnpay.png"
+    },
+    {
       "Id": "C:\\Users\\mavuo\\OneDrive\\Tài liệu\\GitHub\\WebThamMyVien\\Web\\WebThamMyVien\\WebThamMyVien\\wwwroot\\DefaultAssets\\img\\imagedemo03.jpg",
       "PackagePath": "staticwebassets\\DefaultAssets\\img\\imagedemo03.jpg"
     },

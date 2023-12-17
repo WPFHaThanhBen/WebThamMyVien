@@ -125,5 +125,41 @@ namespace WebThamMyVien.Repository
                 return null; // Trả về null nếu yêu cầu không thành công
             }
         }
+
+        public async Task<ICollection<OrderDto>> GetAllOrderByPhone(string phone)
+        {
+            var apiUrl = $"{_apiUrl}/api/Order/ByPhone/{phone}"; // Điền đường dẫn API tại đây
+
+            var response = await _httpClient.GetAsync(apiUrl);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<ICollection<OrderDto>>(content);
+                return values; // Trả về danh sách
+            }
+            else
+            {
+                return null; // Trả về null nếu yêu cầu không thành công
+            }
+        }
+
+        public async Task<OrderDto> GetOrderFinal()
+        {
+            var apiUrl = $"{_apiUrl}/api/Order/Final"; // Điền đường dẫn API tại đây
+
+            var response = await _httpClient.GetAsync(apiUrl);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<OrderDto>(content);
+                return values; // Trả về đối tượng nếu yêu cầu thành công
+            }
+            else
+            {
+                return null; // Trả về null nếu yêu cầu không thành công
+            }
+        }
     }
 }

@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
 using WebThamMyVien.Interfaces;
 using WebThamMyVien.Models;
-
 namespace WebThamMyVien.Controllers
 {
     [Route("Product")]
@@ -205,6 +205,14 @@ namespace WebThamMyVien.Controllers
                     shoppingCartItemView.Price = (int)priceItem;
                     listShoppingCartItemView.Add(shoppingCartItemView);
                 }
+                var userAccount = await _unitOfWork.UserAccount.GetUserAccount(IdAccount);
+                var customer = await _unitOfWork.Customer.GetCustomer((int)userAccount.CustomerId);
+                if(customer!= null)
+                {
+                    ViewData["CartFullName"] = customer.FullName;
+                    ViewData["CartPhone"] = customer.PhoneNumber;
+                    ViewData["CartAddress"] = customer.Address;
+                }
             }
             return View(listShoppingCartItemView);
         }
@@ -220,11 +228,11 @@ namespace WebThamMyVien.Controllers
                 var promotion = await _unitOfWork.Promotion.GetPromotion((int)product.AppliedPromotionId) as PromotionDto;
                 int promotionValue = int.Parse(promotion.PromotionValue);
                 int priceProduct = (int)product.SellingPrice;
-                double a = (double)promotionValue;
-                double b = (double)priceProduct;
+                int a = (int)promotionValue;
+                int b = (int)priceProduct;
                 // Tính tiền sau khuyến mãi
-                double priceItem = b * (1 - a / 100);
-                json = JsonConvert.SerializeObject(priceItem * quantity);
+                int priceItem = b * (1 - a / 100);
+                json = JsonConvert.SerializeObject(Convert.ToInt32(priceItem * quantity));
             }
             catch
             {
@@ -347,5 +355,9 @@ namespace WebThamMyVien.Controllers
         }
         //Bổ xung thêm các Action Add Item Cart, Delete, Update, Thêm Item ..... 
         //Nâng cấp thêm tính năng thanh toán online và 3 loại ví như VNPlay, MoMo, ...
+
+
+
     }
+
 }

@@ -33,9 +33,19 @@ namespace APICosmeticClinic.Repository
             return _context.Orders.Where(c => c.IsDelete != true).ToList();
         }
 
+        public ICollection<Order> GetAllOrderByPhone(string phone)
+        {
+            return _context.Orders.Where(c => c.IsDelete != true && c.RecipientPhoneNumber == phone).ToList();
+        }
+
         public Order GetOrder(int id)
         {
             return _context.Orders.Where(e => e.Id == id && e.IsDelete != true).FirstOrDefault();
+        }
+
+        public Order GetOrderFinal()
+        {
+            return _context.Orders.Where(e => e.IsDelete != true).OrderByDescending(e => e.Id).FirstOrDefault();
         }
 
         public bool OrderExists(int id)
